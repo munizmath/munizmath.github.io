@@ -81,6 +81,17 @@
       background: rgba(11,15,23,.55);
       color: var(--muted);
     }
+    
+    /* Centralizar LinkedIn Badge dentro do card */
+    .linkedin-badge-wrap{
+      display: flex;
+      justify-content: center;
+    }
+    
+    /* garantia extra caso o widget tenha width fixo */
+    .linkedin-badge-wrap .LI-profile-badge{
+      margin: 0 auto;
+    }
 
     /* Deck (scroll com snap) */
     .deck{
@@ -335,9 +346,25 @@
             </div>
 
             <div class="card" style="margin-top:12px">
-              <h3 data-i18n="hero.badgeTitle">LinkedIn Badge</h3>
-              <p data-i18n="hero.badgeInfo">
-               <div class="badge-base LI-profile-badge" data-locale="pt_BR" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="matheus-muniz-oliveira" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://br.linkedin.com/in/matheus-muniz-oliveira?trk=profile-badge">Matheus M.</a></div>
+              <h3>LinkedIn Badge</h3>
+            
+              <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+            
+              <div class="linkedin-badge-wrap">
+                <div class="badge-base LI-profile-badge"
+                     data-locale="pt_BR"
+                     data-size="medium"
+                     data-theme="dark"
+                     data-type="VERTICAL"
+                     data-vanity="matheus-muniz-oliveira"
+                     data-version="v1">
+                  <a class="badge-base__link LI-simple-link"
+                     href="https://br.linkedin.com/in/matheus-muniz-oliveira?trk=profile-badge">
+                    Matheus M.
+                  </a>
+                </div>
+              </div>
+            </div>
               
               </p>
 
