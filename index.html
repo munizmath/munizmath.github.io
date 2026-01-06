@@ -4,7 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Matheus Muniz | Full Stack • Dados • Automação</title>
-  <meta name="description" content="Currículo/portfólio — Full Stack Web, Análise de Dados, Automação, Observabilidade, SQL, Python." />
+  <meta name="description" content="Currículo/portfólio — Observabilidade, SQL, Python, BI, DevOps e Desenvolvimento Web Full Stack." />
+  <meta property="og:title" content="Matheus Muniz | Currículo & Portfólio" />
+  <meta property="og:description" content="Observabilidade • SQL • Python • BI • DevOps • Full Stack" />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0b0f17" />
   <style>
     :root{
       --bg:#0b0f17;
@@ -14,8 +18,10 @@
       --muted:#a9b7d0;
       --line:rgba(255,255,255,.09);
       --accent:#6aa9ff;
+      --accent2:#7dffca;
       --shadow: 0 18px 60px rgba(0,0,0,.45);
       --radius:18px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -24,28 +30,22 @@
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:
         radial-gradient(1100px 700px at 15% 0%, rgba(106,169,255,.12), transparent 55%),
-        radial-gradient(900px 650px at 85% 20%, rgba(120,255,214,.08), transparent 55%),
+        radial-gradient(900px 650px at 85% 20%, rgba(125,255,202,.08), transparent 55%),
         var(--bg);
       color:var(--text);
-      overflow:hidden; /* usa o container de scroll */
+      overflow:hidden;
     }
     a{color:inherit}
     .topbar{
-      position:fixed;
-      left:0; right:0; top:0;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
+      position:fixed; left:0; right:0; top:0;
+      display:flex; align-items:center; justify-content:space-between;
       padding:14px 18px;
-      z-index:20;
+      z-index:30;
       background: linear-gradient(to bottom, rgba(11,15,23,.9), rgba(11,15,23,.45));
       backdrop-filter: blur(10px);
       border-bottom:1px solid var(--line);
     }
-    .brand{
-      display:flex; gap:10px; align-items:center;
-      min-width: 220px;
-    }
+    .brand{display:flex; gap:10px; align-items:center; min-width: 260px;}
     .dot{
       width:10px; height:10px; border-radius:999px;
       background: var(--accent);
@@ -53,9 +53,7 @@
     }
     .brand strong{font-size:14px; letter-spacing:.2px}
     .brand span{display:block; font-size:12px; color:var(--muted)}
-    .lang{
-      display:flex; gap:8px; align-items:center;
-    }
+    .controls{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
     .btn{
       border:1px solid var(--line);
       background: rgba(15,22,38,.6);
@@ -64,20 +62,33 @@
       border-radius:12px;
       cursor:pointer;
       font-size:12px;
+      user-select:none;
     }
     .btn:hover{border-color: rgba(106,169,255,.35)}
     .btn.primary{
       background: rgba(106,169,255,.18);
       border-color: rgba(106,169,255,.35);
     }
+    .btn.ghost{
+      background: transparent;
+    }
+    .pill{
+      font-family: var(--mono);
+      font-size:11px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(11,15,23,.55);
+      color: var(--muted);
+    }
 
-    /* Scroll “PowerPoint” */
+    /* Deck (scroll com snap) */
     .deck{
       height:100vh;
       overflow:auto;
       scroll-snap-type: y mandatory;
       scroll-behavior:smooth;
-      padding-top:64px; /* espaço da topbar */
+      padding-top:64px;
     }
     section.slide{
       min-height: calc(100vh - 64px);
@@ -88,30 +99,23 @@
       align-items:center;
     }
     .frame{
-      width:min(1060px, 100%);
+      width:min(1120px, 100%);
       border:1px solid var(--line);
       border-radius: var(--radius);
       background: linear-gradient(180deg, rgba(15,22,38,.65), rgba(12,19,34,.55));
       box-shadow: var(--shadow);
       padding:24px;
     }
-    .grid2{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:16px;
-    }
-    @media (max-width: 900px){
-      .grid2{grid-template-columns:1fr}
-      .brand{min-width:auto}
-    }
+
+    .grid2{display:grid; grid-template-columns: 1.25fr .75fr; gap:16px;}
+    @media (max-width: 940px){ .grid2{grid-template-columns:1fr} .brand{min-width:auto} }
 
     h1{margin:0 0 8px; font-size:40px; letter-spacing:-.6px}
     h2{margin:0 0 10px; font-size:20px}
     p{margin:0; color:var(--muted); line-height:1.55}
+
     .kicker{
-      display:inline-flex;
-      gap:10px;
-      align-items:center;
+      display:inline-flex; gap:10px; align-items:center;
       padding:8px 10px;
       border:1px solid var(--line);
       border-radius:999px;
@@ -131,9 +135,7 @@
     }
     .actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px}
     .linkbtn{
-      display:inline-flex;
-      gap:10px;
-      align-items:center;
+      display:inline-flex; gap:10px; align-items:center;
       padding:10px 12px;
       border-radius:14px;
       border:1px solid var(--line);
@@ -147,15 +149,9 @@
       border-color: rgba(106,169,255,.35);
     }
 
-    .cards{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap:12px;
-      margin-top:12px;
-    }
-    @media (max-width: 900px){
-      .cards{grid-template-columns:1fr}
-    }
+    .cards{display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:12px; margin-top:12px;}
+    @media (max-width: 940px){ .cards{grid-template-columns:1fr} }
+
     .card{
       border:1px solid var(--line);
       background: rgba(11,15,23,.35);
@@ -168,31 +164,34 @@
     .card a{opacity:.92}
     .card a:hover{opacity:1; text-decoration:underline}
 
-    .twoCols{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-      margin-top:10px;
+    .twoCols{display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:10px;}
+    @media (max-width: 940px){ .twoCols{grid-template-columns:1fr} }
+
+    .list{margin:10px 0 0; padding:0 0 0 18px; color: var(--muted); line-height:1.55;}
+    .list li{margin:6px 0}
+    .tagline{font-family:var(--mono); font-size:12px; color:var(--muted); margin-top:10px}
+
+    .timeline{display:grid; grid-template-columns: 1fr; gap:10px; margin-top:12px;}
+    .titem{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:14px;
+      background: rgba(11,15,23,.28);
     }
-    @media (max-width: 900px){
-      .twoCols{grid-template-columns:1fr}
-    }
+    .titem .top{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;}
+    .titem .role{font-weight:600}
+    .titem .meta{color:var(--muted); font-size:12px}
+    .titem .place{color:var(--muted); font-size:12px}
+    .titem .bullets{margin:10px 0 0; padding-left:18px; color:var(--muted);}
 
     .footer{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top:10px;
-      color: var(--muted);
-      font-size:12px;
+      display:flex; justify-content:space-between; align-items:center;
+      gap:12px; flex-wrap:wrap; margin-top:10px;
+      color: var(--muted); font-size:12px;
     }
+
     .navhint{
-      position:fixed;
-      right:16px;
-      bottom:16px;
-      z-index:25;
+      position:fixed; right:16px; bottom:16px; z-index:40;
       border:1px solid var(--line);
       background: rgba(11,15,23,.60);
       border-radius:999px;
@@ -200,6 +199,41 @@
       font-size:12px;
       color: var(--muted);
       backdrop-filter: blur(10px);
+    }
+
+    /* barra lateral de progresso */
+    .rail{
+      position:fixed;
+      right:10px;
+      top:84px;
+      bottom:20px;
+      z-index:25;
+      display:flex;
+      align-items:center;
+      pointer-events:none;
+    }
+    .rail .dots{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      padding:10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(11,15,23,.35);
+      backdrop-filter: blur(10px);
+      pointer-events:auto;
+    }
+    .rail button{
+      width:10px; height:10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+      cursor:pointer;
+    }
+    .rail button.active{
+      background: rgba(106,169,255,.65);
+      border-color: rgba(106,169,255,.8);
+      box-shadow: 0 0 0 6px rgba(106,169,255,.14);
     }
   </style>
 </head>
@@ -209,38 +243,51 @@
       <div class="dot"></div>
       <div>
         <strong>Matheus Muniz</strong>
-        <span data-i18n="top.role">Full Stack • Dados • Automação</span>
+        <span data-i18n="top.role">Full Stack • Dados/BI • Automação • Observabilidade</span>
       </div>
     </div>
 
-    <div class="lang">
+    <div class="controls">
+      <span class="pill" data-i18n="top.location">Belo Horizonte, MG</span>
+      <button class="btn ghost" id="btn-up" title="Slide anterior">↑</button>
+      <button class="btn ghost" id="btn-down" title="Próximo slide">↓</button>
       <button class="btn primary" id="btn-pt">PT</button>
       <button class="btn" id="btn-en">EN</button>
       <button class="btn" id="btn-es">ES</button>
     </div>
   </header>
 
+  <aside class="rail" aria-hidden="true">
+    <div class="dots" id="dots"></div>
+  </aside>
+
   <div class="deck" id="deck">
     <!-- Slide 1: Hero -->
-    <section class="slide">
+    <section class="slide" data-slide="0">
       <div class="frame">
         <div class="grid2">
           <div>
             <div class="kicker">
-              <span data-i18n="hero.kicker">Disponível para vagas e projetos</span>
+              <span data-i18n="hero.kicker">Disponível para vagas e projetos (CLT/PJ)</span>
             </div>
 
-            <h1 data-i18n="hero.title">Desenvolvimento Web, Dados e Automação com Observabilidade</h1>
+            <h1 data-i18n="hero.title">Web, Dados e Automação com disciplina operacional</h1>
             <p data-i18n="hero.subtitle">
-              Engenheiro de Automação com foco em Full Stack Web, Análise de Dados e Observabilidade. Construo produtos e automações rastreáveis, com métricas, logs e alertas desde o início.
+              Profissional com mais de 10 anos em infraestrutura, monitoramento e automação em ambientes corporativos (setor financeiro).
+              Atuação com análise de dados/BI, observabilidade e rotinas 24x7 — e, mais recentemente, desenvolvimento web full stack.
             </p>
 
             <div class="chips">
               <div class="chip">Observabilidade</div>
               <div class="chip">SQL</div>
               <div class="chip">Python</div>
-              <div class="chip" data-i18n="hero.chip4">Automação</div>
-              <div class="chip" data-i18n="hero.chip5">Full Stack</div>
+              <div class="chip">Power BI</div>
+              <div class="chip">DevOps/SRE</div>
+              <div class="chip">Full Stack Web</div>
+            </div>
+
+            <div class="tagline" data-i18n="hero.tagline">
+              Ferramentas: Dynatrace • Grafana • ServiceNow • Control-M • PowerAutomate • Docker • AWS/Azure
             </div>
 
             <div class="actions">
@@ -248,29 +295,40 @@
               <a class="linkbtn" href="https://github.com/munizmath" target="_blank" rel="noreferrer" data-i18n="hero.ctaGithub">GitHub</a>
               <a class="linkbtn" href="https://deveriar.com.br" target="_blank" rel="noreferrer">Deveriar</a>
               <a class="linkbtn" href="https://ultrahub.com.br" target="_blank" rel="noreferrer">UltraHub</a>
-              <!-- TODO: se quiser CV em PDF, suba em /assets/cv.pdf e descomente
-              <a class="linkbtn" href="assets/cv.pdf" target="_blank" rel="noreferrer" data-i18n="hero.ctaPdf">Baixar CV (PDF)</a>
-              -->
+              <a class="linkbtn" href="assets/Curriculo-Matheus-Muniz.pdf" target="_blank" rel="noreferrer" data-i18n="hero.ctaCv">Abrir CV (PDF)</a>
+              <a class="linkbtn" href="assets/Profile.pdf" target="_blank" rel="noreferrer" data-i18n="hero.ctaProfile">Abrir LinkedIn (PDF)</a>
             </div>
           </div>
 
           <div>
             <div class="card">
-              <h3 data-i18n="hero.quickTitle">Resumo rápido</h3>
-              <p data-i18n="hero.quickText">
-                Entrego soluções com foco em clareza operacional: observabilidade, dados consistentes e automação segura. Priorizo arquitetura simples, logs úteis e manutenção.
-              </p>
+              <h3 data-i18n="hero.quickTitle">Contato</h3>
               <div class="row">
-                <small>📍</small><small data-i18n="hero.location">Brasil (remoto/híbrido)</small>
+                <small>📍</small><small>Belo Horizonte, MG</small>
+              </div>
+              <div class="row">
+                <small>📞</small><small>+55 (31) 9735-26254</small>
+              </div>
+              <div class="row">
+                <small>✉️</small><small>matheusmuniz@outlook.com</small>
+              </div>
+              <div class="row" style="margin-top:12px">
+                <small data-i18n="hero.langs">Idiomas:</small>
+                <small data-i18n="hero.langsValue">Inglês B1 • Espanhol B1</small>
               </div>
             </div>
 
             <div class="card" style="margin-top:12px">
               <h3 data-i18n="hero.badgeTitle">LinkedIn Badge</h3>
               <p data-i18n="hero.badgeInfo">
-                Cole aqui o código do “Public Profile Badge” do LinkedIn (o script + div). Mantém o site com aparência oficial.
+                Cole aqui o código do “Public Profile Badge” do LinkedIn (script + div).
               </p>
-              <!-- TODO: cole aqui o código do LinkedIn Badge -->
+
+              <!-- TODO: Cole o código do LinkedIn Badge abaixo.
+                   Normalmente vem como:
+                   <script src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+                   <div class="badge-base LI-profile-badge" data-locale="pt_BR" ...></div>
+              -->
               <div id="linkedin-badge-placeholder" style="margin-top:10px; opacity:.9">
                 <small data-i18n="hero.badgePlaceholder">[placeholder do badge]</small>
               </div>
@@ -279,154 +337,287 @@
         </div>
 
         <div class="footer">
-          <span data-i18n="hero.navTip">Dica: role para baixo (scroll) — cada seção é um “slide”.</span>
+          <span data-i18n="hero.navTip">Role para baixo — cada seção é um “slide”. (Teclas: PageDown/PageUp)</span>
           <span>© <span id="y"></span> Matheus Muniz</span>
         </div>
       </div>
     </section>
 
-    <!-- Slide 2: Sobre -->
-    <section class="slide">
+    <!-- Slide 2: Impacto -->
+    <section class="slide" data-slide="1">
       <div class="frame">
-        <h2 data-i18n="about.title">Sobre</h2>
-        <p data-i18n="about.text">
-          Trabalho na interseção entre software e operação: construir, medir e evoluir. Isso significa entregar aplicações e automações com telemetria útil (logs, métricas, alertas), dados confiáveis e rotinas que reduzem trabalho manual.
-        </p>
-
-        <div class="twoCols">
-          <div class="card">
-            <h3 data-i18n="about.focusTitle">Foco</h3>
-            <p data-i18n="about.focusText">
-              Full Stack Web, pipelines e consultas em SQL, automações em Python e padrões de observabilidade para estabilidade e diagnóstico rápido.
-            </p>
-          </div>
-          <div class="card">
-            <h3 data-i18n="about.valueTitle">Valor entregue</h3>
-            <p data-i18n="about.valueText">
-              Menos retrabalho, mais previsibilidade. Sistemas com rastreabilidade, indicadores e automações auditáveis.
-            </p>
-          </div>
-        </div>
-
-        <div class="card" style="margin-top:12px">
-          <h3 data-i18n="about.todoTitle">TODO (importante)</h3>
-          <p data-i18n="about.todoText">
-            Adicione 2–3 evidências objetivas aqui: “reduzi X% tempo”, “automatizei Y”, “monitorei Z”, “entreguei em N semanas”.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Slide 3: Competências -->
-    <section class="slide">
-      <div class="frame">
-        <h2 data-i18n="skills.title">Competências</h2>
+        <h2 data-i18n="impact.title">Impacto (provas objetivas)</h2>
+        <p data-i18n="impact.subtitle">Resultados em ambiente bancário crítico: redução de toil, melhoria de visibilidade e operação 24x7.</p>
 
         <div class="cards">
           <div class="card">
-            <h3 data-i18n="skills.obsTitle">Observabilidade</h3>
-            <p data-i18n="skills.obsText">Logs estruturados, métricas, alertas, diagnóstico e práticas operacionais.</p>
-            <div class="chips">
-              <div class="chip">Logging</div>
-              <div class="chip">Metrics</div>
-              <div class="chip">Alerting</div>
-              <div class="chip">SLO/SLA</div>
-            </div>
+            <h3 data-i18n="impact.i1t">-72% de toil operacional</h3>
+            <p data-i18n="impact.i1d">Automações com Python, PowerShell e PowerAutomate reduziram o tempo de execução de rotinas do Consignado.</p>
           </div>
 
           <div class="card">
-            <h3>SQL</h3>
-            <p data-i18n="skills.sqlText">Modelagem, consultas, agregações, qualidade de dados e relatórios.</p>
-            <div class="chips">
-              <div class="chip">ETL/ELT</div>
-              <div class="chip">Data Quality</div>
-              <div class="chip">Analytics</div>
-            </div>
+            <h3 data-i18n="impact.i2t">Dashboards e redução de MTTR</h3>
+            <p data-i18n="impact.i2d">Painéis em Power BI para saúde do ambiente e tendências, reduzindo MTTR em classes recorrentes.</p>
           </div>
 
           <div class="card">
-            <h3>Python</h3>
-            <p data-i18n="skills.pyText">Automação, integração, scripts de dados e rotinas de operação.</p>
-            <div class="chips">
-              <div class="chip">Automation</div>
-              <div class="chip">APIs</div>
-              <div class="chip">Data scripts</div>
-            </div>
+            <h3 data-i18n="impact.i3t">Escala operacional (N1/N2)</h3>
+            <p data-i18n="impact.i3d">Absorção de rotinas, critérios de entrada, POPs e treinamento; menos handoffs no ServiceNow.</p>
           </div>
         </div>
 
-        <div class="card" style="margin-top:12px">
-          <h3 data-i18n="skills.stackTitle">Stack (edite para ficar verdadeiro)</h3>
-          <p data-i18n="skills.stackText">
-            TODO: liste aqui suas tecnologias principais (ex.: Node/Express, React, Docker, GCP/AWS/Azure, etc.).
-          </p>
+        <div class="twoCols">
+          <div class="card">
+            <h3 data-i18n="impact.i4t">Observabilidade</h3>
+            <ul class="list">
+              <li data-i18n="impact.i4b1">Administração/otimização Dynatrace e Grafana</li>
+              <li data-i18n="impact.i4b2">Análises de latência, erro e tráfego; detecção proativa</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3 data-i18n="impact.i5t">Deploy e operação</h3>
+            <ul class="list">
+              <li data-i18n="impact.i5b1">Ciclo de deploy: CloudBees, Rundeck, Ansible, Docker, Liquibase</li>
+              <li data-i18n="impact.i5b2">Middleware/console: Gravity, filas MQ, WAS/Tomcat/JBoss</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Slide 4: Projetos -->
-    <section class="slide">
+    <!-- Slide 3: Experiência -->
+    <section class="slide" data-slide="2">
       <div class="frame">
-        <h2 data-i18n="projects.title">Projetos em destaque</h2>
-        <p data-i18n="projects.subtitle">Seleção objetiva do que melhor prova seu nível técnico e capacidade de entrega.</p>
+        <h2 data-i18n="exp.title">Experiência (linha do tempo)</h2>
+        <p data-i18n="exp.subtitle">Trajetória 2011–2025: suporte → liderança NOC → SRE/Observabilidade → Full Stack (autônomo).</p>
+
+        <div class="timeline">
+          <div class="titem">
+            <div class="top">
+              <div>
+                <div class="role" data-i18n="exp.r0">Autônomo — Desenvolvimento Web Full Stack</div>
+                <div class="place" data-i18n="exp.r0p">Belo Horizonte/MG</div>
+              </div>
+              <div class="meta" data-i18n="exp.r0d">03/2025 – atual</div>
+            </div>
+            <ul class="bullets">
+              <li data-i18n="exp.r0b1">Desenvolvimento de sistemas web: Frontend, Backend, Banco de Dados, Monitoramento e DevOps.</li>
+            </ul>
+          </div>
+
+          <div class="titem">
+            <div class="top">
+              <div>
+                <div class="role" data-i18n="exp.r1">F1RST Digital (Santander) — Analista de TI Sr.</div>
+                <div class="place" data-i18n="exp.r1p">Campinas/SP</div>
+              </div>
+              <div class="meta" data-i18n="exp.r1d">12/2022 – 02/2025</div>
+            </div>
+            <ul class="bullets">
+              <li data-i18n="exp.r1b1">Observabilidade: Dynatrace/Grafana; análises de métricas (latência/erro/tráfego) e detecção proativa.</li>
+              <li data-i18n="exp.r1b2">Automação: Python/PowerShell/PowerAutomate + Control-M (RPA) para reduzir toil.</li>
+              <li data-i18n="exp.r1b3">Power BI: modelagem estrela, DAX (MTTR/MTTA/SLO), tendências por serviço e horário.</li>
+              <li data-i18n="exp.r1b4">Deploy: CloudBees, Rundeck, Ansible, Docker, Liquibase (validação e evidências pós-deploy).</li>
+            </ul>
+          </div>
+
+          <div class="titem">
+            <div class="top">
+              <div>
+                <div class="role" data-i18n="exp.r2">F1RST Digital — Analista de TI Pl.</div>
+                <div class="place" data-i18n="exp.r2p">Campinas/SP</div>
+              </div>
+              <div class="meta" data-i18n="exp.r2d">12/2021 – 12/2022</div>
+            </div>
+            <ul class="bullets">
+              <li data-i18n="exp.r2b1">Tratamento de alertas (N1/N2): Dynatrace, Splunk, Grafana, Kibana; correlação CPU/memória/disco/latência.</li>
+              <li data-i18n="exp.r2b2">Análise de logs/traces/exceptions (Tomcat, JBoss, WebSphere, WebLogic) e troubleshooting ponta a ponta.</li>
+              <li data-i18n="exp.r2b3">Verificação de saúde em AWS/Azure (quotas, IAM, filas, latências) e painéis analíticos em Power BI.</li>
+            </ul>
+          </div>
+
+          <div class="titem">
+            <div class="top">
+              <div>
+                <div class="role" data-i18n="exp.r3">Global Hitss — Líder Técnico (NOC/Service Desk/Gestão de Acessos)</div>
+                <div class="place" data-i18n="exp.r3p">Belo Horizonte/MG</div>
+              </div>
+              <div class="meta" data-i18n="exp.r3d">11/2020 – 12/2021</div>
+            </div>
+            <ul class="bullets">
+              <li data-i18n="exp.r3b1">Coordenação de times 24x7 e handoffs padronizados (BH/RJ/SP).</li>
+              <li data-i18n="exp.r3b2">Gestão de incidentes críticos: war rooms, timelines, lições aprendidas e redução de MTTR.</li>
+              <li data-i18n="exp.r3b3">Processos e documentação (POPs/fluxos) + relatórios gerenciais (SLA/MTTR/volumetria).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3 data-i18n="exp.noteT">Nota</h3>
+          <p data-i18n="exp.noteD">A trajetória completa (2011–2025) está no CV em PDF, incluindo suporte, infraestrutura e IAM.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 4: Skills / Stack -->
+    <section class="slide" data-slide="3">
+      <div class="frame">
+        <h2 data-i18n="skills.title">Competências (core)</h2>
+        <p data-i18n="skills.subtitle">Foco em observabilidade, dados e automação — com base sólida em operação crítica.</p>
+
+        <div class="cards">
+          <div class="card">
+            <h3 data-i18n="skills.s1t">Observabilidade / Monitoramento</h3>
+            <p data-i18n="skills.s1d">Dynatrace, Grafana, Kibana/Splunk; métricas, alertas, troubleshooting e operação 24x7.</p>
+            <div class="chips">
+              <div class="chip">Dynatrace</div>
+              <div class="chip">Grafana</div>
+              <div class="chip">Kibana</div>
+              <div class="chip">Splunk</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 data-i18n="skills.s2t">Dados / BI</h3>
+            <p data-i18n="skills.s2d">Power BI, modelagem dimensional, DAX, ETL/ELT e indicadores (MTTR/MTTA/SLO).</p>
+            <div class="chips">
+              <div class="chip">Power BI</div>
+              <div class="chip">DAX</div>
+              <div class="chip">SQL</div>
+              <div class="chip">ETL</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 data-i18n="skills.s3t">Automação / DevOps</h3>
+            <p data-i18n="skills.s3d">Python, PowerShell, PowerAutomate, Control-M; deploy/ops com Docker e automação de rotinas.</p>
+            <div class="chips">
+              <div class="chip">Python</div>
+              <div class="chip">PowerShell</div>
+              <div class="chip">PowerAutomate</div>
+              <div class="chip">Docker</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="twoCols">
+          <div class="card">
+            <h3 data-i18n="skills.stackT">Stack (resumo)</h3>
+            <p data-i18n="skills.stackD">
+              SQL • Python • Power BI • Dynatrace • Grafana • ServiceNow • Control-M • Git • Docker • Linux/Windows Server • AWS/Azure.
+            </p>
+          </div>
+          <div class="card">
+            <h3 data-i18n="skills.fullT">Full Stack (autônomo)</h3>
+            <p data-i18n="skills.fullD">
+              Desenvolvimento web end-to-end incluindo backend, frontend, banco e monitoramento (03/2025–atual).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 5: Formação & Certificações -->
+    <section class="slide" data-slide="4">
+      <div class="frame">
+        <h2 data-i18n="cert.title">Formação & Certificações</h2>
+
+        <div class="twoCols">
+          <div class="card">
+            <h3 data-i18n="cert.eduT">Formação</h3>
+            <ul class="list">
+              <li data-i18n="cert.edu1">Gestão de TI — UniBH (conclusão 2014)</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3 data-i18n="cert.certT">Certificações (destaque)</h3>
+            <ul class="list">
+              <li data-i18n="cert.c1">ITIL 4 Foundations</li>
+              <li data-i18n="cert.c2">COBIT 5 Foundations</li>
+              <li data-i18n="cert.c3">SRE Practitioner (DevOps Institute)</li>
+              <li data-i18n="cert.c4">Oracle Cloud Infrastructure Foundations</li>
+              <li data-i18n="cert.c5">Scrum Foundations</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3 data-i18n="cert.moreT">Cursos (exemplos)</h3>
+          <p data-i18n="cert.moreD">Power BI • Python para Data Science • R para Data Science • PowerShell • TypeScript • Full Stack Python • Cybersecurity.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 6: Projetos -->
+    <section class="slide" data-slide="5">
+      <div class="frame">
+        <h2 data-i18n="proj.title">Projetos (vitrine)</h2>
+        <p data-i18n="proj.subtitle">Conteúdo enxuto, orientado a prova: o que é, qual problema resolve, como foi construído.</p>
 
         <div class="cards">
           <div class="card">
             <h3>Deveriar</h3>
-            <p data-i18n="projects.devText">Plataforma/app web com foco em organização e acompanhamento. (Descreva em 1 frase o diferencial.)</p>
+            <p data-i18n="proj.p1d">Aplicação web com módulos orientados a organização/registro. (Edite: 1 frase de diferencial + stack.)</p>
             <div class="row">
-              <a href="https://deveriar.com.br" target="_blank" rel="noreferrer">Site</a>
-              <span style="opacity:.6">•</span>
-              <a href="https://github.com/munizmath" target="_blank" rel="noreferrer" data-i18n="projects.devRepo">Repo (se aplicável)</a>
+              <a href="https://deveriar.com.br" target="_blank" rel="noreferrer" data-i18n="proj.open">Abrir</a>
             </div>
           </div>
 
           <div class="card">
             <h3>UltraHub</h3>
-            <p data-i18n="projects.uhText">CRM + módulos analíticos/operacionais. (Descreva o problema que resolve.)</p>
+            <p data-i18n="proj.p2d">CRM + base para módulos analíticos/operacionais. (Edite: problema, solução e prova.)</p>
             <div class="row">
-              <a href="https://ultrahub.com.br" target="_blank" rel="noreferrer">Site</a>
-              <span style="opacity:.6">•</span>
-              <a href="https://github.com/munizmath" target="_blank" rel="noreferrer" data-i18n="projects.uhRepo">Repo (se aplicável)</a>
+              <a href="https://ultrahub.com.br" target="_blank" rel="noreferrer" data-i18n="proj.open">Abrir</a>
             </div>
           </div>
 
           <div class="card">
-            <h3 data-i18n="projects.otherTitle">Outros projetos</h3>
-            <p data-i18n="projects.otherText">Organize por categoria: web, automação, dados. Deixe só o que você quer que avaliem.</p>
+            <h3 data-i18n="proj.p3t">GitHub</h3>
+            <p data-i18n="proj.p3d">Repositórios e experimentos (automação, web, dados). Selecione 3 para “featured”.</p>
             <div class="row">
-              <a href="https://github.com/munizmath" target="_blank" rel="noreferrer" data-i18n="projects.otherLink">Ver GitHub</a>
+              <a href="https://github.com/munizmath" target="_blank" rel="noreferrer" data-i18n="proj.open">Abrir</a>
             </div>
           </div>
         </div>
 
         <div class="card" style="margin-top:12px">
-          <h3 data-i18n="projects.todoTitle">TODO (forte)</h3>
-          <p data-i18n="projects.todoText">
-            Em cada projeto, coloque 3 bullets: (1) problema, (2) solução, (3) prova/impacto. Sem texto longo.
-          </p>
+          <h3 data-i18n="proj.todoT">TODO (para ficar “contratável”)</h3>
+          <ul class="list">
+            <li data-i18n="proj.todo1">Em cada projeto, escreva 3 bullets: Problema → Solução → Prova/Impacto.</li>
+            <li data-i18n="proj.todo2">Adicione 1 screenshot por projeto (se possível) e um “arquitetura/stack” de 1 linha.</li>
+            <li data-i18n="proj.todo3">Se tiver métricas (tempo, custo, users), coloque — mesmo aproximado.</li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <!-- Slide 5: Contato -->
-    <section class="slide">
+    <!-- Slide 7: Contato -->
+    <section class="slide" data-slide="6">
       <div class="frame">
         <h2 data-i18n="contact.title">Contato</h2>
-        <p data-i18n="contact.text">Para recrutamento ou proposta de projeto, use LinkedIn (resposta mais rápida).</p>
+        <p data-i18n="contact.subtitle">Canal recomendado: LinkedIn. PDFs anexos no site para leitura rápida.</p>
 
         <div class="actions">
           <a class="linkbtn primary" href="https://www.linkedin.com/in/matheus-muniz-oliveira/" target="_blank" rel="noreferrer" data-i18n="contact.ctaLinkedin">Abrir LinkedIn</a>
-          <a class="linkbtn" href="https://github.com/munizmath" target="_blank" rel="noreferrer" data-i18n="contact.ctaGithub">Abrir GitHub</a>
-          <!-- TODO: se quiser email público, coloque abaixo (cuidado com spam) -->
-          <!-- <a class="linkbtn" href="mailto:seuemail@dominio.com">Email</a> -->
+          <a class="linkbtn" href="mailto:matheusmuniz@outlook.com" data-i18n="contact.ctaEmail">Enviar e-mail</a>
+          <a class="linkbtn" href="assets/Curriculo-Matheus-Muniz.pdf" target="_blank" rel="noreferrer" data-i18n="contact.ctaCv">Abrir CV (PDF)</a>
+          <a class="linkbtn" href="assets/Profile.pdf" target="_blank" rel="noreferrer" data-i18n="contact.ctaProfile">Abrir LinkedIn (PDF)</a>
         </div>
 
         <div class="card" style="margin-top:12px">
-          <h3 data-i18n="contact.noteTitle">Nota</h3>
-          <p data-i18n="contact.noteText">
-            Se você quiser transformar isso em “vitrine comercial”, adicione uma seção “Serviços” e “Cases” com escopo e entregáveis.
-          </p>
+          <h3 data-i18n="contact.badgeT">LinkedIn Badge</h3>
+          <p data-i18n="contact.badgeD">Se você colar o badge aqui, o site fica “institucional” sem depender de screenshot.</p>
+
+          <!-- TODO: cole o badge aqui (script + div) -->
+          <div style="margin-top:10px; opacity:.9">
+            <small data-i18n="contact.badgeP">[cole o código do badge aqui]</small>
+          </div>
+        </div>
+
+        <div class="footer">
+          <span data-i18n="contact.foot">Padrão corporativo-tech • 1 página • tradução PT/EN/ES</span>
+          <span>© <span id="y2"></span> Matheus Muniz</span>
         </div>
       </div>
     </section>
@@ -436,188 +627,359 @@
 
   <script>
     // Ano
-    document.getElementById("y").textContent = new Date().getFullYear();
+    const y = new Date().getFullYear();
+    document.getElementById("y").textContent = y;
+    document.getElementById("y2").textContent = y;
 
-    // i18n simples (PT/EN/ES) — edite à vontade
+    // Traduções (PT/EN/ES)
     const dict = {
       pt: {
-        "top.role": "Full Stack • Dados • Automação",
-        "hero.kicker": "Disponível para vagas e projetos",
-        "hero.title": "Desenvolvimento Web, Dados e Automação com Observabilidade",
-        "hero.subtitle": "Engenheiro de Automação com foco em Full Stack Web, Análise de Dados e Observabilidade. Construo produtos e automações rastreáveis, com métricas, logs e alertas desde o início.",
-        "hero.chip4": "Automação",
-        "hero.chip5": "Full Stack",
+        "top.role": "Full Stack • Dados/BI • Automação • Observabilidade",
+        "top.location": "Belo Horizonte, MG",
+
+        "hero.kicker": "Disponível para vagas e projetos (CLT/PJ)",
+        "hero.title": "Web, Dados e Automação com disciplina operacional",
+        "hero.subtitle": "Profissional com mais de 10 anos em infraestrutura, monitoramento e automação em ambientes corporativos (setor financeiro). Atuação com análise de dados/BI, observabilidade e rotinas 24x7 — e, mais recentemente, desenvolvimento web full stack.",
+        "hero.tagline": "Ferramentas: Dynatrace • Grafana • ServiceNow • Control-M • PowerAutomate • Docker • AWS/Azure",
         "hero.ctaLinkedin": "LinkedIn",
         "hero.ctaGithub": "GitHub",
-        "hero.ctaPdf": "Baixar CV (PDF)",
-        "hero.quickTitle": "Resumo rápido",
-        "hero.quickText": "Entrego soluções com foco em clareza operacional: observabilidade, dados consistentes e automação segura. Priorizo arquitetura simples, logs úteis e manutenção.",
-        "hero.location": "Brasil (remoto/híbrido)",
+        "hero.ctaCv": "Abrir CV (PDF)",
+        "hero.ctaProfile": "Abrir LinkedIn (PDF)",
+        "hero.quickTitle": "Contato",
+        "hero.langs": "Idiomas:",
+        "hero.langsValue": "Inglês B1 • Espanhol B1",
         "hero.badgeTitle": "LinkedIn Badge",
-        "hero.badgeInfo": "Cole aqui o código do “Public Profile Badge” do LinkedIn (o script + div). Mantém o site com aparência oficial.",
+        "hero.badgeInfo": "Cole aqui o código do “Public Profile Badge” do LinkedIn (script + div).",
         "hero.badgePlaceholder": "[placeholder do badge]",
-        "hero.navTip": "Dica: role para baixo (scroll) — cada seção é um “slide”.",
+        "hero.navTip": "Role para baixo — cada seção é um “slide”. (Teclas: PageDown/PageUp)",
 
-        "about.title": "Sobre",
-        "about.text": "Trabalho na interseção entre software e operação: construir, medir e evoluir. Isso significa entregar aplicações e automações com telemetria útil (logs, métricas, alertas), dados confiáveis e rotinas que reduzem trabalho manual.",
-        "about.focusTitle": "Foco",
-        "about.focusText": "Full Stack Web, pipelines e consultas em SQL, automações em Python e padrões de observabilidade para estabilidade e diagnóstico rápido.",
-        "about.valueTitle": "Valor entregue",
-        "about.valueText": "Menos retrabalho, mais previsibilidade. Sistemas com rastreabilidade, indicadores e automações auditáveis.",
-        "about.todoTitle": "TODO (importante)",
-        "about.todoText": "Adicione 2–3 evidências objetivas aqui: “reduzi X% tempo”, “automatizei Y”, “monitorei Z”, “entreguei em N semanas”."
+        "impact.title": "Impacto (provas objetivas)",
+        "impact.subtitle": "Resultados em ambiente bancário crítico: redução de toil, melhoria de visibilidade e operação 24x7.",
+        "impact.i1t": "-72% de toil operacional",
+        "impact.i1d": "Automações com Python, PowerShell e PowerAutomate reduziram o tempo de execução de rotinas do Consignado.",
+        "impact.i2t": "Dashboards e redução de MTTR",
+        "impact.i2d": "Painéis em Power BI para saúde do ambiente e tendências, reduzindo MTTR em classes recorrentes.",
+        "impact.i3t": "Escala operacional (N1/N2)",
+        "impact.i3d": "Absorção de rotinas, critérios de entrada, POPs e treinamento; menos handoffs no ServiceNow.",
+        "impact.i4t": "Observabilidade",
+        "impact.i4b1": "Administração/otimização Dynatrace e Grafana",
+        "impact.i4b2": "Análises de latência, erro e tráfego; detecção proativa",
+        "impact.i5t": "Deploy e operação",
+        "impact.i5b1": "Ciclo de deploy: CloudBees, Rundeck, Ansible, Docker, Liquibase",
+        "impact.i5b2": "Middleware/console: Gravity, filas MQ, WAS/Tomcat/JBoss",
 
-        ,
-        "skills.title": "Competências",
-        "skills.obsTitle": "Observabilidade",
-        "skills.obsText": "Logs estruturados, métricas, alertas, diagnóstico e práticas operacionais.",
-        "skills.sqlText": "Modelagem, consultas, agregações, qualidade de dados e relatórios.",
-        "skills.pyText": "Automação, integração, scripts de dados e rotinas de operação.",
-        "skills.stackTitle": "Stack (edite para ficar verdadeiro)",
-        "skills.stackText": "TODO: liste aqui suas tecnologias principais (ex.: Node/Express, React, Docker, GCP/AWS/Azure, etc.).",
+        "exp.title": "Experiência (linha do tempo)",
+        "exp.subtitle": "Trajetória 2011–2025: suporte → liderança NOC → SRE/Observabilidade → Full Stack (autônomo).",
+        "exp.r0": "Autônomo — Desenvolvimento Web Full Stack",
+        "exp.r0p": "Belo Horizonte/MG",
+        "exp.r0d": "03/2025 – atual",
+        "exp.r0b1": "Desenvolvimento de sistemas web: Frontend, Backend, Banco de Dados, Monitoramento e DevOps.",
+        "exp.r1": "F1RST Digital (Santander) — Analista de TI Sr.",
+        "exp.r1p": "Campinas/SP",
+        "exp.r1d": "12/2022 – 02/2025",
+        "exp.r1b1": "Observabilidade: Dynatrace/Grafana; análises de métricas (latência/erro/tráfego) e detecção proativa.",
+        "exp.r1b2": "Automação: Python/PowerShell/PowerAutomate + Control-M (RPA) para reduzir toil.",
+        "exp.r1b3": "Power BI: modelagem estrela, DAX (MTTR/MTTA/SLO), tendências por serviço e horário.",
+        "exp.r1b4": "Deploy: CloudBees, Rundeck, Ansible, Docker, Liquibase (validação e evidências pós-deploy).",
+        "exp.r2": "F1RST Digital — Analista de TI Pl.",
+        "exp.r2p": "Campinas/SP",
+        "exp.r2d": "12/2021 – 12/2022",
+        "exp.r2b1": "Tratamento de alertas (N1/N2): Dynatrace, Splunk, Grafana, Kibana; correlação CPU/memória/disco/latência.",
+        "exp.r2b2": "Análise de logs/traces/exceptions (Tomcat, JBoss, WebSphere, WebLogic) e troubleshooting ponta a ponta.",
+        "exp.r2b3": "Verificação de saúde em AWS/Azure (quotas, IAM, filas, latências) e painéis analíticos em Power BI.",
+        "exp.r3": "Global Hitss — Líder Técnico (NOC/Service Desk/Gestão de Acessos)",
+        "exp.r3p": "Belo Horizonte/MG",
+        "exp.r3d": "11/2020 – 12/2021",
+        "exp.r3b1": "Coordenação de times 24x7 e handoffs padronizados (BH/RJ/SP).",
+        "exp.r3b2": "Gestão de incidentes críticos: war rooms, timelines, lições aprendidas e redução de MTTR.",
+        "exp.r3b3": "Processos e documentação (POPs/fluxos) + relatórios gerenciais (SLA/MTTR/volumetria).",
+        "exp.noteT": "Nota",
+        "exp.noteD": "A trajetória completa (2011–2025) está no CV em PDF, incluindo suporte, infraestrutura e IAM.",
 
-        "projects.title": "Projetos em destaque",
-        "projects.subtitle": "Seleção objetiva do que melhor prova seu nível técnico e capacidade de entrega.",
-        "projects.devText": "Plataforma/app web com foco em organização e acompanhamento. (Descreva em 1 frase o diferencial.)",
-        "projects.devRepo": "Repo (se aplicável)",
-        "projects.uhText": "CRM + módulos analíticos/operacionais. (Descreva o problema que resolve.)",
-        "projects.uhRepo": "Repo (se aplicável)",
-        "projects.otherTitle": "Outros projetos",
-        "projects.otherText": "Organize por categoria: web, automação, dados. Deixe só o que você quer que avaliem.",
-        "projects.otherLink": "Ver GitHub",
-        "projects.todoTitle": "TODO (forte)",
-        "projects.todoText": "Em cada projeto, coloque 3 bullets: (1) problema, (2) solução, (3) prova/impacto. Sem texto longo.",
+        "skills.title": "Competências (core)",
+        "skills.subtitle": "Foco em observabilidade, dados e automação — com base sólida em operação crítica.",
+        "skills.s1t": "Observabilidade / Monitoramento",
+        "skills.s1d": "Dynatrace, Grafana, Kibana/Splunk; métricas, alertas, troubleshooting e operação 24x7.",
+        "skills.s2t": "Dados / BI",
+        "skills.s2d": "Power BI, modelagem dimensional, DAX, ETL/ELT e indicadores (MTTR/MTTA/SLO).",
+        "skills.s3t": "Automação / DevOps",
+        "skills.s3d": "Python, PowerShell, PowerAutomate, Control-M; deploy/ops com Docker e automação de rotinas.",
+        "skills.stackT": "Stack (resumo)",
+        "skills.stackD": "SQL • Python • Power BI • Dynatrace • Grafana • ServiceNow • Control-M • Git • Docker • Linux/Windows Server • AWS/Azure.",
+        "skills.fullT": "Full Stack (autônomo)",
+        "skills.fullD": "Desenvolvimento web end-to-end incluindo backend, frontend, banco e monitoramento (03/2025–atual).",
+
+        "cert.title": "Formação & Certificações",
+        "cert.eduT": "Formação",
+        "cert.edu1": "Gestão de TI — UniBH (conclusão 2014)",
+        "cert.certT": "Certificações (destaque)",
+        "cert.c1": "ITIL 4 Foundations",
+        "cert.c2": "COBIT 5 Foundations",
+        "cert.c3": "SRE Practitioner (DevOps Institute)",
+        "cert.c4": "Oracle Cloud Infrastructure Foundations",
+        "cert.c5": "Scrum Foundations",
+        "cert.moreT": "Cursos (exemplos)",
+        "cert.moreD": "Power BI • Python para Data Science • R para Data Science • PowerShell • TypeScript • Full Stack Python • Cybersecurity.",
+
+        "proj.title": "Projetos (vitrine)",
+        "proj.subtitle": "Conteúdo enxuto, orientado a prova: o que é, qual problema resolve, como foi construído.",
+        "proj.p1d": "Aplicação web com módulos orientados a organização/registro. (Edite: 1 frase de diferencial + stack.)",
+        "proj.p2d": "CRM + base para módulos analíticos/operacionais. (Edite: problema, solução e prova.)",
+        "proj.p3t": "GitHub",
+        "proj.p3d": "Repositórios e experimentos (automação, web, dados). Selecione 3 para “featured”.",
+        "proj.open": "Abrir",
+        "proj.todoT": "TODO (para ficar “contratável”)",
+        "proj.todo1": "Em cada projeto, escreva 3 bullets: Problema → Solução → Prova/Impacto.",
+        "proj.todo2": "Adicione 1 screenshot por projeto (se possível) e um “arquitetura/stack” de 1 linha.",
+        "proj.todo3": "Se tiver métricas (tempo, custo, users), coloque — mesmo aproximado.",
 
         "contact.title": "Contato",
-        "contact.text": "Para recrutamento ou proposta de projeto, use LinkedIn (resposta mais rápida).",
+        "contact.subtitle": "Canal recomendado: LinkedIn. PDFs anexos no site para leitura rápida.",
         "contact.ctaLinkedin": "Abrir LinkedIn",
-        "contact.ctaGithub": "Abrir GitHub",
-        "contact.noteTitle": "Nota",
-        "contact.noteText": "Se você quiser transformar isso em “vitrine comercial”, adicione uma seção “Serviços” e “Cases” com escopo e entregáveis."
+        "contact.ctaEmail": "Enviar e-mail",
+        "contact.ctaCv": "Abrir CV (PDF)",
+        "contact.ctaProfile": "Abrir LinkedIn (PDF)",
+        "contact.badgeT": "LinkedIn Badge",
+        "contact.badgeD": "Se você colar o badge aqui, o site fica “institucional” sem depender de screenshot.",
+        "contact.badgeP": "[cole o código do badge aqui]",
+        "contact.foot": "Padrão corporativo-tech • 1 página • tradução PT/EN/ES",
       },
       en: {
-        "top.role": "Full Stack • Data • Automation",
-        "hero.kicker": "Open to roles and projects",
-        "hero.title": "Web Development, Data & Automation with Observability",
-        "hero.subtitle": "Automation Engineer focused on Full Stack Web, Data Analysis and Observability. I build traceable products and automations with metrics, logs and alerts from day one.",
-        "hero.chip4": "Automation",
-        "hero.chip5": "Full Stack",
+        "top.role": "Full Stack • Data/BI • Automation • Observability",
+        "top.location": "Belo Horizonte, Brazil",
+
+        "hero.kicker": "Open to roles and projects (CLT/PJ)",
+        "hero.title": "Web, Data & Automation with operational discipline",
+        "hero.subtitle": "10+ years in infrastructure, monitoring and automation in enterprise environments (financial sector). Experience with data/BI, observability and 24x7 operations — and more recently, full-stack web development.",
+        "hero.tagline": "Tools: Dynatrace • Grafana • ServiceNow • Control-M • PowerAutomate • Docker • AWS/Azure",
         "hero.ctaLinkedin": "LinkedIn",
         "hero.ctaGithub": "GitHub",
-        "hero.ctaPdf": "Download CV (PDF)",
-        "hero.quickTitle": "Quick summary",
-        "hero.quickText": "I deliver with operational clarity: observability, consistent data and safe automation. I prioritize simple architecture, actionable logs and maintainability.",
-        "hero.location": "Brazil (remote/hybrid)",
+        "hero.ctaCv": "Open CV (PDF)",
+        "hero.ctaProfile": "Open LinkedIn (PDF)",
+        "hero.quickTitle": "Contact",
+        "hero.langs": "Languages:",
+        "hero.langsValue": "English B1 • Spanish B1",
         "hero.badgeTitle": "LinkedIn Badge",
-        "hero.badgeInfo": "Paste your LinkedIn “Public Profile Badge” code here (script + div). Keeps an official look.",
+        "hero.badgeInfo": "Paste your LinkedIn Public Profile Badge code here (script + div).",
         "hero.badgePlaceholder": "[badge placeholder]",
-        "hero.navTip": "Tip: scroll down — each section is a “slide”.",
+        "hero.navTip": "Scroll down — each section is a “slide”. (Keys: PageDown/PageUp)",
 
-        "about.title": "About",
-        "about.text": "I work at the intersection of software and operations: build, measure, improve. That means delivering apps and automations with useful telemetry (logs, metrics, alerts), reliable data, and routines that reduce manual work.",
-        "about.focusTitle": "Focus",
-        "about.focusText": "Full Stack Web, SQL queries/pipelines, Python automation, and observability patterns for stability and fast diagnosis.",
-        "about.valueTitle": "Value",
-        "about.valueText": "Less rework, more predictability. Systems with traceability, indicators and auditable automations.",
-        "about.todoTitle": "TODO (important)",
-        "about.todoText": "Add 2–3 objective proofs here: “reduced X% time”, “automated Y”, “monitored Z”, “delivered in N weeks”.",
+        "impact.title": "Impact (objective proof)",
+        "impact.subtitle": "Results in a critical banking environment: less toil, better visibility and 24x7 operations.",
+        "impact.i1t": "-72% operational toil",
+        "impact.i1d": "Automation using Python, PowerShell and PowerAutomate reduced execution time for recurring routines.",
+        "impact.i2t": "Dashboards and MTTR reduction",
+        "impact.i2d": "Power BI dashboards for environment health and trends, reducing MTTR for recurring alert classes.",
+        "impact.i3t": "Operational scale (N1/N2)",
+        "impact.i3d": "Routine onboarding, criteria, SOPs and training; fewer handoffs in ServiceNow.",
+        "impact.i4t": "Observability",
+        "impact.i4b1": "Administration/optimization of Dynatrace and Grafana",
+        "impact.i4b2": "Latency/error/traffic analysis; proactive detection",
+        "impact.i5t": "Deploy and operations",
+        "impact.i5b1": "Deploy lifecycle: CloudBees, Rundeck, Ansible, Docker, Liquibase",
+        "impact.i5b2": "Middleware/console: Gravity, MQ queues, WAS/Tomcat/JBoss",
 
-        "skills.title": "Skills",
-        "skills.obsTitle": "Observability",
-        "skills.obsText": "Structured logs, metrics, alerting, troubleshooting and operational practices.",
-        "skills.sqlText": "Modeling, queries, aggregations, data quality and reporting.",
-        "skills.pyText": "Automation, integration, data scripts and ops routines.",
-        "skills.stackTitle": "Stack (edit to be true)",
-        "skills.stackText": "TODO: list your main technologies here (e.g., Node/Express, React, Docker, GCP/AWS/Azure, etc.).",
+        "exp.title": "Experience (timeline)",
+        "exp.subtitle": "2011–2025: support → NOC leadership → SRE/Observability → Full Stack (freelance).",
+        "exp.r0": "Freelance — Full Stack Web Development",
+        "exp.r0p": "Belo Horizonte, Brazil",
+        "exp.r0d": "03/2025 – present",
+        "exp.r0b1": "End-to-end web systems: frontend, backend, database, monitoring and DevOps.",
+        "exp.r1": "F1RST Digital (Santander) — Senior IT Analyst",
+        "exp.r1p": "Campinas, Brazil",
+        "exp.r1d": "12/2022 – 02/2025",
+        "exp.r1b1": "Observability: Dynatrace/Grafana; latency/error/traffic analysis and proactive detection.",
+        "exp.r1b2": "Automation: Python/PowerShell/PowerAutomate + Control-M (RPA) to reduce toil.",
+        "exp.r1b3": "Power BI: star schema, DAX (MTTR/MTTA/SLO), service/time trend analysis.",
+        "exp.r1b4": "Deploy: CloudBees, Rundeck, Ansible, Docker, Liquibase (post-deploy validation/evidence).",
+        "exp.r2": "F1RST Digital — IT Analyst",
+        "exp.r2p": "Campinas, Brazil",
+        "exp.r2d": "12/2021 – 12/2022",
+        "exp.r2b1": "N1/N2 alert handling: Dynatrace, Splunk, Grafana, Kibana; CPU/memory/disk/latency correlation.",
+        "exp.r2b2": "Logs/traces/exceptions analysis (Tomcat, JBoss, WebSphere, WebLogic) and end-to-end troubleshooting.",
+        "exp.r2b3": "AWS/Azure health checks (quotas, IAM, queues, latencies) and Power BI analytics panels.",
+        "exp.r3": "Global Hitss — Tech Lead (NOC/Service Desk/Access Mgmt)",
+        "exp.r3p": "Belo Horizonte, Brazil",
+        "exp.r3d": "11/2020 – 12/2021",
+        "exp.r3b1": "Coordinated 24x7 teams and standardized handoffs (BH/RJ/SP).",
+        "exp.r3b2": "Major incident management: war rooms, timelines, lessons learned, MTTR reduction.",
+        "exp.r3b3": "Processes/docs (SOPs/flows) + management reporting (SLA/MTTR/volume).",
+        "exp.noteT": "Note",
+        "exp.noteD": "Full history (2011–2025) is in the CV PDF, including support, infrastructure and IAM.",
 
-        "projects.title": "Featured projects",
-        "projects.subtitle": "A focused selection that proves skill and delivery.",
-        "projects.devText": "Web platform/app for organization and tracking. (Describe the differentiator in one sentence.)",
-        "projects.devRepo": "Repo (if applicable)",
-        "projects.uhText": "CRM with analytics/operations modules. (Describe the problem it solves.)",
-        "projects.uhRepo": "Repo (if applicable)",
-        "projects.otherTitle": "Other projects",
-        "projects.otherText": "Group by category: web, automation, data. Keep only what you want reviewed.",
-        "projects.otherLink": "Open GitHub",
-        "projects.todoTitle": "TODO (strong)",
-        "projects.todoText": "For each project: 3 bullets — (1) problem, (2) solution, (3) proof/impact. No long text.",
+        "skills.title": "Core skills",
+        "skills.subtitle": "Observability, data and automation — grounded in critical operations.",
+        "skills.s1t": "Observability / Monitoring",
+        "skills.s1d": "Dynatrace, Grafana, Kibana/Splunk; metrics, alerting, troubleshooting and 24x7 ops.",
+        "skills.s2t": "Data / BI",
+        "skills.s2d": "Power BI, dimensional modeling, DAX, ETL/ELT and indicators (MTTR/MTTA/SLO).",
+        "skills.s3t": "Automation / DevOps",
+        "skills.s3d": "Python, PowerShell, PowerAutomate, Control-M; Docker ops and routine automation.",
+        "skills.stackT": "Stack (summary)",
+        "skills.stackD": "SQL • Python • Power BI • Dynatrace • Grafana • ServiceNow • Control-M • Git • Docker • Linux/Windows Server • AWS/Azure.",
+        "skills.fullT": "Full Stack (freelance)",
+        "skills.fullD": "End-to-end web development including backend, frontend, database and monitoring (03/2025–present).",
+
+        "cert.title": "Education & Certifications",
+        "cert.eduT": "Education",
+        "cert.edu1": "IT Management — UniBH (graduated 2014)",
+        "cert.certT": "Certifications (highlights)",
+        "cert.c1": "ITIL 4 Foundations",
+        "cert.c2": "COBIT 5 Foundations",
+        "cert.c3": "SRE Practitioner (DevOps Institute)",
+        "cert.c4": "Oracle Cloud Infrastructure Foundations",
+        "cert.c5": "Scrum Foundations",
+        "cert.moreT": "Courses (examples)",
+        "cert.moreD": "Power BI • Python for Data Science • R for Data Science • PowerShell • TypeScript • Full Stack Python • Cybersecurity.",
+
+        "proj.title": "Projects (showcase)",
+        "proj.subtitle": "Short and proof-driven: what it is, what it solves, how it was built.",
+        "proj.p1d": "Web app with organization/recording modules. (Edit: 1 differentiator sentence + stack.)",
+        "proj.p2d": "CRM foundation for analytics/ops modules. (Edit: problem, solution and proof.)",
+        "proj.p3t": "GitHub",
+        "proj.p3d": "Repos and experiments (automation, web, data). Pick 3 as featured.",
+        "proj.open": "Open",
+        "proj.todoT": "TODO (to be hireable)",
+        "proj.todo1": "For each project: 3 bullets — Problem → Solution → Proof/Impact.",
+        "proj.todo2": "Add 1 screenshot per project (if possible) + 1-line “architecture/stack”.",
+        "proj.todo3": "If you have metrics (time, cost, users), add them — even approximate.",
 
         "contact.title": "Contact",
-        "contact.text": "For recruiting or project proposals, use LinkedIn (fastest response).",
+        "contact.subtitle": "Recommended channel: LinkedIn. PDFs are attached for quick reading.",
         "contact.ctaLinkedin": "Open LinkedIn",
-        "contact.ctaGithub": "Open GitHub",
-        "contact.noteTitle": "Note",
-        "contact.noteText": "If you want a commercial showcase, add a “Services” and “Cases” section with scope and deliverables."
+        "contact.ctaEmail": "Send email",
+        "contact.ctaCv": "Open CV (PDF)",
+        "contact.ctaProfile": "Open LinkedIn (PDF)",
+        "contact.badgeT": "LinkedIn Badge",
+        "contact.badgeD": "If you paste the badge here, the site looks institutional without screenshots.",
+        "contact.badgeP": "[paste badge code here]",
+        "contact.foot": "Corporate-tech • single page • PT/EN/ES toggle",
       },
       es: {
-        "top.role": "Full Stack • Datos • Automatización",
-        "hero.kicker": "Disponible para vacantes y proyectos",
-        "hero.title": "Desarrollo Web, Datos y Automatización con Observabilidad",
-        "hero.subtitle": "Ingeniero de Automatización enfocado en Full Stack Web, Análisis de Datos y Observabilidad. Construyo productos y automatizaciones trazables con métricas, logs y alertas desde el inicio.",
-        "hero.chip4": "Automatización",
-        "hero.chip5": "Full Stack",
+        "top.role": "Full Stack • Datos/BI • Automatización • Observabilidad",
+        "top.location": "Belo Horizonte, Brasil",
+
+        "hero.kicker": "Disponible para vacantes y proyectos (CLT/PJ)",
+        "hero.title": "Web, Datos y Automatización con disciplina operativa",
+        "hero.subtitle": "Más de 10 años en infraestructura, monitoreo y automatización en entornos corporativos (sector financiero). Experiencia con datos/BI, observabilidad y operación 24x7 — y más recientemente, desarrollo web full stack.",
+        "hero.tagline": "Herramientas: Dynatrace • Grafana • ServiceNow • Control-M • PowerAutomate • Docker • AWS/Azure",
         "hero.ctaLinkedin": "LinkedIn",
         "hero.ctaGithub": "GitHub",
-        "hero.ctaPdf": "Descargar CV (PDF)",
-        "hero.quickTitle": "Resumen rápido",
-        "hero.quickText": "Entrego con claridad operativa: observabilidad, datos consistentes y automatización segura. Priorizo arquitectura simple, logs útiles y mantenibilidad.",
-        "hero.location": "Brasil (remoto/híbrido)",
+        "hero.ctaCv": "Abrir CV (PDF)",
+        "hero.ctaProfile": "Abrir LinkedIn (PDF)",
+        "hero.quickTitle": "Contacto",
+        "hero.langs": "Idiomas:",
+        "hero.langsValue": "Inglés B1 • Español B1",
         "hero.badgeTitle": "LinkedIn Badge",
-        "hero.badgeInfo": "Pega aquí el código del “Public Profile Badge” de LinkedIn (script + div). Mantiene un aspecto oficial.",
+        "hero.badgeInfo": "Pega aquí el código del Public Profile Badge de LinkedIn (script + div).",
         "hero.badgePlaceholder": "[placeholder del badge]",
-        "hero.navTip": "Tip: baja con scroll — cada sección es una “diapositiva”.",
+        "hero.navTip": "Baja con scroll — cada sección es una “diapositiva”. (Teclas: PageDown/PageUp)",
 
-        "about.title": "Sobre mí",
-        "about.text": "Trabajo en la intersección entre software y operación: construir, medir y mejorar. Eso significa entregar apps y automatizaciones con telemetría útil (logs, métricas, alertas), datos confiables y rutinas que reducen trabajo manual.",
-        "about.focusTitle": "Enfoque",
-        "about.focusText": "Full Stack Web, consultas/pipelines SQL, automatización en Python y patrones de observabilidad para estabilidad y diagnóstico rápido.",
-        "about.valueTitle": "Valor",
-        "about.valueText": "Menos retrabajo, más previsibilidad. Sistemas con trazabilidad, indicadores y automatizaciones auditables.",
-        "about.todoTitle": "TODO (importante)",
-        "about.todoText": "Agrega 2–3 pruebas objetivas aquí: “reduje X% tiempo”, “automaticé Y”, “monitoreé Z”, “entregué en N semanas”.",
+        "impact.title": "Impacto (prueba objetiva)",
+        "impact.subtitle": "Resultados en un entorno bancario crítico: menos toil, mejor visibilidad y operación 24x7.",
+        "impact.i1t": "-72% toil operativo",
+        "impact.i1d": "Automatizaciones con Python, PowerShell y PowerAutomate redujeron el tiempo de ejecución de rutinas recurrentes.",
+        "impact.i2t": "Dashboards y reducción de MTTR",
+        "impact.i2d": "Dashboards en Power BI para salud del entorno y tendencias, reduciendo MTTR en clases de alertas recurrentes.",
+        "impact.i3t": "Escala operativa (N1/N2)",
+        "impact.i3d": "Onboarding de rutinas, criterios, SOPs y entrenamiento; menos handoffs en ServiceNow.",
+        "impact.i4t": "Observabilidad",
+        "impact.i4b1": "Administración/optimización de Dynatrace y Grafana",
+        "impact.i4b2": "Análisis de latencia/error/tráfico; detección proactiva",
+        "impact.i5t": "Deploy y operación",
+        "impact.i5b1": "Ciclo de deploy: CloudBees, Rundeck, Ansible, Docker, Liquibase",
+        "impact.i5b2": "Middleware/consola: Gravity, colas MQ, WAS/Tomcat/JBoss",
 
-        "skills.title": "Competencias",
-        "skills.obsTitle": "Observabilidad",
-        "skills.obsText": "Logs estructurados, métricas, alertas, diagnóstico y prácticas operativas.",
-        "skills.sqlText": "Modelado, consultas, agregaciones, calidad de datos y reportes.",
-        "skills.pyText": "Automatización, integración, scripts de datos y rutinas operativas.",
-        "skills.stackTitle": "Stack (edita para que sea real)",
-        "skills.stackText": "TODO: lista tus tecnologías principales aquí (p. ej., Node/Express, React, Docker, GCP/AWS/Azure, etc.).",
+        "exp.title": "Experiencia (línea del tiempo)",
+        "exp.subtitle": "2011–2025: soporte → liderazgo NOC → SRE/Observabilidad → Full Stack (autónomo).",
+        "exp.r0": "Autónomo — Desarrollo Web Full Stack",
+        "exp.r0p": "Belo Horizonte, Brasil",
+        "exp.r0d": "03/2025 – actual",
+        "exp.r0b1": "Sistemas web end-to-end: frontend, backend, base de datos, monitoreo y DevOps.",
+        "exp.r1": "F1RST Digital (Santander) — Analista Sr.",
+        "exp.r1p": "Campinas, Brasil",
+        "exp.r1d": "12/2022 – 02/2025",
+        "exp.r1b1": "Observabilidad: Dynatrace/Grafana; métricas (latencia/error/tráfico) y detección proactiva.",
+        "exp.r1b2": "Automatización: Python/PowerShell/PowerAutomate + Control-M (RPA) para reducir toil.",
+        "exp.r1b3": "Power BI: esquema estrella, DAX (MTTR/MTTA/SLO), tendencias por servicio y horario.",
+        "exp.r1b4": "Deploy: CloudBees, Rundeck, Ansible, Docker, Liquibase (validación/evidencias post-deploy).",
+        "exp.r2": "F1RST Digital — Analista",
+        "exp.r2p": "Campinas, Brasil",
+        "exp.r2d": "12/2021 – 12/2022",
+        "exp.r2b1": "Alertas N1/N2: Dynatrace, Splunk, Grafana, Kibana; correlación CPU/memoria/disco/latencia.",
+        "exp.r2b2": "Análisis de logs/traces/exceptions (Tomcat, JBoss, WebSphere, WebLogic) y troubleshooting end-to-end.",
+        "exp.r2b3": "AWS/Azure (quotas, IAM, colas, latencias) y paneles analíticos en Power BI.",
+        "exp.r3": "Global Hitss — Líder Técnico (NOC/Service Desk/Accesos)",
+        "exp.r3p": "Belo Horizonte, Brasil",
+        "exp.r3d": "11/2020 – 12/2021",
+        "exp.r3b1": "Coordinación de equipos 24x7 y handoffs estandarizados (BH/RJ/SP).",
+        "exp.r3b2": "Incidentes críticos: war rooms, timelines, lecciones aprendidas, reducción de MTTR.",
+        "exp.r3b3": "Procesos/docs (SOPs/flujos) + reporting (SLA/MTTR/volumen).",
+        "exp.noteT": "Nota",
+        "exp.noteD": "La trayectoria completa (2011–2025) está en el CV PDF, incluyendo soporte, infraestructura e IAM.",
 
-        "projects.title": "Proyectos destacados",
-        "projects.subtitle": "Selección objetiva para demostrar nivel técnico y entrega.",
-        "projects.devText": "Plataforma/app web para organización y seguimiento. (Describe el diferencial en 1 frase.)",
-        "projects.devRepo": "Repo (si aplica)",
-        "projects.uhText": "CRM con módulos analíticos/operativos. (Describe el problema que resuelve.)",
-        "projects.uhRepo": "Repo (si aplica)",
-        "projects.otherTitle": "Otros proyectos",
-        "projects.otherText": "Organiza por categoría: web, automatización, datos. Deja solo lo que quieres que evalúen.",
-        "projects.otherLink": "Ver GitHub",
-        "projects.todoTitle": "TODO (fuerte)",
-        "projects.todoText": "En cada proyecto: 3 bullets — (1) problema, (2) solución, (3) prueba/impacto. Sin texto largo.",
+        "skills.title": "Competencias (core)",
+        "skills.subtitle": "Observabilidad, datos y automatización — con base en operación crítica.",
+        "skills.s1t": "Observabilidad / Monitoreo",
+        "skills.s1d": "Dynatrace, Grafana, Kibana/Splunk; métricas, alertas, troubleshooting y operación 24x7.",
+        "skills.s2t": "Datos / BI",
+        "skills.s2d": "Power BI, modelado dimensional, DAX, ETL/ELT e indicadores (MTTR/MTTA/SLO).",
+        "skills.s3t": "Automatización / DevOps",
+        "skills.s3d": "Python, PowerShell, PowerAutomate, Control-M; Docker y automatización de rutinas.",
+        "skills.stackT": "Stack (resumen)",
+        "skills.stackD": "SQL • Python • Power BI • Dynatrace • Grafana • ServiceNow • Control-M • Git • Docker • Linux/Windows Server • AWS/Azure.",
+        "skills.fullT": "Full Stack (autónomo)",
+        "skills.fullD": "Desarrollo web end-to-end incluyendo backend, frontend, base de datos y monitoreo (03/2025–actual).",
+
+        "cert.title": "Formación y Certificaciones",
+        "cert.eduT": "Formación",
+        "cert.edu1": "Gestión de TI — UniBH (2014)",
+        "cert.certT": "Certificaciones (destacadas)",
+        "cert.c1": "ITIL 4 Foundations",
+        "cert.c2": "COBIT 5 Foundations",
+        "cert.c3": "SRE Practitioner (DevOps Institute)",
+        "cert.c4": "Oracle Cloud Infrastructure Foundations",
+        "cert.c5": "Scrum Foundations",
+        "cert.moreT": "Cursos (ejemplos)",
+        "cert.moreD": "Power BI • Python para Data Science • R para Data Science • PowerShell • TypeScript • Full Stack Python • Cybersecurity.",
+
+        "proj.title": "Proyectos (vitrina)",
+        "proj.subtitle": "Corto y orientado a prueba: qué es, qué resuelve, cómo fue construido.",
+        "proj.p1d": "App web con módulos de organización/registro. (Edita: 1 frase diferencial + stack.)",
+        "proj.p2d": "Base CRM para módulos analíticos/operativos. (Edita: problema, solución y prueba.)",
+        "proj.p3t": "GitHub",
+        "proj.p3d": "Repos y experimentos (automatización, web, datos). Elige 3 como destacados.",
+        "proj.open": "Abrir",
+        "proj.todoT": "TODO (para quedar “contratable”)",
+        "proj.todo1": "En cada proyecto: 3 bullets — Problema → Solución → Prueba/Impacto.",
+        "proj.todo2": "Agrega 1 screenshot por proyecto + 1 línea de “arquitectura/stack”.",
+        "proj.todo3": "Si tienes métricas (tiempo, costo, usuarios), ponlas — aunque aproximadas.",
 
         "contact.title": "Contacto",
-        "contact.text": "Para reclutamiento o propuestas, usa LinkedIn (respuesta más rápida).",
+        "contact.subtitle": "Canal recomendado: LinkedIn. PDFs adjuntos para lectura rápida.",
         "contact.ctaLinkedin": "Abrir LinkedIn",
-        "contact.ctaGithub": "Abrir GitHub",
-        "contact.noteTitle": "Nota",
-        "contact.noteText": "Si quieres una vitrina comercial, agrega una sección “Servicios” y “Casos” con alcance y entregables."
+        "contact.ctaEmail": "Enviar email",
+        "contact.ctaCv": "Abrir CV (PDF)",
+        "contact.ctaProfile": "Abrir LinkedIn (PDF)",
+        "contact.badgeT": "LinkedIn Badge",
+        "contact.badgeD": "Si pegas el badge aquí, el sitio queda institucional sin screenshots.",
+        "contact.badgeP": "[pega aquí el código del badge]",
+        "contact.foot": "Corporativo-tech • una página • PT/EN/ES",
       }
     };
 
     function setLang(lang){
       const map = dict[lang] || dict.pt;
       document.documentElement.lang = (lang === "pt" ? "pt-BR" : lang);
+
       document.querySelectorAll("[data-i18n]").forEach(el=>{
         const key = el.getAttribute("data-i18n");
         if(map[key]) el.textContent = map[key];
       });
 
-      // Botões
       document.getElementById("btn-pt").classList.toggle("primary", lang==="pt");
       document.getElementById("btn-en").classList.toggle("primary", lang==="en");
       document.getElementById("btn-es").classList.toggle("primary", lang==="es");
-
       localStorage.setItem("lang", lang);
     }
 
@@ -625,11 +987,58 @@
     document.getElementById("btn-en").onclick = ()=>setLang("en");
     document.getElementById("btn-es").onclick = ()=>setLang("es");
 
-    // Lang inicial
-    setLang(localStorage.getItem("lang") || "pt");
+    // Dots (navegação lateral)
+    const deck = document.getElementById("deck");
+    const slides = [...document.querySelectorAll("section.slide")];
+    const dots = document.getElementById("dots");
+
+    slides.forEach((_, i)=>{
+      const b = document.createElement("button");
+      b.title = `Slide ${i+1}`;
+      b.onclick = () => slides[i].scrollIntoView({behavior:"smooth", block:"start"});
+      dots.appendChild(b);
+    });
+
+    function setActiveDot(idx){
+      [...dots.querySelectorAll("button")].forEach((b,i)=> b.classList.toggle("active", i===idx));
+    }
+
+    // Ativar dot pelo scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          const idx = Number(e.target.getAttribute("data-slide"));
+          setActiveDot(idx);
+        }
+      });
+    }, {root: deck, threshold: 0.6});
+
+    slides.forEach(s=>io.observe(s));
+    setActiveDot(0);
+
+    // Controles de navegação
+    function go(delta){
+      const idx = Math.max(0, Math.min(slides.length-1, currentIndex()+delta));
+      slides[idx].scrollIntoView({behavior:"smooth", block:"start"});
+    }
+    function currentIndex(){
+      let best = 0, bestTop = Infinity;
+      slides.forEach((s,i)=>{
+        const r = s.getBoundingClientRect();
+        const dist = Math.abs(r.top - 64);
+        if(dist < bestTop){ bestTop = dist; best = i; }
+      });
+      return best;
+    }
+    document.getElementById("btn-up").onclick = ()=>go(-1);
+    document.getElementById("btn-down").onclick = ()=>go(1);
+
+    window.addEventListener("keydown", (e)=>{
+      if(["PageDown","ArrowDown"].includes(e.key)) { e.preventDefault(); go(1); }
+      if(["PageUp","ArrowUp"].includes(e.key)) { e.preventDefault(); go(-1); }
+    });
 
     // Hint some depois do primeiro scroll
-    const deck = document.getElementById("deck");
     const hint = document.getElementById("navhint");
     let hidden = false;
     deck.addEventListener("scroll", ()=>{
@@ -639,6 +1048,9 @@
         hidden = true;
       }
     }, {passive:true});
+
+    // Lang inicial
+    setLang(localStorage.getItem("lang") || "pt");
   </script>
 </body>
 </html>
