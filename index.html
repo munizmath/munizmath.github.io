@@ -3,80 +3,642 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Matheus Muniz | Portfólio</title>
-  <meta name="description" content="Automação, dados, processos e produtos. Projetos e demos no GitHub." />
-  <link rel="stylesheet" href="styles.css" />
+  <title>Matheus Muniz | Full Stack • Dados • Automação</title>
+  <meta name="description" content="Currículo/portfólio — Full Stack Web, Análise de Dados, Automação, Observabilidade, SQL, Python." />
+  <style>
+    :root{
+      --bg:#0b0f17;
+      --panel:#0f1626;
+      --panel2:#0c1322;
+      --text:#e8eefc;
+      --muted:#a9b7d0;
+      --line:rgba(255,255,255,.09);
+      --accent:#6aa9ff;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1100px 700px at 15% 0%, rgba(106,169,255,.12), transparent 55%),
+        radial-gradient(900px 650px at 85% 20%, rgba(120,255,214,.08), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      overflow:hidden; /* usa o container de scroll */
+    }
+    a{color:inherit}
+    .topbar{
+      position:fixed;
+      left:0; right:0; top:0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 18px;
+      z-index:20;
+      background: linear-gradient(to bottom, rgba(11,15,23,.9), rgba(11,15,23,.45));
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .brand{
+      display:flex; gap:10px; align-items:center;
+      min-width: 220px;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(106,169,255,.14);
+    }
+    .brand strong{font-size:14px; letter-spacing:.2px}
+    .brand span{display:block; font-size:12px; color:var(--muted)}
+    .lang{
+      display:flex; gap:8px; align-items:center;
+    }
+    .btn{
+      border:1px solid var(--line);
+      background: rgba(15,22,38,.6);
+      color: var(--text);
+      padding:8px 10px;
+      border-radius:12px;
+      cursor:pointer;
+      font-size:12px;
+    }
+    .btn:hover{border-color: rgba(106,169,255,.35)}
+    .btn.primary{
+      background: rgba(106,169,255,.18);
+      border-color: rgba(106,169,255,.35);
+    }
+
+    /* Scroll “PowerPoint” */
+    .deck{
+      height:100vh;
+      overflow:auto;
+      scroll-snap-type: y mandatory;
+      scroll-behavior:smooth;
+      padding-top:64px; /* espaço da topbar */
+    }
+    section.slide{
+      min-height: calc(100vh - 64px);
+      scroll-snap-align: start;
+      padding:28px 18px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+    .frame{
+      width:min(1060px, 100%);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(15,22,38,.65), rgba(12,19,34,.55));
+      box-shadow: var(--shadow);
+      padding:24px;
+    }
+    .grid2{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:16px;
+    }
+    @media (max-width: 900px){
+      .grid2{grid-template-columns:1fr}
+      .brand{min-width:auto}
+    }
+
+    h1{margin:0 0 8px; font-size:40px; letter-spacing:-.6px}
+    h2{margin:0 0 10px; font-size:20px}
+    p{margin:0; color:var(--muted); line-height:1.55}
+    .kicker{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding:8px 10px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background: rgba(11,15,23,.55);
+      color: var(--muted);
+      font-size:12px;
+      margin-bottom:14px;
+    }
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+    .chip{
+      padding:8px 10px;
+      border:1px solid var(--line);
+      background: rgba(11,15,23,.45);
+      border-radius:999px;
+      font-size:12px;
+      color: var(--text);
+    }
+    .actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px}
+    .linkbtn{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(15,22,38,.55);
+      text-decoration:none;
+      font-size:13px;
+    }
+    .linkbtn:hover{border-color: rgba(106,169,255,.35)}
+    .linkbtn.primary{
+      background: rgba(106,169,255,.20);
+      border-color: rgba(106,169,255,.35);
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:12px;
+      margin-top:12px;
+    }
+    @media (max-width: 900px){
+      .cards{grid-template-columns:1fr}
+    }
+    .card{
+      border:1px solid var(--line);
+      background: rgba(11,15,23,.35);
+      border-radius:16px;
+      padding:14px;
+    }
+    .card h3{margin:0 0 8px; font-size:14px}
+    .card small{color: var(--muted)}
+    .card .row{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+    .card a{opacity:.92}
+    .card a:hover{opacity:1; text-decoration:underline}
+
+    .twoCols{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:10px;
+    }
+    @media (max-width: 900px){
+      .twoCols{grid-template-columns:1fr}
+    }
+
+    .footer{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:10px;
+      color: var(--muted);
+      font-size:12px;
+    }
+    .navhint{
+      position:fixed;
+      right:16px;
+      bottom:16px;
+      z-index:25;
+      border:1px solid var(--line);
+      background: rgba(11,15,23,.60);
+      border-radius:999px;
+      padding:10px 12px;
+      font-size:12px;
+      color: var(--muted);
+      backdrop-filter: blur(10px);
+    }
+  </style>
 </head>
 <body>
-  <header class="container">
-    <div class="hero">
+  <header class="topbar">
+    <div class="brand">
+      <div class="dot"></div>
       <div>
-        <h1>Matheus Muniz</h1>
-        <p class="subtitle">Automação • Dados • Processos • Python • SQL</p>
-        <div class="actions">
-          <a class="btn" href="https://github.com/munizmath" target="_blank" rel="noreferrer">GitHub</a>
-          <a class="btn secondary" href="https://www.linkedin.com/in/matheus-muniz-oliveira" target="_blank" rel="noreferrer">LinkedIn</a>
-        </div>
+        <strong>Matheus Muniz</strong>
+        <span data-i18n="top.role">Full Stack • Dados • Automação</span>
       </div>
+    </div>
+
+    <div class="lang">
+      <button class="btn primary" id="btn-pt">PT</button>
+      <button class="btn" id="btn-en">EN</button>
+      <button class="btn" id="btn-es">ES</button>
     </div>
   </header>
 
-  <main class="container">
-    <section class="card">
-      <h2>Sobre</h2>
-      <p>
-        Página de apresentação com links para repositórios e demonstrações.
-        Tudo aqui é estático (GitHub Pages), então sem backend.
-      </p>
+  <div class="deck" id="deck">
+    <!-- Slide 1: Hero -->
+    <section class="slide">
+      <div class="frame">
+        <div class="grid2">
+          <div>
+            <div class="kicker">
+              <span data-i18n="hero.kicker">Disponível para vagas e projetos</span>
+            </div>
+
+            <h1 data-i18n="hero.title">Desenvolvimento Web, Dados e Automação com Observabilidade</h1>
+            <p data-i18n="hero.subtitle">
+              Engenheiro de Automação com foco em Full Stack Web, Análise de Dados e Observabilidade. Construo produtos e automações rastreáveis, com métricas, logs e alertas desde o início.
+            </p>
+
+            <div class="chips">
+              <div class="chip">Observabilidade</div>
+              <div class="chip">SQL</div>
+              <div class="chip">Python</div>
+              <div class="chip" data-i18n="hero.chip4">Automação</div>
+              <div class="chip" data-i18n="hero.chip5">Full Stack</div>
+            </div>
+
+            <div class="actions">
+              <a class="linkbtn primary" href="https://www.linkedin.com/in/matheus-muniz-oliveira/" target="_blank" rel="noreferrer" data-i18n="hero.ctaLinkedin">LinkedIn</a>
+              <a class="linkbtn" href="https://github.com/munizmath" target="_blank" rel="noreferrer" data-i18n="hero.ctaGithub">GitHub</a>
+              <a class="linkbtn" href="https://deveriar.com.br" target="_blank" rel="noreferrer">Deveriar</a>
+              <a class="linkbtn" href="https://ultrahub.com.br" target="_blank" rel="noreferrer">UltraHub</a>
+              <!-- TODO: se quiser CV em PDF, suba em /assets/cv.pdf e descomente
+              <a class="linkbtn" href="assets/cv.pdf" target="_blank" rel="noreferrer" data-i18n="hero.ctaPdf">Baixar CV (PDF)</a>
+              -->
+            </div>
+          </div>
+
+          <div>
+            <div class="card">
+              <h3 data-i18n="hero.quickTitle">Resumo rápido</h3>
+              <p data-i18n="hero.quickText">
+                Entrego soluções com foco em clareza operacional: observabilidade, dados consistentes e automação segura. Priorizo arquitetura simples, logs úteis e manutenção.
+              </p>
+              <div class="row">
+                <small>📍</small><small data-i18n="hero.location">Brasil (remoto/híbrido)</small>
+              </div>
+            </div>
+
+            <div class="card" style="margin-top:12px">
+              <h3 data-i18n="hero.badgeTitle">LinkedIn Badge</h3>
+              <p data-i18n="hero.badgeInfo">
+                Cole aqui o código do “Public Profile Badge” do LinkedIn (o script + div). Mantém o site com aparência oficial.
+              </p>
+              <!-- TODO: cole aqui o código do LinkedIn Badge -->
+              <div id="linkedin-badge-placeholder" style="margin-top:10px; opacity:.9">
+                <small data-i18n="hero.badgePlaceholder">[placeholder do badge]</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">
+          <span data-i18n="hero.navTip">Dica: role para baixo (scroll) — cada seção é um “slide”.</span>
+          <span>© <span id="y"></span> Matheus Muniz</span>
+        </div>
+      </div>
     </section>
 
-    <section class="grid">
-      <article class="card">
-        <h3>Minha Terapia (PWA)</h3>
-        <p>App PWA de gerenciamento de saúde e módulo TCC. Demo no GitHub Pages.</p>
-        <div class="links">
-          <a href="https://munizmath.github.io/minha-terapia/" target="_blank" rel="noreferrer">Abrir demo</a>
-          <a href="https://github.com/munizmath/minha-terapia" target="_blank" rel="noreferrer">Ver repo</a>
-        </div>
-      </article>
+    <!-- Slide 2: Sobre -->
+    <section class="slide">
+      <div class="frame">
+        <h2 data-i18n="about.title">Sobre</h2>
+        <p data-i18n="about.text">
+          Trabalho na interseção entre software e operação: construir, medir e evoluir. Isso significa entregar aplicações e automações com telemetria útil (logs, métricas, alertas), dados confiáveis e rotinas que reduzem trabalho manual.
+        </p>
 
-      <article class="card">
-        <h3>Extrator de transações PDF bancário</h3>
-        <p>Extrator de faturas bancárias em PDF (múltiplos bancos).</p>
-        <div class="links">
-          <a href="https://github.com/munizmath/extrator-transacoes-pdf-bancario" target="_blank" rel="noreferrer">Ver repo</a>
+        <div class="twoCols">
+          <div class="card">
+            <h3 data-i18n="about.focusTitle">Foco</h3>
+            <p data-i18n="about.focusText">
+              Full Stack Web, pipelines e consultas em SQL, automações em Python e padrões de observabilidade para estabilidade e diagnóstico rápido.
+            </p>
+          </div>
+          <div class="card">
+            <h3 data-i18n="about.valueTitle">Valor entregue</h3>
+            <p data-i18n="about.valueText">
+              Menos retrabalho, mais previsibilidade. Sistemas com rastreabilidade, indicadores e automações auditáveis.
+            </p>
+          </div>
         </div>
-      </article>
 
-      <article class="card">
-        <h3>Backup Genérico</h3>
-        <p>Template/sistema de backup.</p>
-        <div class="links">
-          <a href="https://github.com/munizmath/Backup_Generico" target="_blank" rel="noreferrer">Ver repo</a>
+        <div class="card" style="margin-top:12px">
+          <h3 data-i18n="about.todoTitle">TODO (importante)</h3>
+          <p data-i18n="about.todoText">
+            Adicione 2–3 evidências objetivas aqui: “reduzi X% tempo”, “automatizei Y”, “monitorei Z”, “entreguei em N semanas”.
+          </p>
         </div>
-      </article>
-
-      <article class="card">
-        <h3>Quizzes</h3>
-        <p>Projetos e testes com quizzes.</p>
-        <div class="links">
-          <a href="https://github.com/munizmath/Quizzes" target="_blank" rel="noreferrer">Ver repo</a>
-        </div>
-      </article>
+      </div>
     </section>
 
-    <section class="card">
-      <h2>Contato</h2>
-      <p>Se quiser, coloque um e-mail/forma de contato aqui (ou só LinkedIn).</p>
-    </section>
-  </main>
+    <!-- Slide 3: Competências -->
+    <section class="slide">
+      <div class="frame">
+        <h2 data-i18n="skills.title">Competências</h2>
 
-  <footer class="container footer">
-    <small>© <span id="y"></span> Matheus Muniz • Hospedado no GitHub Pages</small>
-  </footer>
+        <div class="cards">
+          <div class="card">
+            <h3 data-i18n="skills.obsTitle">Observabilidade</h3>
+            <p data-i18n="skills.obsText">Logs estruturados, métricas, alertas, diagnóstico e práticas operacionais.</p>
+            <div class="chips">
+              <div class="chip">Logging</div>
+              <div class="chip">Metrics</div>
+              <div class="chip">Alerting</div>
+              <div class="chip">SLO/SLA</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>SQL</h3>
+            <p data-i18n="skills.sqlText">Modelagem, consultas, agregações, qualidade de dados e relatórios.</p>
+            <div class="chips">
+              <div class="chip">ETL/ELT</div>
+              <div class="chip">Data Quality</div>
+              <div class="chip">Analytics</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Python</h3>
+            <p data-i18n="skills.pyText">Automação, integração, scripts de dados e rotinas de operação.</p>
+            <div class="chips">
+              <div class="chip">Automation</div>
+              <div class="chip">APIs</div>
+              <div class="chip">Data scripts</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3 data-i18n="skills.stackTitle">Stack (edite para ficar verdadeiro)</h3>
+          <p data-i18n="skills.stackText">
+            TODO: liste aqui suas tecnologias principais (ex.: Node/Express, React, Docker, GCP/AWS/Azure, etc.).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 4: Projetos -->
+    <section class="slide">
+      <div class="frame">
+        <h2 data-i18n="projects.title">Projetos em destaque</h2>
+        <p data-i18n="projects.subtitle">Seleção objetiva do que melhor prova seu nível técnico e capacidade de entrega.</p>
+
+        <div class="cards">
+          <div class="card">
+            <h3>Deveriar</h3>
+            <p data-i18n="projects.devText">Plataforma/app web com foco em organização e acompanhamento. (Descreva em 1 frase o diferencial.)</p>
+            <div class="row">
+              <a href="https://deveriar.com.br" target="_blank" rel="noreferrer">Site</a>
+              <span style="opacity:.6">•</span>
+              <a href="https://github.com/munizmath" target="_blank" rel="noreferrer" data-i18n="projects.devRepo">Repo (se aplicável)</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>UltraHub</h3>
+            <p data-i18n="projects.uhText">CRM + módulos analíticos/operacionais. (Descreva o problema que resolve.)</p>
+            <div class="row">
+              <a href="https://ultrahub.com.br" target="_blank" rel="noreferrer">Site</a>
+              <span style="opacity:.6">•</span>
+              <a href="https://github.com/munizmath" target="_blank" rel="noreferrer" data-i18n="projects.uhRepo">Repo (se aplicável)</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 data-i18n="projects.otherTitle">Outros projetos</h3>
+            <p data-i18n="projects.otherText">Organize por categoria: web, automação, dados. Deixe só o que você quer que avaliem.</p>
+            <div class="row">
+              <a href="https://github.com/munizmath" target="_blank" rel="noreferrer" data-i18n="projects.otherLink">Ver GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3 data-i18n="projects.todoTitle">TODO (forte)</h3>
+          <p data-i18n="projects.todoText">
+            Em cada projeto, coloque 3 bullets: (1) problema, (2) solução, (3) prova/impacto. Sem texto longo.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 5: Contato -->
+    <section class="slide">
+      <div class="frame">
+        <h2 data-i18n="contact.title">Contato</h2>
+        <p data-i18n="contact.text">Para recrutamento ou proposta de projeto, use LinkedIn (resposta mais rápida).</p>
+
+        <div class="actions">
+          <a class="linkbtn primary" href="https://www.linkedin.com/in/matheus-muniz-oliveira/" target="_blank" rel="noreferrer" data-i18n="contact.ctaLinkedin">Abrir LinkedIn</a>
+          <a class="linkbtn" href="https://github.com/munizmath" target="_blank" rel="noreferrer" data-i18n="contact.ctaGithub">Abrir GitHub</a>
+          <!-- TODO: se quiser email público, coloque abaixo (cuidado com spam) -->
+          <!-- <a class="linkbtn" href="mailto:seuemail@dominio.com">Email</a> -->
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3 data-i18n="contact.noteTitle">Nota</h3>
+          <p data-i18n="contact.noteText">
+            Se você quiser transformar isso em “vitrine comercial”, adicione uma seção “Serviços” e “Cases” com escopo e entregáveis.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="navhint" id="navhint">Scroll ↓</div>
 
   <script>
+    // Ano
     document.getElementById("y").textContent = new Date().getFullYear();
+
+    // i18n simples (PT/EN/ES) — edite à vontade
+    const dict = {
+      pt: {
+        "top.role": "Full Stack • Dados • Automação",
+        "hero.kicker": "Disponível para vagas e projetos",
+        "hero.title": "Desenvolvimento Web, Dados e Automação com Observabilidade",
+        "hero.subtitle": "Engenheiro de Automação com foco em Full Stack Web, Análise de Dados e Observabilidade. Construo produtos e automações rastreáveis, com métricas, logs e alertas desde o início.",
+        "hero.chip4": "Automação",
+        "hero.chip5": "Full Stack",
+        "hero.ctaLinkedin": "LinkedIn",
+        "hero.ctaGithub": "GitHub",
+        "hero.ctaPdf": "Baixar CV (PDF)",
+        "hero.quickTitle": "Resumo rápido",
+        "hero.quickText": "Entrego soluções com foco em clareza operacional: observabilidade, dados consistentes e automação segura. Priorizo arquitetura simples, logs úteis e manutenção.",
+        "hero.location": "Brasil (remoto/híbrido)",
+        "hero.badgeTitle": "LinkedIn Badge",
+        "hero.badgeInfo": "Cole aqui o código do “Public Profile Badge” do LinkedIn (o script + div). Mantém o site com aparência oficial.",
+        "hero.badgePlaceholder": "[placeholder do badge]",
+        "hero.navTip": "Dica: role para baixo (scroll) — cada seção é um “slide”.",
+
+        "about.title": "Sobre",
+        "about.text": "Trabalho na interseção entre software e operação: construir, medir e evoluir. Isso significa entregar aplicações e automações com telemetria útil (logs, métricas, alertas), dados confiáveis e rotinas que reduzem trabalho manual.",
+        "about.focusTitle": "Foco",
+        "about.focusText": "Full Stack Web, pipelines e consultas em SQL, automações em Python e padrões de observabilidade para estabilidade e diagnóstico rápido.",
+        "about.valueTitle": "Valor entregue",
+        "about.valueText": "Menos retrabalho, mais previsibilidade. Sistemas com rastreabilidade, indicadores e automações auditáveis.",
+        "about.todoTitle": "TODO (importante)",
+        "about.todoText": "Adicione 2–3 evidências objetivas aqui: “reduzi X% tempo”, “automatizei Y”, “monitorei Z”, “entreguei em N semanas”."
+
+        ,
+        "skills.title": "Competências",
+        "skills.obsTitle": "Observabilidade",
+        "skills.obsText": "Logs estruturados, métricas, alertas, diagnóstico e práticas operacionais.",
+        "skills.sqlText": "Modelagem, consultas, agregações, qualidade de dados e relatórios.",
+        "skills.pyText": "Automação, integração, scripts de dados e rotinas de operação.",
+        "skills.stackTitle": "Stack (edite para ficar verdadeiro)",
+        "skills.stackText": "TODO: liste aqui suas tecnologias principais (ex.: Node/Express, React, Docker, GCP/AWS/Azure, etc.).",
+
+        "projects.title": "Projetos em destaque",
+        "projects.subtitle": "Seleção objetiva do que melhor prova seu nível técnico e capacidade de entrega.",
+        "projects.devText": "Plataforma/app web com foco em organização e acompanhamento. (Descreva em 1 frase o diferencial.)",
+        "projects.devRepo": "Repo (se aplicável)",
+        "projects.uhText": "CRM + módulos analíticos/operacionais. (Descreva o problema que resolve.)",
+        "projects.uhRepo": "Repo (se aplicável)",
+        "projects.otherTitle": "Outros projetos",
+        "projects.otherText": "Organize por categoria: web, automação, dados. Deixe só o que você quer que avaliem.",
+        "projects.otherLink": "Ver GitHub",
+        "projects.todoTitle": "TODO (forte)",
+        "projects.todoText": "Em cada projeto, coloque 3 bullets: (1) problema, (2) solução, (3) prova/impacto. Sem texto longo.",
+
+        "contact.title": "Contato",
+        "contact.text": "Para recrutamento ou proposta de projeto, use LinkedIn (resposta mais rápida).",
+        "contact.ctaLinkedin": "Abrir LinkedIn",
+        "contact.ctaGithub": "Abrir GitHub",
+        "contact.noteTitle": "Nota",
+        "contact.noteText": "Se você quiser transformar isso em “vitrine comercial”, adicione uma seção “Serviços” e “Cases” com escopo e entregáveis."
+      },
+      en: {
+        "top.role": "Full Stack • Data • Automation",
+        "hero.kicker": "Open to roles and projects",
+        "hero.title": "Web Development, Data & Automation with Observability",
+        "hero.subtitle": "Automation Engineer focused on Full Stack Web, Data Analysis and Observability. I build traceable products and automations with metrics, logs and alerts from day one.",
+        "hero.chip4": "Automation",
+        "hero.chip5": "Full Stack",
+        "hero.ctaLinkedin": "LinkedIn",
+        "hero.ctaGithub": "GitHub",
+        "hero.ctaPdf": "Download CV (PDF)",
+        "hero.quickTitle": "Quick summary",
+        "hero.quickText": "I deliver with operational clarity: observability, consistent data and safe automation. I prioritize simple architecture, actionable logs and maintainability.",
+        "hero.location": "Brazil (remote/hybrid)",
+        "hero.badgeTitle": "LinkedIn Badge",
+        "hero.badgeInfo": "Paste your LinkedIn “Public Profile Badge” code here (script + div). Keeps an official look.",
+        "hero.badgePlaceholder": "[badge placeholder]",
+        "hero.navTip": "Tip: scroll down — each section is a “slide”.",
+
+        "about.title": "About",
+        "about.text": "I work at the intersection of software and operations: build, measure, improve. That means delivering apps and automations with useful telemetry (logs, metrics, alerts), reliable data, and routines that reduce manual work.",
+        "about.focusTitle": "Focus",
+        "about.focusText": "Full Stack Web, SQL queries/pipelines, Python automation, and observability patterns for stability and fast diagnosis.",
+        "about.valueTitle": "Value",
+        "about.valueText": "Less rework, more predictability. Systems with traceability, indicators and auditable automations.",
+        "about.todoTitle": "TODO (important)",
+        "about.todoText": "Add 2–3 objective proofs here: “reduced X% time”, “automated Y”, “monitored Z”, “delivered in N weeks”.",
+
+        "skills.title": "Skills",
+        "skills.obsTitle": "Observability",
+        "skills.obsText": "Structured logs, metrics, alerting, troubleshooting and operational practices.",
+        "skills.sqlText": "Modeling, queries, aggregations, data quality and reporting.",
+        "skills.pyText": "Automation, integration, data scripts and ops routines.",
+        "skills.stackTitle": "Stack (edit to be true)",
+        "skills.stackText": "TODO: list your main technologies here (e.g., Node/Express, React, Docker, GCP/AWS/Azure, etc.).",
+
+        "projects.title": "Featured projects",
+        "projects.subtitle": "A focused selection that proves skill and delivery.",
+        "projects.devText": "Web platform/app for organization and tracking. (Describe the differentiator in one sentence.)",
+        "projects.devRepo": "Repo (if applicable)",
+        "projects.uhText": "CRM with analytics/operations modules. (Describe the problem it solves.)",
+        "projects.uhRepo": "Repo (if applicable)",
+        "projects.otherTitle": "Other projects",
+        "projects.otherText": "Group by category: web, automation, data. Keep only what you want reviewed.",
+        "projects.otherLink": "Open GitHub",
+        "projects.todoTitle": "TODO (strong)",
+        "projects.todoText": "For each project: 3 bullets — (1) problem, (2) solution, (3) proof/impact. No long text.",
+
+        "contact.title": "Contact",
+        "contact.text": "For recruiting or project proposals, use LinkedIn (fastest response).",
+        "contact.ctaLinkedin": "Open LinkedIn",
+        "contact.ctaGithub": "Open GitHub",
+        "contact.noteTitle": "Note",
+        "contact.noteText": "If you want a commercial showcase, add a “Services” and “Cases” section with scope and deliverables."
+      },
+      es: {
+        "top.role": "Full Stack • Datos • Automatización",
+        "hero.kicker": "Disponible para vacantes y proyectos",
+        "hero.title": "Desarrollo Web, Datos y Automatización con Observabilidad",
+        "hero.subtitle": "Ingeniero de Automatización enfocado en Full Stack Web, Análisis de Datos y Observabilidad. Construyo productos y automatizaciones trazables con métricas, logs y alertas desde el inicio.",
+        "hero.chip4": "Automatización",
+        "hero.chip5": "Full Stack",
+        "hero.ctaLinkedin": "LinkedIn",
+        "hero.ctaGithub": "GitHub",
+        "hero.ctaPdf": "Descargar CV (PDF)",
+        "hero.quickTitle": "Resumen rápido",
+        "hero.quickText": "Entrego con claridad operativa: observabilidad, datos consistentes y automatización segura. Priorizo arquitectura simple, logs útiles y mantenibilidad.",
+        "hero.location": "Brasil (remoto/híbrido)",
+        "hero.badgeTitle": "LinkedIn Badge",
+        "hero.badgeInfo": "Pega aquí el código del “Public Profile Badge” de LinkedIn (script + div). Mantiene un aspecto oficial.",
+        "hero.badgePlaceholder": "[placeholder del badge]",
+        "hero.navTip": "Tip: baja con scroll — cada sección es una “diapositiva”.",
+
+        "about.title": "Sobre mí",
+        "about.text": "Trabajo en la intersección entre software y operación: construir, medir y mejorar. Eso significa entregar apps y automatizaciones con telemetría útil (logs, métricas, alertas), datos confiables y rutinas que reducen trabajo manual.",
+        "about.focusTitle": "Enfoque",
+        "about.focusText": "Full Stack Web, consultas/pipelines SQL, automatización en Python y patrones de observabilidad para estabilidad y diagnóstico rápido.",
+        "about.valueTitle": "Valor",
+        "about.valueText": "Menos retrabajo, más previsibilidad. Sistemas con trazabilidad, indicadores y automatizaciones auditables.",
+        "about.todoTitle": "TODO (importante)",
+        "about.todoText": "Agrega 2–3 pruebas objetivas aquí: “reduje X% tiempo”, “automaticé Y”, “monitoreé Z”, “entregué en N semanas”.",
+
+        "skills.title": "Competencias",
+        "skills.obsTitle": "Observabilidad",
+        "skills.obsText": "Logs estructurados, métricas, alertas, diagnóstico y prácticas operativas.",
+        "skills.sqlText": "Modelado, consultas, agregaciones, calidad de datos y reportes.",
+        "skills.pyText": "Automatización, integración, scripts de datos y rutinas operativas.",
+        "skills.stackTitle": "Stack (edita para que sea real)",
+        "skills.stackText": "TODO: lista tus tecnologías principales aquí (p. ej., Node/Express, React, Docker, GCP/AWS/Azure, etc.).",
+
+        "projects.title": "Proyectos destacados",
+        "projects.subtitle": "Selección objetiva para demostrar nivel técnico y entrega.",
+        "projects.devText": "Plataforma/app web para organización y seguimiento. (Describe el diferencial en 1 frase.)",
+        "projects.devRepo": "Repo (si aplica)",
+        "projects.uhText": "CRM con módulos analíticos/operativos. (Describe el problema que resuelve.)",
+        "projects.uhRepo": "Repo (si aplica)",
+        "projects.otherTitle": "Otros proyectos",
+        "projects.otherText": "Organiza por categoría: web, automatización, datos. Deja solo lo que quieres que evalúen.",
+        "projects.otherLink": "Ver GitHub",
+        "projects.todoTitle": "TODO (fuerte)",
+        "projects.todoText": "En cada proyecto: 3 bullets — (1) problema, (2) solución, (3) prueba/impacto. Sin texto largo.",
+
+        "contact.title": "Contacto",
+        "contact.text": "Para reclutamiento o propuestas, usa LinkedIn (respuesta más rápida).",
+        "contact.ctaLinkedin": "Abrir LinkedIn",
+        "contact.ctaGithub": "Abrir GitHub",
+        "contact.noteTitle": "Nota",
+        "contact.noteText": "Si quieres una vitrina comercial, agrega una sección “Servicios” y “Casos” con alcance y entregables."
+      }
+    };
+
+    function setLang(lang){
+      const map = dict[lang] || dict.pt;
+      document.documentElement.lang = (lang === "pt" ? "pt-BR" : lang);
+      document.querySelectorAll("[data-i18n]").forEach(el=>{
+        const key = el.getAttribute("data-i18n");
+        if(map[key]) el.textContent = map[key];
+      });
+
+      // Botões
+      document.getElementById("btn-pt").classList.toggle("primary", lang==="pt");
+      document.getElementById("btn-en").classList.toggle("primary", lang==="en");
+      document.getElementById("btn-es").classList.toggle("primary", lang==="es");
+
+      localStorage.setItem("lang", lang);
+    }
+
+    document.getElementById("btn-pt").onclick = ()=>setLang("pt");
+    document.getElementById("btn-en").onclick = ()=>setLang("en");
+    document.getElementById("btn-es").onclick = ()=>setLang("es");
+
+    // Lang inicial
+    setLang(localStorage.getItem("lang") || "pt");
+
+    // Hint some depois do primeiro scroll
+    const deck = document.getElementById("deck");
+    const hint = document.getElementById("navhint");
+    let hidden = false;
+    deck.addEventListener("scroll", ()=>{
+      if(!hidden && deck.scrollTop > 30){
+        hint.style.opacity = "0";
+        hint.style.pointerEvents = "none";
+        hidden = true;
+      }
+    }, {passive:true});
   </script>
 </body>
 </html>
