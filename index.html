@@ -72,7 +72,7 @@
         radial-gradient(900px 650px at 85% 20%, rgba(125,255,202,.08), transparent 55%),
         var(--bg);
       color:var(--text);
-      overflow:hidden;
+      overflow:hidden; /* scroll é feito no .deck */
     }
     a{color:inherit}
     .topbar{
@@ -348,7 +348,7 @@
     }
   </style>
   <!-- ScrollReveal.js for reveal animations -->
-  <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js" integrity="sha384-0pzHMIrIS8AnIRuAfP3HSafFqTtcs4fYF4n2g5jSk8+UP4g+9SbFyNx0Rfa6w8hE" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js" crossorigin="anonymous"></script>
   <!-- Vanilla-tilt.js for tilt effect on project cards -->
   <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.0/dist/vanilla-tilt.min.js" crossorigin="anonymous"></script>
 </head>
@@ -416,7 +416,8 @@
           </div>
 
           <div>
-            <div class="card">
+            <div class="card" style="position: relative;">
+              <img src="https://github.com/munizmath.png" alt="Matheus Muniz" class="profile-img" style="position: absolute; right: 16px; top: 16px; width: 80px; height: 80px; margin: 0;" />
               <h3 data-i18n="hero.quickTitle">Contato</h3>
               <div class="row">
                 <small>📍</small><small>Belo Horizonte, MG</small>
@@ -711,6 +712,8 @@
             <h3>UltraHub CRM</h3>
             <p data-i18n="proj.p2d">CRM com Oportunidades, Propostas, Clientes, Produtos e Dashboard (em evolução; repo fechado).</p>
             <small data-i18n="proj.p2s">Node.js • React • Bootstrap • MongoDB</small>
+            <img class="shot" src="assets/prints/ultrahub.png" alt="UltraHub CRM — tela de Oportunidade" loading="lazy" />
+            <span class="shotcap" data-i18n="proj.p2cap">Print da tela de Oportunidade com dashboards.</span>
             <div class="row">
               <a href="https://ultrahub.com.br" target="_blank" rel="noreferrer" data-i18n="proj.open">Abrir</a>
             </div>
@@ -761,18 +764,15 @@
           <a class="linkbtn" href="assets/docs/Profile.pdf" target="_blank" rel="noreferrer" data-i18n="contact.ctaProfile">Abrir LinkedIn (PDF)</a>
         </div>
 
+        <!-- TODO: Se quiser adicionar LinkedIn Badge, descomente e cole o código abaixo:
         <div class="card" style="margin-top:12px">
           <h3 data-i18n="contact.badgeT">LinkedIn Badge</h3>
-          <p data-i18n="contact.badgeD">Se você colar o badge aqui, o site fica “institucional” sem depender de screenshot.</p>
-
-          <!-- TODO: cole o badge completo (script + div) aqui -->
-          <div style="margin-top:10px; opacity:.9">
-            <small data-i18n="contact.badgeP">[cole o código do badge aqui]</small>
-          </div>
+          <script src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+          <div class="LI-profile-badge" data-locale="pt_BR" data-size="large" data-theme="dark" data-type="VERTICAL" data-vanity="matheus-muniz-oliveira" data-version="v1"></div>
         </div>
+        -->
 
-        <div class="footer">
-          <span data-i18n="contact.foot">Padrão corporativo-tech • 1 página • tradução PT/EN/ES</span>
+        <div class="footer" style="justify-content: center;">
           <span>© <span id="y2"></span> Matheus Muniz</span>
         </div>
       </div>
@@ -891,6 +891,7 @@
         "proj.p1d": "PWA para saúde e psicoterapia (TCC/DBT): medicamentos, sinais vitais, sintomas, exercícios guiados e histórico.",
         "proj.p1s": "React 19 • Vite PWA • Fastify • Firestore • PostgreSQL • Cloud Run • Vercel • Stripe",
         "proj.p1cap": "Prints do app: documentação, psicoterapia guiada e análise/insights.",
+        "proj.p2cap": "Print da tela de Oportunidade com dashboards.",
         "proj.p2d": "CRM com Oportunidades, Propostas, Clientes, Produtos e Dashboard (em evolução; repo fechado).",
         "proj.p2s": "Node.js • React • Bootstrap • MongoDB",
         "proj.p3d": "Plataforma de quizzes para certificações técnicas (UI moderna, acessibilidade e foco em leitura/contraste).",
@@ -915,7 +916,6 @@
         "contact.badgeT": "LinkedIn Badge",
         "contact.badgeD": "Se você colar o badge aqui, o site fica “institucional” sem depender de screenshot.",
         "contact.badgeP": "[cole o código do badge aqui]",
-        "contact.foot": "Padrão corporativo-tech • 1 página • tradução PT/EN/ES",
       },
       en: {
         "top.role": "Full Stack • Data/BI • Automation • Observability",
@@ -1019,6 +1019,7 @@
         "proj.p1d": "Health & psychotherapy PWA (CBT/DBT): meds, vital signs, symptoms, guided exercises and history.",
         "proj.p1s": "React 19 • Vite PWA • Fastify • Firestore • PostgreSQL • Cloud Run • Vercel • Stripe",
         "proj.p1cap": "App screenshots: tracking, guided therapy and analytics/insights.",
+        "proj.p2cap": "Opportunity screen screenshot with dashboards.",
         "proj.p2d": "CRM with Opportunities, Proposals, Customers, Products and Dashboard (in progress; private repo).",
         "proj.p2s": "Node.js • React • Bootstrap • MongoDB",
         "proj.p3d": "Quiz platform for tech certifications (modern UI, accessibility and contrast/readability focus).",
@@ -1043,7 +1044,6 @@
         "contact.badgeT": "LinkedIn Badge",
         "contact.badgeD": "If you paste the badge here, the site looks institutional without screenshots.",
         "contact.badgeP": "[paste badge code here]",
-        "contact.foot": "Corporate-tech • single page • PT/EN/ES toggle",
       },
       es: {
         "top.role": "Full Stack • Datos/BI • Automatización • Observabilidad",
@@ -1147,6 +1147,7 @@
         "proj.p1d": "PWA para salud y psicoterapia (TCC/DBT): medicamentos, signos vitales, síntomas, ejercicios guiados e historial.",
         "proj.p1s": "React 19 • Vite PWA • Fastify • Firestore • PostgreSQL • Cloud Run • Vercel • Stripe",
         "proj.p1cap": "Capturas del app: registro, terapia guiada y analítica/insights.",
+        "proj.p2cap": "Captura de la pantalla de Oportunidad con dashboards.",
         "proj.p2d": "CRM con Oportunidades, Propuestas, Clientes, Productos y Dashboard (en progreso; repo privado).",
         "proj.p2s": "Node.js • React • Bootstrap • MongoDB",
         "proj.p3d": "Plataforma de quizzes para certificaciones técnicas (UI moderna, accesibilidad y foco en contraste/lectura).",
@@ -1171,7 +1172,6 @@
         "contact.badgeT": "LinkedIn Badge",
         "contact.badgeD": "Si pegas el badge aquí, el sitio queda institucional sin screenshots.",
         "contact.badgeP": "[pega aquí el código del badge]",
-        "contact.foot": "Corporativo-tech • una página • PT/EN/ES",
       }
     };
 
@@ -1187,7 +1187,12 @@
       document.getElementById("btn-pt").classList.toggle("primary", lang==="pt");
       document.getElementById("btn-en").classList.toggle("primary", lang==="en");
       document.getElementById("btn-es").classList.toggle("primary", lang==="es");
-      localStorage.setItem("lang", lang);
+      try {
+        localStorage.setItem("lang", lang);
+      } catch (e) {
+        // localStorage não disponível (ex: file://, políticas restritivas)
+        console.warn("Não foi possível salvar idioma no localStorage:", e);
+      }
     }
 
     document.getElementById("btn-pt").onclick = ()=>setLang("pt");
@@ -1202,7 +1207,10 @@
     slides.forEach((_, i)=>{
       const b = document.createElement("button");
       b.title = `Slide ${i+1}`;
-      b.onclick = () => slides[i].scrollIntoView({behavior:"smooth", block:"start"});
+      b.onclick = () => {
+        const targetTop = slides[i].offsetTop - 64;
+        deck.scrollTo({top: targetTop, behavior: "smooth"});
+      };
       dots.appendChild(b);
     });
 
@@ -1226,7 +1234,8 @@
     // Controles de navegação
     function go(delta){
       const idx = Math.max(0, Math.min(slides.length-1, currentIndex()+delta));
-      slides[idx].scrollIntoView({behavior:"smooth", block:"start"});
+      const targetTop = slides[idx].offsetTop - 64;
+      deck.scrollTo({top: targetTop, behavior: "smooth"});
     }
     function currentIndex(){
       let best = 0, bestTop = Infinity;
@@ -1256,8 +1265,15 @@
       }
     }, {passive:true});
 
-    // Lang inicial
-    setLang(localStorage.getItem("lang") || "pt");
+    // Lang inicial (com tratamento de erro para localStorage)
+    let savedLang = "pt";
+    try {
+      savedLang = localStorage.getItem("lang") || "pt";
+    } catch (e) {
+      // localStorage não disponível (ex: file://, políticas restritivas)
+      console.warn("localStorage não disponível, usando idioma padrão:", e);
+    }
+    setLang(savedLang);
 
     // ScrollReveal initialization
     if(typeof ScrollReveal !== 'undefined'){
