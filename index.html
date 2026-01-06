@@ -348,7 +348,7 @@
     }
   </style>
   <!-- ScrollReveal.js for reveal animations -->
-  <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js" integrity="sha384-/Mm/FNRz5xZHO/GuuAUw93l4PLUyI1RfkXnlY65kdR+jBmgt/ih19KrCNqVI9gKS" crossorigin="anonymous"></script>
   <!-- Vanilla-tilt.js for tilt effect on project cards -->
   <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.0/dist/vanilla-tilt.min.js" crossorigin="anonymous"></script>
 </head>
@@ -1175,6 +1175,19 @@
       }
     };
 
+    function storageAvailable(){
+      try {
+        const key = "__storage_test__";
+        localStorage.setItem(key, "1");
+        localStorage.removeItem(key);
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    const canStoreLang = storageAvailable();
+
     function setLang(lang){
       const map = dict[lang] || dict.pt;
       document.documentElement.lang = (lang === "pt" ? "pt-BR" : lang);
@@ -1187,11 +1200,8 @@
       document.getElementById("btn-pt").classList.toggle("primary", lang==="pt");
       document.getElementById("btn-en").classList.toggle("primary", lang==="en");
       document.getElementById("btn-es").classList.toggle("primary", lang==="es");
-      try {
-      localStorage.setItem("lang", lang);
-      } catch (e) {
-        // localStorage não disponível (ex: file://, políticas restritivas)
-        console.warn("Não foi possível salvar idioma no localStorage:", e);
+      if (canStoreLang) {
+        localStorage.setItem("lang", lang);
       }
     }
 
@@ -1265,13 +1275,10 @@
       }
     }, {passive:true});
 
-    // Lang inicial (com tratamento de erro para localStorage)
+    // Lang inicial
     let savedLang = "pt";
-    try {
+    if (canStoreLang) {
       savedLang = localStorage.getItem("lang") || "pt";
-    } catch (e) {
-      // localStorage não disponível (ex: file://, políticas restritivas)
-      console.warn("localStorage não disponível, usando idioma padrão:", e);
     }
     setLang(savedLang);
 
