@@ -184,6 +184,22 @@
     .titem .place{color:var(--muted); font-size:12px}
     .titem .bullets{margin:10px 0 0; padding-left:18px; color:var(--muted);}
 
+    .shot{
+      width:100%;
+      height:auto;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      margin-top:12px;
+    }
+    .shotcap{
+      display:block;
+      margin-top:8px;
+      font-size:12px;
+      color: var(--muted);
+      line-height:1.4;
+    }
+
     .footer{
       display:flex; justify-content:space-between; align-items:center;
       gap:12px; flex-wrap:wrap; margin-top:10px;
@@ -325,7 +341,7 @@
               </p>
 
               <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
-              
+
               <div id="linkedin-badge-placeholder" style="margin-top:10px; opacity:.9">
                 <small data-i18n="hero.badgePlaceholder">[placeholder do badge]</small>
               </div>
@@ -343,7 +359,7 @@
     <!-- Slide 2: Impacto -->
     <section class="slide" data-slide="1">
       <div class="frame">
-        <h2 data-i18n="impact.title">Impacto (provas objetivas)</h2>
+        <h2 data-i18n="impact.title">Impacto</h2>
         <p data-i18n="impact.subtitle">Resultados em ambiente bancário crítico: redução de toil, melhoria de visibilidade e operação 24x7.</p>
 
         <div class="cards">
@@ -398,7 +414,11 @@
               <div class="meta" data-i18n="exp.r0d">03/2025 – atual</div>
             </div>
             <ul class="bullets">
-              <li data-i18n="exp.r0b1">Desenvolvimento de sistemas web: Frontend, Backend, Banco de Dados, Monitoramento e DevOps.</li>
+              <li data-i18n="exp.r0b1">Desenvolvimento ponta-a-ponta (produto, arquitetura, front, back, banco, testes, deploy e operação).</li>
+              <li data-i18n="exp.r0b2">Deveriar (PWA Saúde/TCC): React 19 + Vite PWA + TypeScript; Fastify 4 + TS; Firestore + PostgreSQL (Cloud SQL); Cloud Run + Vercel; GitHub Actions.</li>
+              <li data-i18n="exp.r0b3">Segurança e integrações: Google OAuth, CSRF, sessão via cookies httpOnly; Google APIs (Drive AppData), Vision OCR; billing com Stripe e suporte a IAP (Apple/Google).</li>
+              <li data-i18n="exp.r0b4">Produtos paralelos: UltraHub CRM (Node.js/React/MongoDB), Quiz Tech (GitHub Pages), extensões Chrome (Manifest V3) e pipeline OCR em Python (FastAPI).</li>
+              <li data-i18n="exp.r0b5">IA Analítica (arquitetura): orquestração Node/Fastify + OpenAPI, governança OPA/Rego, Trino, Keycloak (OIDC/LDAP/AD) e Evidence Service em Go + Postgres (planejado).</li>
             </ul>
           </div>
 
@@ -501,13 +521,15 @@
           <div class="card">
             <h3 data-i18n="skills.stackT">Stack (resumo)</h3>
             <p data-i18n="skills.stackD">
-              SQL • Python • Power BI • Dynatrace • Grafana • ServiceNow • Control-M • Git • Docker • Linux/Windows Server • AWS/Azure.
+              Web: React • TypeScript • Vite • Fastify • PostgreSQL • Firestore • OAuth/CSRF • Stripe • Playwright.
+              Cloud/Deploy: Cloud Run • Cloud SQL • Vercel • GitHub Actions.
+              Ops: Dynatrace • Grafana • ServiceNow • Control-M • Docker.
             </p>
           </div>
           <div class="card">
             <h3 data-i18n="skills.fullT">Full Stack (autônomo)</h3>
             <p data-i18n="skills.fullD">
-              Desenvolvimento web end-to-end incluindo backend, frontend, banco e monitoramento (03/2025–atual).
+              Produto + engenharia: front/back, integrações, segurança, observabilidade e pipelines (03/2025–atual).
             </p>
           </div>
         </div>
@@ -523,7 +545,7 @@
           <div class="card">
             <h3 data-i18n="cert.eduT">Formação</h3>
             <ul class="list">
-              <li data-i18n="cert.edu1">Gestão de TI — UniBH (conclusão 2014)</li>
+              <li data-i18n="cert.edu1">Gestão de Tecnologia da Informação — UniBH (conclusão 2014)</li>
             </ul>
           </div>
 
@@ -540,8 +562,15 @@
         </div>
 
         <div class="card" style="margin-top:12px">
-          <h3 data-i18n="cert.moreT">Cursos (exemplos)</h3>
-          <p data-i18n="cert.moreD">Power BI • Python para Data Science • R para Data Science • PowerShell • TypeScript • Full Stack Python • Cybersecurity.</p>
+          <h3 data-i18n="cert.moreT">Cursos</h3>
+          <ul class="list">
+            <li data-i18n="cert.more1">Formação Alura - Power BI: modelagem dimensional, DAX e indicadores (MTTR/MTTA/SLO).</li>
+            <li data-i18n="cert.more2">Formação Alura - Python: automação, ETL/ELT, APIs e validação de dados.</li>
+            <li data-i18n="cert.more3">Formação Alura - Web: TypeScript, React, consumo de APIs e testes (E2E).</li>
+            <li data-i18n="cert.more4">Jornada Business Intelligence: queries analíticas, modelagem e otimização básica.</li>
+            <li data-i18n="cert.more5">Formação Alura - DevOps/Cloud: Docker, pipelines CI/CD e deploy (GCP/Vercel).</li>
+            <li data-i18n="cert.more6">Bootcamp Analista Cybersecurity: fundamentos (OAuth, CSRF, sessões/cookies, rate limiting).</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -549,32 +578,48 @@
     <!-- Slide 6: Projetos -->
     <section class="slide" data-slide="5">
       <div class="frame">
-        <h2 data-i18n="proj.title">Projetos (vitrine)</h2>
+        <h2 data-i18n="proj.title">Projetos</h2>
         <p data-i18n="proj.subtitle">Conteúdo enxuto, orientado a prova: o que é, qual problema resolve, como foi construído.</p>
 
         <div class="cards">
           <div class="card">
             <h3>Deveriar</h3>
-            <p data-i18n="proj.p1d">Aplicação web com módulos orientados a organização/registro. (Edite: 1 frase de diferencial + stack.)</p>
+            <p data-i18n="proj.p1d">PWA para saúde e psicoterapia (TCC/DBT): medicamentos, sinais vitais, sintomas, exercícios guiados e histórico.</p>
+            <small data-i18n="proj.p1s">React 19 • Vite PWA • Fastify • Firestore • PostgreSQL • Cloud Run • Vercel • Stripe</small>
+            <img class="shot" src="assets/prints/deveriar.png" alt="Deveriar — prints de telas" loading="lazy" />
+            <span class="shotcap" data-i18n="proj.p1cap">Prints do app: documentação, psicoterapia guiada e análise/insights.</span>
             <div class="row">
               <a href="https://deveriar.com.br" target="_blank" rel="noreferrer" data-i18n="proj.open">Abrir</a>
             </div>
           </div>
 
           <div class="card">
-            <h3>UltraHub</h3>
-            <p data-i18n="proj.p2d">CRM + base para módulos analíticos/operacionais. (Edite: problema, solução e prova.)</p>
+            <h3>UltraHub CRM</h3>
+            <p data-i18n="proj.p2d">CRM com Oportunidades, Propostas, Clientes, Produtos e Dashboard (em evolução; repo fechado).</p>
+            <small data-i18n="proj.p2s">Node.js • React • Bootstrap • MongoDB</small>
             <div class="row">
               <a href="https://ultrahub.com.br" target="_blank" rel="noreferrer" data-i18n="proj.open">Abrir</a>
             </div>
           </div>
 
           <div class="card">
-            <h3 data-i18n="proj.p3t">GitHub</h3>
-            <p data-i18n="proj.p3d">Repositórios e experimentos (automação, web, dados). Selecione 3 para “featured”.</p>
+            <h3>Quiz Tech</h3>
+            <p data-i18n="proj.p3d">Plataforma de quizzes para certificações técnicas (UI moderna, acessibilidade e foco em leitura/contraste).</p>
+            <small data-i18n="proj.p3s">GitHub Pages • Front-end Web • UX/UI</small>
+            <img class="shot" src="assets/prints/quiz-tech.png" alt="Quiz Tech — tela inicial" loading="lazy" />
+            <span class="shotcap" data-i18n="proj.p3cap">Print da tela inicial e formulário de início de prova.</span>
             <div class="row">
-              <a href="https://github.com/munizmath" target="_blank" rel="noreferrer" data-i18n="proj.open">Abrir</a>
+              <a href="https://munizmath.github.io/Quizzes/" target="_blank" rel="noreferrer" data-i18n="proj.open">Abrir</a>
+              <a href="https://github.com/munizmath/Quizzes" target="_blank" rel="noreferrer">Repo</a>
             </div>
+          </div>
+
+          <div class="card">
+            <h3 data-i18n="proj.p4t">Landing corporativa-tech</h3>
+            <p data-i18n="proj.p4d">Página institucional com estética corporativa-tech (apresentação de proposta, CTA e seções de valor).</p>
+            <small data-i18n="proj.p4s">HTML/CSS • Layout responsivo • Design system simples</small>
+            <img class="shot" src="assets/prints/landing-corporativa.png" alt="Landing corporativa-tech — seção de apresentação" loading="lazy" />
+            <span class="shotcap" data-i18n="proj.p4cap">Print de seção “hero” e bloco de proposta de valor.</span>
           </div>
         </div>
 
@@ -582,8 +627,8 @@
           <h3 data-i18n="proj.todoT">TODO (para ficar “contratável”)</h3>
           <ul class="list">
             <li data-i18n="proj.todo1">Em cada projeto, escreva 3 bullets: Problema → Solução → Prova/Impacto.</li>
-            <li data-i18n="proj.todo2">Adicione 1 screenshot por projeto (se possível) e um “arquitetura/stack” de 1 linha.</li>
-            <li data-i18n="proj.todo3">Se tiver métricas (tempo, custo, users), coloque — mesmo aproximado.</li>
+            <li data-i18n="proj.todo2">Adicione métricas simples: usuários, tempo economizado, latência, custo, etc (mesmo aproximado).</li>
+            <li data-i18n="proj.todo3">Inclua 1 parágrafo de arquitetura: dados, autenticação, deploy e observabilidade.</li>
           </ul>
         </div>
       </div>
@@ -606,9 +651,9 @@
           <h3 data-i18n="contact.badgeT">LinkedIn Badge</h3>
           <p data-i18n="contact.badgeD">Se você colar o badge aqui, o site fica “institucional” sem depender de screenshot.</p>
 
-          <!-- TODO: cole o badge aqui (script + div) -->
+          <!-- TODO: cole o badge completo (script + div) aqui -->
           <div style="margin-top:10px; opacity:.9">
-            <small data-i18n="contact.badgeP"><script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script></small>
+            <small data-i18n="contact.badgeP">[cole o código do badge aqui]</small>
           </div>
         </div>
 
@@ -650,7 +695,7 @@
         "hero.badgePlaceholder": "[placeholder do badge]",
         "hero.navTip": "Role para baixo — cada seção é um “slide”. (Teclas: PageDown/PageUp)",
 
-        "impact.title": "Impacto (provas objetivas)",
+        "impact.title": "Impacto",
         "impact.subtitle": "Resultados em ambiente bancário crítico: redução de toil, melhoria de visibilidade e operação 24x7.",
         "impact.i1t": "-72% de toil operacional",
         "impact.i1d": "Automações com Python, PowerShell e PowerAutomate reduziram o tempo de execução de rotinas do Consignado.",
@@ -670,7 +715,11 @@
         "exp.r0": "Autônomo — Desenvolvimento Web Full Stack",
         "exp.r0p": "Belo Horizonte/MG",
         "exp.r0d": "03/2025 – atual",
-        "exp.r0b1": "Desenvolvimento de sistemas web: Frontend, Backend, Banco de Dados, Monitoramento e DevOps.",
+        "exp.r0b1": "Desenvolvimento ponta-a-ponta (produto, arquitetura, front, back, banco, testes, deploy e operação).",
+        "exp.r0b2": "Deveriar (PWA Saúde/TCC): React 19 + Vite PWA + TypeScript; Fastify 4 + TS; Firestore + PostgreSQL (Cloud SQL); Cloud Run + Vercel; GitHub Actions.",
+        "exp.r0b3": "Segurança e integrações: Google OAuth, CSRF, sessão via cookies httpOnly; Google APIs (Drive AppData), Vision OCR; billing com Stripe e suporte a IAP (Apple/Google).",
+        "exp.r0b4": "Produtos paralelos: UltraHub CRM (Node.js/React/MongoDB), Quiz Tech (GitHub Pages), extensões Chrome (Manifest V3) e pipeline OCR em Python (FastAPI).",
+        "exp.r0b5": "IA Analítica (arquitetura): orquestração Node/Fastify + OpenAPI, governança OPA/Rego, Trino, Keycloak (OIDC/LDAP/AD) e Evidence Service em Go + Postgres (planejado).",
         "exp.r1": "F1RST Digital (Santander) — Analista de TI Sr.",
         "exp.r1p": "Campinas/SP",
         "exp.r1d": "12/2022 – 02/2025",
@@ -702,9 +751,9 @@
         "skills.s3t": "Automação / DevOps",
         "skills.s3d": "Python, PowerShell, PowerAutomate, Control-M; deploy/ops com Docker e automação de rotinas.",
         "skills.stackT": "Stack (resumo)",
-        "skills.stackD": "SQL • Python • Power BI • Dynatrace • Grafana • ServiceNow • Control-M • Git • Docker • Linux/Windows Server • AWS/Azure.",
+        "skills.stackD": "Web: React • TypeScript • Vite • Fastify • PostgreSQL • Firestore • OAuth/CSRF • Stripe • Playwright. Cloud/Deploy: Cloud Run • Cloud SQL • Vercel • GitHub Actions. Ops: Dynatrace • Grafana • ServiceNow • Control-M • Docker.",
         "skills.fullT": "Full Stack (autônomo)",
-        "skills.fullD": "Desenvolvimento web end-to-end incluindo backend, frontend, banco e monitoramento (03/2025–atual).",
+        "skills.fullD": "Produto + engenharia: front/back, integrações, segurança, observabilidade e pipelines (03/2025–atual).",
 
         "cert.title": "Formação & Certificações",
         "cert.eduT": "Formação",
@@ -715,20 +764,33 @@
         "cert.c3": "SRE Practitioner (DevOps Institute)",
         "cert.c4": "Oracle Cloud Infrastructure Foundations",
         "cert.c5": "Scrum Foundations",
-        "cert.moreT": "Cursos (exemplos)",
-        "cert.moreD": "Power BI • Python para Data Science • R para Data Science • PowerShell • TypeScript • Full Stack Python • Cybersecurity.",
+        "cert.moreT": "Cursos",
+        "cert.more1": "Power BI: modelagem dimensional, DAX e indicadores (MTTR/MTTA/SLO).",
+        "cert.more2": "Python: automação, ETL/ELT, APIs e validação de dados.",
+        "cert.more3": "Web: TypeScript, React, consumo de APIs e testes (E2E).",
+        "cert.more4": "SQL: queries analíticas, modelagem e otimização básica.",
+        "cert.more5": "DevOps/Cloud: Docker, pipelines CI/CD e deploy (GCP/Vercel).",
+        "cert.more6": "Segurança: fundamentos (OAuth, CSRF, sessões/cookies, rate limiting).",
 
-        "proj.title": "Projetos (vitrine)",
+        "proj.title": "Projetos",
         "proj.subtitle": "Conteúdo enxuto, orientado a prova: o que é, qual problema resolve, como foi construído.",
-        "proj.p1d": "Aplicação web com módulos orientados a organização/registro. (Edite: 1 frase de diferencial + stack.)",
-        "proj.p2d": "CRM + base para módulos analíticos/operacionais. (Edite: problema, solução e prova.)",
-        "proj.p3t": "GitHub",
-        "proj.p3d": "Repositórios e experimentos (automação, web, dados). Selecione 3 para “featured”.",
+        "proj.p1d": "PWA para saúde e psicoterapia (TCC/DBT): medicamentos, sinais vitais, sintomas, exercícios guiados e histórico.",
+        "proj.p1s": "React 19 • Vite PWA • Fastify • Firestore • PostgreSQL • Cloud Run • Vercel • Stripe",
+        "proj.p1cap": "Prints do app: documentação, psicoterapia guiada e análise/insights.",
+        "proj.p2d": "CRM com Oportunidades, Propostas, Clientes, Produtos e Dashboard (em evolução; repo fechado).",
+        "proj.p2s": "Node.js • React • Bootstrap • MongoDB",
+        "proj.p3d": "Plataforma de quizzes para certificações técnicas (UI moderna, acessibilidade e foco em leitura/contraste).",
+        "proj.p3s": "GitHub Pages • Front-end Web • UX/UI",
+        "proj.p3cap": "Print da tela inicial e formulário de início de prova.",
+        "proj.p4t": "Landing corporativa-tech",
+        "proj.p4d": "Página institucional com estética corporativa-tech (apresentação de proposta, CTA e seções de valor).",
+        "proj.p4s": "HTML/CSS • Layout responsivo • Design system simples",
+        "proj.p4cap": "Print de seção “hero” e bloco de proposta de valor.",
         "proj.open": "Abrir",
         "proj.todoT": "TODO (para ficar “contratável”)",
         "proj.todo1": "Em cada projeto, escreva 3 bullets: Problema → Solução → Prova/Impacto.",
-        "proj.todo2": "Adicione 1 screenshot por projeto (se possível) e um “arquitetura/stack” de 1 linha.",
-        "proj.todo3": "Se tiver métricas (tempo, custo, users), coloque — mesmo aproximado.",
+        "proj.todo2": "Adicione métricas simples: usuários, tempo economizado, latência, custo, etc (mesmo aproximado).",
+        "proj.todo3": "Inclua 1 parágrafo de arquitetura: dados, autenticação, deploy e observabilidade.",
 
         "contact.title": "Contato",
         "contact.subtitle": "Canal recomendado: LinkedIn. PDFs anexos no site para leitura rápida.",
@@ -761,7 +823,7 @@
         "hero.badgePlaceholder": "[badge placeholder]",
         "hero.navTip": "Scroll down — each section is a “slide”. (Keys: PageDown/PageUp)",
 
-        "impact.title": "Impact (objective proof)",
+        "impact.title": "Impact",
         "impact.subtitle": "Results in a critical banking environment: less toil, better visibility and 24x7 operations.",
         "impact.i1t": "-72% operational toil",
         "impact.i1d": "Automation using Python, PowerShell and PowerAutomate reduced execution time for recurring routines.",
@@ -781,7 +843,11 @@
         "exp.r0": "Freelance — Full Stack Web Development",
         "exp.r0p": "Belo Horizonte, Brazil",
         "exp.r0d": "03/2025 – present",
-        "exp.r0b1": "End-to-end web systems: frontend, backend, database, monitoring and DevOps.",
+        "exp.r0b1": "End-to-end delivery (product, architecture, front-end, back-end, database, testing, deploy and ops).",
+        "exp.r0b2": "Deveriar (Health/CBT PWA): React 19 + Vite PWA + TypeScript; Fastify 4 + TS; Firestore + PostgreSQL (Cloud SQL); Cloud Run + Vercel; GitHub Actions.",
+        "exp.r0b3": "Security & integrations: Google OAuth, CSRF, httpOnly cookie sessions; Google APIs (Drive AppData), Vision OCR; billing via Stripe and IAP support (Apple/Google).",
+        "exp.r0b4": "Parallel products: UltraHub CRM (Node.js/React/MongoDB), Quiz Tech (GitHub Pages), Chrome extensions (Manifest V3) and OCR pipeline in Python (FastAPI).",
+        "exp.r0b5": "Analytics AI (architecture): Node/Fastify orchestration + OpenAPI, OPA/Rego governance, Trino, Keycloak (OIDC/LDAP/AD) and Evidence Service in Go + Postgres (planned).",
         "exp.r1": "F1RST Digital (Santander) — Senior IT Analyst",
         "exp.r1p": "Campinas, Brazil",
         "exp.r1d": "12/2022 – 02/2025",
@@ -813,9 +879,9 @@
         "skills.s3t": "Automation / DevOps",
         "skills.s3d": "Python, PowerShell, PowerAutomate, Control-M; Docker ops and routine automation.",
         "skills.stackT": "Stack (summary)",
-        "skills.stackD": "SQL • Python • Power BI • Dynatrace • Grafana • ServiceNow • Control-M • Git • Docker • Linux/Windows Server • AWS/Azure.",
+        "skills.stackD": "Web: React • TypeScript • Vite • Fastify • PostgreSQL • Firestore • OAuth/CSRF • Stripe • Playwright. Cloud/Deploy: Cloud Run • Cloud SQL • Vercel • GitHub Actions. Ops: Dynatrace • Grafana • ServiceNow • Control-M • Docker.",
         "skills.fullT": "Full Stack (freelance)",
-        "skills.fullD": "End-to-end web development including backend, frontend, database and monitoring (03/2025–present).",
+        "skills.fullD": "Product + engineering: front/back, integrations, security, observability and pipelines (03/2025–present).",
 
         "cert.title": "Education & Certifications",
         "cert.eduT": "Education",
@@ -826,20 +892,33 @@
         "cert.c3": "SRE Practitioner (DevOps Institute)",
         "cert.c4": "Oracle Cloud Infrastructure Foundations",
         "cert.c5": "Scrum Foundations",
-        "cert.moreT": "Courses (examples)",
-        "cert.moreD": "Power BI • Python for Data Science • R for Data Science • PowerShell • TypeScript • Full Stack Python • Cybersecurity.",
+        "cert.moreT": "Courses",
+        "cert.more1": "Power BI: dimensional modeling, DAX and indicators (MTTR/MTTA/SLO).",
+        "cert.more2": "Python: automation, ETL/ELT, APIs and data validation.",
+        "cert.more3": "Web: TypeScript, React, API consumption and testing (E2E).",
+        "cert.more4": "SQL: analytical queries, modeling and basic optimization.",
+        "cert.more5": "DevOps/Cloud: Docker, CI/CD pipelines and deploy (GCP/Vercel).",
+        "cert.more6": "Security: fundamentals (OAuth, CSRF, sessions/cookies, rate limiting).",
 
-        "proj.title": "Projects (showcase)",
+        "proj.title": "Projects",
         "proj.subtitle": "Short and proof-driven: what it is, what it solves, how it was built.",
-        "proj.p1d": "Web app with organization/recording modules. (Edit: 1 differentiator sentence + stack.)",
-        "proj.p2d": "CRM foundation for analytics/ops modules. (Edit: problem, solution and proof.)",
-        "proj.p3t": "GitHub",
-        "proj.p3d": "Repos and experiments (automation, web, data). Pick 3 as featured.",
+        "proj.p1d": "Health & psychotherapy PWA (CBT/DBT): meds, vital signs, symptoms, guided exercises and history.",
+        "proj.p1s": "React 19 • Vite PWA • Fastify • Firestore • PostgreSQL • Cloud Run • Vercel • Stripe",
+        "proj.p1cap": "App screenshots: tracking, guided therapy and analytics/insights.",
+        "proj.p2d": "CRM with Opportunities, Proposals, Customers, Products and Dashboard (in progress; private repo).",
+        "proj.p2s": "Node.js • React • Bootstrap • MongoDB",
+        "proj.p3d": "Quiz platform for tech certifications (modern UI, accessibility and contrast/readability focus).",
+        "proj.p3s": "GitHub Pages • Web Front-end • UX/UI",
+        "proj.p3cap": "Screenshot of the home screen and start form.",
+        "proj.p4t": "Corporate-tech landing",
+        "proj.p4d": "Institutional page with corporate-tech aesthetics (value proposition, CTA and sections).",
+        "proj.p4s": "HTML/CSS • Responsive layout • Simple design system",
+        "proj.p4cap": "Screenshot of the hero section and value-proposition block.",
         "proj.open": "Open",
         "proj.todoT": "TODO (to be hireable)",
         "proj.todo1": "For each project: 3 bullets — Problem → Solution → Proof/Impact.",
-        "proj.todo2": "Add 1 screenshot per project (if possible) + 1-line “architecture/stack”.",
-        "proj.todo3": "If you have metrics (time, cost, users), add them — even approximate.",
+        "proj.todo2": "Add simple metrics: users, time saved, latency, cost, etc (even approximate).",
+        "proj.todo3": "Include 1 paragraph on architecture: data, auth, deploy and observability.",
 
         "contact.title": "Contact",
         "contact.subtitle": "Recommended channel: LinkedIn. PDFs are attached for quick reading.",
@@ -872,7 +951,7 @@
         "hero.badgePlaceholder": "[placeholder del badge]",
         "hero.navTip": "Baja con scroll — cada sección es una “diapositiva”. (Teclas: PageDown/PageUp)",
 
-        "impact.title": "Impacto (prueba objetiva)",
+        "impact.title": "Impacto",
         "impact.subtitle": "Resultados en un entorno bancario crítico: menos toil, mejor visibilidad y operación 24x7.",
         "impact.i1t": "-72% toil operativo",
         "impact.i1d": "Automatizaciones con Python, PowerShell y PowerAutomate redujeron el tiempo de ejecución de rutinas recurrentes.",
@@ -892,7 +971,11 @@
         "exp.r0": "Autónomo — Desarrollo Web Full Stack",
         "exp.r0p": "Belo Horizonte, Brasil",
         "exp.r0d": "03/2025 – actual",
-        "exp.r0b1": "Sistemas web end-to-end: frontend, backend, base de datos, monitoreo y DevOps.",
+        "exp.r0b1": "Entrega end-to-end (producto, arquitectura, front-end, back-end, base de datos, pruebas, deploy y operación).",
+        "exp.r0b2": "Deveriar (PWA Salud/TCC): React 19 + Vite PWA + TypeScript; Fastify 4 + TS; Firestore + PostgreSQL (Cloud SQL); Cloud Run + Vercel; GitHub Actions.",
+        "exp.r0b3": "Seguridad e integraciones: Google OAuth, CSRF, sesión con cookies httpOnly; Google APIs (Drive AppData), Vision OCR; billing con Stripe y soporte IAP (Apple/Google).",
+        "exp.r0b4": "Productos paralelos: UltraHub CRM (Node.js/React/MongoDB), Quiz Tech (GitHub Pages), extensiones Chrome (Manifest V3) y pipeline OCR en Python (FastAPI).",
+        "exp.r0b5": "IA Analítica (arquitectura): orquestación Node/Fastify + OpenAPI, gobernanza OPA/Rego, Trino, Keycloak (OIDC/LDAP/AD) y Evidence Service en Go + Postgres (planeado).",
         "exp.r1": "F1RST Digital (Santander) — Analista Sr.",
         "exp.r1p": "Campinas, Brasil",
         "exp.r1d": "12/2022 – 02/2025",
@@ -924,9 +1007,9 @@
         "skills.s3t": "Automatización / DevOps",
         "skills.s3d": "Python, PowerShell, PowerAutomate, Control-M; Docker y automatización de rutinas.",
         "skills.stackT": "Stack (resumen)",
-        "skills.stackD": "SQL • Python • Power BI • Dynatrace • Grafana • ServiceNow • Control-M • Git • Docker • Linux/Windows Server • AWS/Azure.",
+        "skills.stackD": "Web: React • TypeScript • Vite • Fastify • PostgreSQL • Firestore • OAuth/CSRF • Stripe • Playwright. Cloud/Deploy: Cloud Run • Cloud SQL • Vercel • GitHub Actions. Ops: Dynatrace • Grafana • ServiceNow • Control-M • Docker.",
         "skills.fullT": "Full Stack (autónomo)",
-        "skills.fullD": "Desarrollo web end-to-end incluyendo backend, frontend, base de datos y monitoreo (03/2025–actual).",
+        "skills.fullD": "Producto + ingeniería: front/back, integraciones, seguridad, observabilidad y pipelines (03/2025–actual).",
 
         "cert.title": "Formación y Certificaciones",
         "cert.eduT": "Formación",
@@ -937,20 +1020,33 @@
         "cert.c3": "SRE Practitioner (DevOps Institute)",
         "cert.c4": "Oracle Cloud Infrastructure Foundations",
         "cert.c5": "Scrum Foundations",
-        "cert.moreT": "Cursos (ejemplos)",
-        "cert.moreD": "Power BI • Python para Data Science • R para Data Science • PowerShell • TypeScript • Full Stack Python • Cybersecurity.",
+        "cert.moreT": "Cursos",
+        "cert.more1": "Power BI: modelado dimensional, DAX e indicadores (MTTR/MTTA/SLO).",
+        "cert.more2": "Python: automatización, ETL/ELT, APIs y validación de datos.",
+        "cert.more3": "Web: TypeScript, React, consumo de APIs y pruebas (E2E).",
+        "cert.more4": "SQL: consultas analíticas, modelado y optimización básica.",
+        "cert.more5": "DevOps/Cloud: Docker, pipelines CI/CD y deploy (GCP/Vercel).",
+        "cert.more6": "Seguridad: fundamentos (OAuth, CSRF, sesiones/cookies, rate limiting).",
 
-        "proj.title": "Proyectos (vitrina)",
+        "proj.title": "Proyectos",
         "proj.subtitle": "Corto y orientado a prueba: qué es, qué resuelve, cómo fue construido.",
-        "proj.p1d": "App web con módulos de organización/registro. (Edita: 1 frase diferencial + stack.)",
-        "proj.p2d": "Base CRM para módulos analíticos/operativos. (Edita: problema, solución y prueba.)",
-        "proj.p3t": "GitHub",
-        "proj.p3d": "Repos y experimentos (automatización, web, datos). Elige 3 como destacados.",
+        "proj.p1d": "PWA para salud y psicoterapia (TCC/DBT): medicamentos, signos vitales, síntomas, ejercicios guiados e historial.",
+        "proj.p1s": "React 19 • Vite PWA • Fastify • Firestore • PostgreSQL • Cloud Run • Vercel • Stripe",
+        "proj.p1cap": "Capturas del app: registro, terapia guiada y analítica/insights.",
+        "proj.p2d": "CRM con Oportunidades, Propuestas, Clientes, Productos y Dashboard (en progreso; repo privado).",
+        "proj.p2s": "Node.js • React • Bootstrap • MongoDB",
+        "proj.p3d": "Plataforma de quizzes para certificaciones técnicas (UI moderna, accesibilidad y foco en contraste/lectura).",
+        "proj.p3s": "GitHub Pages • Front-end Web • UX/UI",
+        "proj.p3cap": "Captura de la pantalla inicial y formulario de inicio.",
+        "proj.p4t": "Landing corporativa-tech",
+        "proj.p4d": "Página institucional con estética corporativa-tech (propuesta de valor, CTA y secciones).",
+        "proj.p4s": "HTML/CSS • Layout responsivo • Design system simple",
+        "proj.p4cap": "Captura de sección “hero” y bloque de propuesta de valor.",
         "proj.open": "Abrir",
         "proj.todoT": "TODO (para quedar “contratable”)",
         "proj.todo1": "En cada proyecto: 3 bullets — Problema → Solución → Prueba/Impacto.",
-        "proj.todo2": "Agrega 1 screenshot por proyecto + 1 línea de “arquitectura/stack”.",
-        "proj.todo3": "Si tienes métricas (tiempo, costo, usuarios), ponlas — aunque aproximadas.",
+        "proj.todo2": "Agrega métricas simples: usuarios, tiempo ahorrado, latencia, costo, etc (aunque aproximadas).",
+        "proj.todo3": "Incluye 1 párrafo de arquitectura: datos, auth, deploy y observabilidad.",
 
         "contact.title": "Contacto",
         "contact.subtitle": "Canal recomendado: LinkedIn. PDFs adjuntos para lectura rápida.",
