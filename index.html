@@ -7,7 +7,7 @@
   <meta name="description" content="Currículo/portfólio — Observabilidade, SQL, Python, BI, DevOps e Desenvolvimento Web Full Stack." />
   <meta name="keywords" content="Matheus Muniz, Full Stack, Dados, BI, Automação, Observabilidade, Python, SQL, DevOps, SRE" />
   <meta name="author" content="Matheus Muniz" />
-  
+
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://munizmath.github.io/" />
@@ -17,15 +17,15 @@
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:locale:alternate" content="en_US" />
   <meta property="og:locale:alternate" content="es_ES" />
-  
+
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Matheus Muniz | Full Stack • Dados • Automação" />
   <meta name="twitter:description" content="Observabilidade • SQL • Python • BI • DevOps • Full Stack" />
   <meta name="twitter:image" content="https://munizmath.github.io/assets/profile.jpg" />
-  
+
   <meta name="theme-color" content="#0b0f17" />
-  
+
   <!-- Schema.org structured data -->
   <script type="application/ld+json">
   {
@@ -48,6 +48,10 @@
     "knowsAbout": ["Full Stack Development", "Data Analysis", "Business Intelligence", "Observability", "DevOps", "SRE", "Python", "SQL", "Power BI"]
   }
   </script>
+
+  <!-- LinkedIn badge script (APENAS 1x) -->
+  <script src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+
   <style>
     :root{
       --bg:#0b0f17;
@@ -124,16 +128,15 @@
       background: rgba(11,15,23,.55);
       color: var(--muted);
     }
-    
-    /* Centralizar LinkedIn Badge dentro do card */
+
+    /* Centralizar Badge + NÃO travar scroll (iframe do LinkedIn captura wheel) */
     .linkedin-badge-wrap{
-      display: flex;
-      justify-content: center;
+      display:flex;
+      justify-content:center;
+      pointer-events:none;
     }
-    
-    /* garantia extra caso o widget tenha width fixo */
     .linkedin-badge-wrap .LI-profile-badge{
-      margin: 0 auto;
+      margin:0 auto;
     }
 
     /* Deck (scroll com snap) */
@@ -347,11 +350,13 @@
       border: 1px solid var(--line);
     }
   </style>
+
   <!-- ScrollReveal.js for reveal animations -->
   <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js" integrity="sha384-/Mm/FNRz5xZHO/GuuAUw93l4PLUyI1RfkXnlY65kdR+jBmgt/ih19KrCNqVI9gKS" crossorigin="anonymous"></script>
   <!-- Vanilla-tilt.js for tilt effect on project cards -->
   <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.0/dist/vanilla-tilt.min.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
   <header class="topbar">
     <div class="brand">
@@ -434,11 +439,9 @@
               </div>
             </div>
 
+            <!-- CORRIGIDO: Badge sem tags quebradas + sem script duplicado -->
             <div class="card" style="margin-top:12px">
               <h3>LinkedIn Badge</h3>
-            
-              <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
-            
               <div class="linkedin-badge-wrap">
                 <div class="badge-base LI-profile-badge"
                      data-locale="pt_BR"
@@ -446,27 +449,18 @@
                      data-theme="dark"
                      data-type="VERTICAL"
                      data-vanity="matheus-muniz-oliveira"
-                     data-version="v1">
-                  <a class="badge-base__link LI-simple-link"
-                     href="https://br.linkedin.com/in/matheus-muniz-oliveira?trk=profile-badge">
-                    Matheus M.
-                  </a>
+                     data-version="v1"></div>
               </div>
+              <small style="display:block; margin-top:8px; color:var(--muted)">
+                Se o badge não carregar, use o botão “LinkedIn” acima.
+              </small>
             </div>
-            </div>
-              
-              </p>
-
-              <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
-
           </div>
         </div>
-
 
         <div class="footer" style="justify-content: center; flex-direction: column; gap: 8px; text-align: center;">
           <span data-i18n="hero.navTip">Role para baixo — cada seção é um "slide". (Teclas: PageDown/PageUp)</span>
           <span>© <span id="y"></span> Matheus Muniz</span>
-        </div>
         </div>
       </div>
     </section>
@@ -764,14 +758,6 @@
           <a class="linkbtn" href="assets/docs/Profile.pdf" target="_blank" rel="noreferrer" data-i18n="contact.ctaProfile">Abrir LinkedIn (PDF)</a>
         </div>
 
-        <!-- TODO: Se quiser adicionar LinkedIn Badge, descomente e cole o código abaixo:
-        <div class="card" style="margin-top:12px">
-          <h3 data-i18n="contact.badgeT">LinkedIn Badge</h3>
-          <script src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
-          <div class="LI-profile-badge" data-locale="pt_BR" data-size="large" data-theme="dark" data-type="VERTICAL" data-vanity="matheus-muniz-oliveira" data-version="v1"></div>
-        </div>
-        -->
-
         <div class="footer" style="justify-content: center;">
           <span>© <span id="y2"></span> Matheus Muniz</span>
         </div>
@@ -915,12 +901,11 @@
         "contact.ctaProfile": "Abrir LinkedIn (PDF)",
         "contact.badgeT": "LinkedIn Badge",
         "contact.badgeD": "Se você colar o badge aqui, o site fica “institucional” sem depender de screenshot.",
-        "contact.badgeP": "[cole o código do badge aqui]",
+        "contact.badgeP": "[cole o código do badge aqui]"
       },
       en: {
         "top.role": "Full Stack • Data/BI • Automation • Observability",
         "top.location": "Belo Horizonte, Brazil",
-
         "hero.kicker": "Open to roles and projects (CLT/PJ)",
         "hero.title": "Web, Data & Automation with operational discipline",
         "hero.subtitle": "10+ years in infrastructure, monitoring and automation in enterprise environments (financial sector). Experience with data/BI, observability and 24x7 operations — and more recently, full-stack web development.",
@@ -1043,12 +1028,11 @@
         "contact.ctaProfile": "Open LinkedIn (PDF)",
         "contact.badgeT": "LinkedIn Badge",
         "contact.badgeD": "If you paste the badge here, the site looks institutional without screenshots.",
-        "contact.badgeP": "[paste badge code here]",
+        "contact.badgeP": "[paste badge code here]"
       },
       es: {
         "top.role": "Full Stack • Datos/BI • Automatización • Observabilidad",
         "top.location": "Belo Horizonte, Brasil",
-
         "hero.kicker": "Disponible para vacantes y proyectos (CLT/PJ)",
         "hero.title": "Web, Datos y Automatización con disciplina operativa",
         "hero.subtitle": "Más de 10 años en infraestructura, monitoreo y automatización en entornos corporativos (sector financiero). Experiencia con datos/BI, observabilidad y operación 24x7 — y más recientemente, desarrollo web full stack.",
@@ -1089,7 +1073,7 @@
         "exp.r0b2": "Deveriar (PWA Salud/TCC): React 19 + Vite PWA + TypeScript; Fastify 4 + TS; Firestore + PostgreSQL (Cloud SQL); Cloud Run + Vercel; GitHub Actions.",
         "exp.r0b3": "Seguridad e integraciones: Google OAuth, CSRF, sesión con cookies httpOnly; Google APIs (Drive AppData), Vision OCR; billing con Stripe y soporte IAP (Apple/Google).",
         "exp.r0b4": "Productos paralelos: UltraHub CRM (Node.js/React/MongoDB), Quiz Tech (GitHub Pages), extensiones Chrome (Manifest V3) y pipeline OCR en Python (FastAPI).",
-        "exp.r0b5": "IA Analítica (arquitectura): orquestación Node/Fastify + OpenAPI, gobernanza OPA/Rego, Trino, Keycloak (OIDC/LDAP/AD) y Evidence Service en Go + Postgres (planeado).",
+        "exp.r0b5": "IA Analítica (arquitetura): orquestación Node/Fastify + OpenAPI, gobernanza OPA/Rego, Trino, Keycloak (OIDC/LDAP/AD) y Evidence Service en Go + Postgres (planeado).",
         "exp.r1": "F1RST Digital (Santander) — Analista Sr.",
         "exp.r1p": "Campinas, Brasil",
         "exp.r1d": "12/2022 – 02/2025",
@@ -1171,7 +1155,7 @@
         "contact.ctaProfile": "Abrir LinkedIn (PDF)",
         "contact.badgeT": "LinkedIn Badge",
         "contact.badgeD": "Si pegas el badge aquí, el sitio queda institucional sin screenshots.",
-        "contact.badgeP": "[pega aquí el código del badge]",
+        "contact.badgeP": "[pega aquí el código del badge]"
       }
     };
 
@@ -1200,9 +1184,7 @@
       document.getElementById("btn-pt").classList.toggle("primary", lang==="pt");
       document.getElementById("btn-en").classList.toggle("primary", lang==="en");
       document.getElementById("btn-es").classList.toggle("primary", lang==="es");
-      if (canStoreLang) {
-        localStorage.setItem("lang", lang);
-      }
+      if (canStoreLang) localStorage.setItem("lang", lang);
     }
 
     document.getElementById("btn-pt").onclick = ()=>setLang("pt");
@@ -1277,9 +1259,7 @@
 
     // Lang inicial
     let savedLang = "pt";
-    if (canStoreLang) {
-      savedLang = localStorage.getItem("lang") || "pt";
-    }
+    if (canStoreLang) savedLang = localStorage.getItem("lang") || "pt";
     setLang(savedLang);
 
     // ScrollReveal initialization
