@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Matheus Muniz | Portfólio</title>
+  <meta name="description" content="Automação, dados, processos e produtos. Projetos e demos no GitHub." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="container">
+    <div class="hero">
+      <div>
+        <h1>Matheus Muniz</h1>
+        <p class="subtitle">Automação • Dados • Processos • Python • SQL</p>
+        <div class="actions">
+          <a class="btn" href="https://github.com/munizmath" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="btn secondary" href="https://www.linkedin.com/in/matheus-muniz-oliveira" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Sobre</h2>
+      <p>
+        Página de apresentação com links para repositórios e demonstrações.
+        Tudo aqui é estático (GitHub Pages), então sem backend.
+      </p>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h3>Minha Terapia (PWA)</h3>
+        <p>App PWA de gerenciamento de saúde e módulo TCC. Demo no GitHub Pages.</p>
+        <div class="links">
+          <a href="https://munizmath.github.io/minha-terapia/" target="_blank" rel="noreferrer">Abrir demo</a>
+          <a href="https://github.com/munizmath/minha-terapia" target="_blank" rel="noreferrer">Ver repo</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>Extrator de transações PDF bancário</h3>
+        <p>Extrator de faturas bancárias em PDF (múltiplos bancos).</p>
+        <div class="links">
+          <a href="https://github.com/munizmath/extrator-transacoes-pdf-bancario" target="_blank" rel="noreferrer">Ver repo</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>Backup Genérico</h3>
+        <p>Template/sistema de backup.</p>
+        <div class="links">
+          <a href="https://github.com/munizmath/Backup_Generico" target="_blank" rel="noreferrer">Ver repo</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>Quizzes</h3>
+        <p>Projetos e testes com quizzes.</p>
+        <div class="links">
+          <a href="https://github.com/munizmath/Quizzes" target="_blank" rel="noreferrer">Ver repo</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="card">
+      <h2>Contato</h2>
+      <p>Se quiser, coloque um e-mail/forma de contato aqui (ou só LinkedIn).</p>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <small>© <span id="y"></span> Matheus Muniz • Hospedado no GitHub Pages</small>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
