@@ -8,7 +8,7 @@
   <meta name="keywords" content="Matheus Muniz, Full Stack, Dados, BI, Automação, Observabilidade, Python, SQL, DevOps, SRE" />
   <meta name="author" content="Matheus Muniz" />
 
-  <!-- Open Graph / Facebook -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://munizmath.github.io/" />
   <meta property="og:title" content="Matheus Muniz | Full Stack • Dados • Automação" />
@@ -26,7 +26,7 @@
 
   <meta name="theme-color" content="#0b0f17" />
 
-  <!-- Schema.org structured data -->
+  <!-- Schema.org -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -73,10 +73,9 @@
         radial-gradient(900px 650px at 85% 20%, rgba(125,255,202,.08), transparent 55%),
         var(--bg);
       color:var(--text);
-      overflow:hidden; /* scroll é feito no .deck */
+      overflow:hidden; /* scroll fica no .deck */
     }
     a{color:inherit}
-
     .topbar{
       position:fixed; left:0; right:0; top:0;
       display:flex; align-items:center; justify-content:center;
@@ -86,10 +85,7 @@
       backdrop-filter: blur(10px);
       border-bottom:1px solid var(--line);
     }
-    .topbar .controls{
-      position:absolute;
-      right:18px;
-    }
+    .topbar .controls{ position:absolute; right:18px; }
     .brand{display:flex; gap:10px; align-items:center; min-width: 260px;}
     .dot{
       width:10px; height:10px; border-radius:999px;
@@ -114,7 +110,7 @@
       background: rgba(106,169,255,.18);
       border-color: rgba(106,169,255,.35);
     }
-    .btn.ghost{background: transparent;}
+    .btn.ghost{ background: transparent; }
     .pill{
       font-family: var(--mono);
       font-size:11px;
@@ -125,15 +121,6 @@
       color: var(--muted);
     }
 
-    /* Centralizar LinkedIn Badge dentro do card */
-    .linkedin-badge-wrap{
-      display: flex;
-      justify-content: center;
-    }
-    .linkedin-badge-wrap .LI-profile-badge{
-      margin: 0 auto;
-    }
-
     /* Deck (scroll com snap) */
     .deck{
       height:100vh;
@@ -142,7 +129,7 @@
       scroll-behavior:smooth;
       padding-top:64px;
       -webkit-overflow-scrolling: touch;
-      touch-action: pan-y;
+      overscroll-behavior-y: contain;
     }
     section.slide{
       min-height: calc(100vh - 64px);
@@ -162,7 +149,11 @@
     }
 
     .grid2{display:grid; grid-template-columns: 1.25fr .75fr; gap:16px;}
-    @media (max-width: 940px){ .grid2{grid-template-columns:1fr} .brand{min-width:auto} }
+    @media (max-width: 940px){
+      .grid2{grid-template-columns:1fr}
+      .brand{min-width:auto}
+      h1{font-size:32px}
+    }
 
     h1{margin:0 0 8px; font-size:40px; letter-spacing:-.6px}
     h2{margin:0 0 10px; font-size:20px}
@@ -196,13 +187,6 @@
       background: rgba(15,22,38,.55);
       text-decoration:none;
       font-size:13px;
-      cursor:pointer;
-      color:inherit;
-    }
-    button.linkbtn{
-      appearance:none;
-      -webkit-appearance:none;
-      font-family: inherit;
     }
     .linkbtn:hover{border-color: rgba(106,169,255,.35)}
     .linkbtn.primary{
@@ -221,7 +205,7 @@
     }
     .card h3{margin:0 0 8px; font-size:14px}
     .card small{color: var(--muted)}
-    .card .row{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; align-items:center}
+    .card .row{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; align-items:center;}
     .card a{opacity:.92}
     .card a:hover{opacity:1; text-decoration:underline}
 
@@ -276,7 +260,7 @@
       font-size:12px;
       color: var(--muted);
       backdrop-filter: blur(10px);
-      transition: opacity .25s ease;
+      transition: opacity .2s ease;
     }
 
     /* barra lateral de progresso */
@@ -326,81 +310,86 @@
       display: block;
     }
 
-    /* Reveal animation classes */
-    .reveal{
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+    /* LinkedIn badge centralizado */
+    .linkedin-badge-wrap{
+      display:flex;
+      justify-content:center;
+      margin-top:10px;
     }
-    .reveal.active{
-      opacity: 1;
-      transform: translateY(0);
+    .linkedin-badge-wrap .LI-profile-badge{ margin:0 auto; }
+
+    /* Project card */
+    .project-card{ transition: transform 0.3s ease; }
+    .project-card:hover{ transform: translateY(-4px); }
+
+    /* Botões de ação internos */
+    .mini-btn{
+      border:1px solid var(--line);
+      background: rgba(15,22,38,.55);
+      color: var(--text);
+      padding:8px 10px;
+      border-radius:12px;
+      font-size:12px;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .mini-btn:hover{ border-color: rgba(106,169,255,.35); }
+    .mini-btn.primary{
+      background: rgba(106,169,255,.18);
+      border-color: rgba(106,169,255,.35);
     }
 
-    /* Project card with tilt */
-    .project-card{
-      transition: transform 0.3s ease;
-    }
-    .project-card:hover{
-      transform: translateY(-4px);
-    }
-
-    /* Project image */
-    .project-img{
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 12px;
-      border: 1px solid var(--line);
-    }
-
-    /* Modal (POP-UP interno) */
-    .modal-backdrop{
+    /* Modal (POP-UP interno com animação) */
+    .modal-overlay{
       position:fixed;
       inset:0;
-      z-index:120;
-      background: rgba(0,0,0,.62);
+      z-index:60;
       display:none;
       align-items:center;
       justify-content:center;
       padding:18px;
+      background: rgba(0,0,0,.62);
+      backdrop-filter: blur(6px);
     }
-    .modal-backdrop.open{display:flex;}
+    .modal-overlay.open{ display:flex; }
+
     .modal{
       width:min(920px, 100%);
-      max-height: calc(100vh - 96px);
-      overflow:auto;
       border:1px solid var(--line);
-      border-radius: 18px;
-      background: linear-gradient(180deg, rgba(15,22,38,.92), rgba(12,19,34,.88));
+      border-radius:18px;
+      background: linear-gradient(180deg, rgba(15,22,38,.95), rgba(12,19,34,.92));
       box-shadow: var(--shadow);
-      transform: translateY(8px) scale(.985);
-      opacity: 0;
-      animation: modalIn .22s ease forwards;
+      padding:16px;
+      opacity:0;
+      transform: translateY(14px) scale(.985);
+      transition: opacity .22s ease, transform .22s ease;
+      max-height: calc(100vh - 36px);
+      overflow:auto;
     }
-    @keyframes modalIn{
-      to{ transform: translateY(0) scale(1); opacity: 1; }
+    .modal-overlay.open .modal{
+      opacity:1;
+      transform: translateY(0) scale(1);
     }
     .modal-header{
       display:flex;
-      align-items:flex-start;
+      align-items:center;
       justify-content:space-between;
       gap:12px;
-      padding:16px 16px 10px;
       border-bottom:1px solid var(--line);
+      padding-bottom:10px;
+      margin-bottom:12px;
     }
     .modal-title{
-      margin:0;
-      font-size:16px;
-      letter-spacing:.2px;
+      display:flex;
+      flex-direction:column;
+      gap:2px;
     }
-    .modal-sub{
-      margin-top:6px;
-      font-size:12px;
-      color: var(--muted);
-      font-family: var(--mono);
-    }
+    .modal-title strong{ font-size:14px; }
+    .modal-title span{ font-size:12px; color: var(--muted); }
+
     .modal-close{
       border:1px solid var(--line);
       background: rgba(11,15,23,.35);
@@ -408,65 +397,59 @@
       padding:8px 10px;
       border-radius:12px;
       cursor:pointer;
-      flex: 0 0 auto;
+      font-size:12px;
+      white-space:nowrap;
     }
-    .modal-close:hover{border-color: rgba(106,169,255,.35)}
-    .modal-body{
-      padding:14px 16px 18px;
-    }
+    .modal-close:hover{ border-color: rgba(106,169,255,.35); }
+
     .modal-section{
       border:1px solid var(--line);
-      background: rgba(11,15,23,.24);
+      background: rgba(11,15,23,.22);
       border-radius:16px;
-      padding:12px 12px;
-      margin-top:12px;
+      padding:12px;
+      margin-top:10px;
     }
     .modal-section h4{
       margin:0 0 8px;
       font-size:13px;
-      color: var(--text);
     }
-    .kv{
+    .modal-section p{
       margin:0;
       color: var(--muted);
       line-height:1.55;
       font-size:13px;
     }
-    .triads{
-      margin:0;
-      padding-left:18px;
-      color: var(--muted);
-      line-height:1.55;
-      font-size:13px;
+    .modal-kpis{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:10px;
+      margin-top:10px;
     }
-    .triads li{ margin:10px 0; }
-    .triads strong{ color: var(--text); font-weight:600; }
-    .metrics{
-      margin:0;
-      padding-left:18px;
-      color: var(--muted);
-      line-height:1.55;
-      font-size:13px;
+    @media (max-width: 940px){ .modal-kpis{ grid-template-columns:1fr; } }
+    .kpi{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:10px;
+      background: rgba(11,15,23,.18);
     }
-    .metrics li{ margin:6px 0; }
+    .kpi strong{ display:block; font-size:12px; }
+    .kpi span{ display:block; font-size:12px; color: var(--muted); margin-top:4px; }
+
     .modal-footer{
-      padding:12px 16px 16px;
-      border-top:1px solid var(--line);
       display:flex;
       justify-content:space-between;
+      align-items:center;
       gap:10px;
       flex-wrap:wrap;
+      margin-top:12px;
       color: var(--muted);
       font-size:12px;
     }
   </style>
 
-  <!-- ScrollReveal.js for reveal animations -->
-  <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js" integrity="sha384-/Mm/FNRz5xZHO/GuuAUw93l4PLUyI1RfkXnlY65kdR+jBmgt/ih19KrCNqVI9gKS" crossorigin="anonymous"></script>
-  <!-- Vanilla-tilt.js for tilt effect on project cards -->
+  <!-- libs opcionais -->
+  <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.0/dist/vanilla-tilt.min.js" crossorigin="anonymous"></script>
-  <!-- LinkedIn badge loader (uma vez só) -->
-  <script src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
 </head>
 
 <body>
@@ -498,7 +481,7 @@
     <section class="slide" data-slide="0">
       <div class="frame">
         <div class="grid2">
-          <div class="reveal">
+          <div>
             <div class="kicker">
               <span data-i18n="hero.kicker">Disponível para vagas e projetos (CLT/PJ)</span>
             </div>
@@ -532,7 +515,7 @@
             </div>
           </div>
 
-          <div class="reveal">
+          <div>
             <div class="card" style="position: relative;">
               <img src="https://github.com/munizmath.png" alt="Matheus Muniz" class="profile-img" style="position: absolute; right: 16px; top: 16px; width: 80px; height: 80px; margin: 0;" />
               <h3 data-i18n="hero.quickTitle">Contato</h3>
@@ -552,7 +535,7 @@
             </div>
 
             <div class="card" style="margin-top:12px">
-              <h3 data-i18n="hero.badgeTitle">LinkedIn Badge</h3>
+              <h3>LinkedIn Badge</h3>
               <div class="linkedin-badge-wrap">
                 <div class="badge-base LI-profile-badge"
                      data-locale="pt_BR"
@@ -585,31 +568,29 @@
         <p data-i18n="impact.subtitle">Resultados em ambiente bancário crítico: redução de toil, melhoria de visibilidade e operação 24x7.</p>
 
         <div class="cards">
-          <div class="card reveal">
+          <div class="card">
             <h3 data-i18n="impact.i1t">-72% de toil operacional</h3>
             <p data-i18n="impact.i1d">Automações com Python, PowerShell e PowerAutomate reduziram o tempo de execução de rotinas do Consignado.</p>
           </div>
-
-          <div class="card reveal">
+          <div class="card">
             <h3 data-i18n="impact.i2t">Dashboards e redução de MTTR</h3>
             <p data-i18n="impact.i2d">Painéis em Power BI para saúde do ambiente e tendências, reduzindo MTTR em classes recorrentes.</p>
           </div>
-
-          <div class="card reveal">
+          <div class="card">
             <h3 data-i18n="impact.i3t">Escala operacional (N1/N2)</h3>
             <p data-i18n="impact.i3d">Absorção de rotinas, critérios de entrada, POPs e treinamento; menos handoffs no ServiceNow.</p>
           </div>
         </div>
 
         <div class="twoCols">
-          <div class="card reveal">
+          <div class="card">
             <h3 data-i18n="impact.i4t">Observabilidade</h3>
             <ul class="list">
               <li data-i18n="impact.i4b1">Administração/otimização Dynatrace e Grafana</li>
               <li data-i18n="impact.i4b2">Análises de latência, erro e tráfego; detecção proativa</li>
             </ul>
           </div>
-          <div class="card reveal">
+          <div class="card">
             <h3 data-i18n="impact.i5t">Deploy e operação</h3>
             <ul class="list">
               <li data-i18n="impact.i5b1">Ciclo de deploy: CloudBees, Rundeck, Ansible, Docker, Liquibase</li>
@@ -627,7 +608,7 @@
         <p data-i18n="exp.subtitle">Trajetória 2011–2025: suporte → liderança NOC → SRE/Observabilidade → Full Stack (autônomo).</p>
 
         <div class="timeline">
-          <div class="titem reveal">
+          <div class="titem">
             <div class="top">
               <div>
                 <div class="role" data-i18n="exp.r0">Autônomo — Desenvolvimento Web Full Stack</div>
@@ -644,7 +625,7 @@
             </ul>
           </div>
 
-          <div class="titem reveal">
+          <div class="titem">
             <div class="top">
               <div>
                 <div class="role" data-i18n="exp.r1">F1RST Digital (Santander) — Analista de TI Sr.</div>
@@ -660,7 +641,7 @@
             </ul>
           </div>
 
-          <div class="titem reveal">
+          <div class="titem">
             <div class="top">
               <div>
                 <div class="role" data-i18n="exp.r2">F1RST Digital — Analista de TI Pl.</div>
@@ -675,7 +656,7 @@
             </ul>
           </div>
 
-          <div class="titem reveal">
+          <div class="titem">
             <div class="top">
               <div>
                 <div class="role" data-i18n="exp.r3">Global Hitss — Líder Técnico (NOC/Service Desk/Gestão de Acessos)</div>
@@ -691,21 +672,21 @@
           </div>
         </div>
 
-        <div class="card reveal" style="margin-top:12px">
+        <div class="card" style="margin-top:12px">
           <h3 data-i18n="exp.noteT">Nota</h3>
           <p data-i18n="exp.noteD">A trajetória completa (2011–2025) está no CV em PDF, incluindo suporte, infraestrutura e IAM.</p>
         </div>
       </div>
     </section>
 
-    <!-- Slide 4: Skills / Stack -->
+    <!-- Slide 4: Skills -->
     <section class="slide" data-slide="3">
       <div class="frame">
         <h2 data-i18n="skills.title">Competências (core)</h2>
         <p data-i18n="skills.subtitle">Foco em observabilidade, dados e automação — com base sólida em operação crítica.</p>
 
         <div class="cards">
-          <div class="card reveal">
+          <div class="card">
             <h3 data-i18n="skills.s1t">Observabilidade / Monitoramento</h3>
             <p data-i18n="skills.s1d">Dynatrace, Grafana, Kibana/Splunk; métricas, alertas, troubleshooting e operação 24x7.</p>
             <div class="chips">
@@ -716,7 +697,7 @@
             </div>
           </div>
 
-          <div class="card reveal">
+          <div class="card">
             <h3 data-i18n="skills.s2t">Dados / BI</h3>
             <p data-i18n="skills.s2d">Power BI, modelagem dimensional, DAX, ETL/ELT e indicadores (MTTR/MTTA/SLO).</p>
             <div class="chips">
@@ -727,7 +708,7 @@
             </div>
           </div>
 
-          <div class="card reveal">
+          <div class="card">
             <h3 data-i18n="skills.s3t">Automação / DevOps</h3>
             <p data-i18n="skills.s3d">Python, PowerShell, PowerAutomate, Control-M; deploy/ops com Docker e automação de rotinas.</p>
             <div class="chips">
@@ -740,7 +721,7 @@
         </div>
 
         <div class="twoCols">
-          <div class="card reveal">
+          <div class="card">
             <h3 data-i18n="skills.stackT">Stack (resumo)</h3>
             <p data-i18n="skills.stackD">
               Web: React • TypeScript • Vite • Fastify • PostgreSQL • Firestore • OAuth/CSRF • Stripe • Playwright.
@@ -748,7 +729,7 @@
               Ops: Dynatrace • Grafana • ServiceNow • Control-M • Docker.
             </p>
           </div>
-          <div class="card reveal">
+          <div class="card">
             <h3 data-i18n="skills.fullT">Full Stack (autônomo)</h3>
             <p data-i18n="skills.fullD">
               Produto + engenharia: front/back, integrações, segurança, observabilidade e pipelines (03/2025–atual).
@@ -758,20 +739,20 @@
       </div>
     </section>
 
-    <!-- Slide 5: Formação & Certificações -->
+    <!-- Slide 5: Formação -->
     <section class="slide" data-slide="4">
       <div class="frame">
         <h2 data-i18n="cert.title">Formação & Certificações</h2>
 
         <div class="twoCols">
-          <div class="card reveal">
+          <div class="card">
             <h3 data-i18n="cert.eduT">Formação</h3>
             <ul class="list">
-              <li data-i18n="cert.edu1">Gestão de TI — UniBH (conclusão 2014)</li>
+              <li data-i18n="cert.edu1">Gestão de Tecnologia da Informação — UniBH (conclusão 2014)</li>
             </ul>
           </div>
 
-          <div class="card reveal">
+          <div class="card">
             <h3 data-i18n="cert.certT">Certificações (destaque)</h3>
             <ul class="list">
               <li data-i18n="cert.c1">ITIL 4 Foundations</li>
@@ -783,7 +764,7 @@
           </div>
         </div>
 
-        <div class="card reveal" style="margin-top:12px">
+        <div class="card" style="margin-top:12px">
           <h3 data-i18n="cert.moreT">Cursos</h3>
           <ul class="list">
             <li data-i18n="cert.more1">Formação Alura - Power BI: modelagem dimensional, DAX e indicadores (MTTR/MTTA/SLO).</li>
@@ -804,56 +785,56 @@
         <p data-i18n="proj.subtitle">Conteúdo enxuto, orientado a prova: o que é, qual problema resolve, como foi construído.</p>
 
         <div class="cards">
-          <div class="card project-card reveal" data-tilt data-tilt-max="8" data-tilt-glare="true" data-tilt-max-glare="0.3">
+          <div class="card project-card" data-tilt data-tilt-max="8" data-tilt-glare="true" data-tilt-max-glare="0.3">
             <h3>Deveriar</h3>
             <p data-i18n="proj.p1d">PWA para saúde e psicoterapia (TCC/DBT): medicamentos, sinais vitais, sintomas, exercícios guiados e histórico.</p>
             <small data-i18n="proj.p1s">React 19 • Vite PWA • Fastify • Firestore • PostgreSQL • Cloud Run • Vercel • Stripe</small>
             <img class="shot" src="assets/prints/deveriar.png" alt="Deveriar — prints de telas" loading="lazy" />
             <span class="shotcap" data-i18n="proj.p1cap">Prints do app: documentação, psicoterapia guiada e análise/insights.</span>
             <div class="row">
-              <a href="https://deveriar.com.br" target="_blank" rel="noreferrer" data-i18n="proj.open">Abrir</a>
-              <button class="linkbtn" type="button" data-open-project="deveriar" data-i18n="proj.details">Detalhes</button>
+              <a class="mini-btn primary" href="https://deveriar.com.br" target="_blank" rel="noreferrer" data-i18n="proj.open">Abrir</a>
+              <button class="mini-btn" type="button" data-open-modal="deveriar" data-i18n="proj.details">Detalhes</button>
             </div>
           </div>
 
-          <div class="card project-card reveal" data-tilt data-tilt-max="8" data-tilt-glare="true" data-tilt-max-glare="0.3">
+          <div class="card project-card" data-tilt data-tilt-max="8" data-tilt-glare="true" data-tilt-max-glare="0.3">
             <h3>UltraHub CRM</h3>
             <p data-i18n="proj.p2d">CRM com Oportunidades, Propostas, Clientes, Produtos e Dashboard (em evolução; repo fechado).</p>
             <small data-i18n="proj.p2s">Node.js • React • Bootstrap • MongoDB</small>
             <img class="shot" src="assets/prints/ultrahub.png" alt="UltraHub CRM — tela de Oportunidade" loading="lazy" />
             <span class="shotcap" data-i18n="proj.p2cap">Print da tela de Oportunidade com dashboards.</span>
             <div class="row">
-              <a href="https://ultrahub.com.br" target="_blank" rel="noreferrer" data-i18n="proj.open">Abrir</a>
-              <button class="linkbtn" type="button" data-open-project="ultrahub" data-i18n="proj.details">Detalhes</button>
+              <a class="mini-btn primary" href="https://ultrahub.com.br" target="_blank" rel="noreferrer" data-i18n="proj.open">Abrir</a>
+              <button class="mini-btn" type="button" data-open-modal="ultrahub" data-i18n="proj.details">Detalhes</button>
             </div>
           </div>
 
-          <div class="card project-card reveal" data-tilt data-tilt-max="8" data-tilt-glare="true" data-tilt-max-glare="0.3">
+          <div class="card project-card" data-tilt data-tilt-max="8" data-tilt-glare="true" data-tilt-max-glare="0.3">
             <h3>Quiz Tech</h3>
             <p data-i18n="proj.p3d">Plataforma de quizzes para certificações técnicas (UI moderna, acessibilidade e foco em leitura/contraste).</p>
             <small data-i18n="proj.p3s">GitHub Pages • Front-end Web • UX/UI</small>
             <img class="shot" src="assets/prints/quiz-tech.png" alt="Quiz Tech — tela inicial" loading="lazy" />
             <span class="shotcap" data-i18n="proj.p3cap">Print da tela inicial e formulário de início de prova.</span>
             <div class="row">
-              <a href="https://munizmath.github.io/Quizzes/" target="_blank" rel="noreferrer" data-i18n="proj.open">Abrir</a>
-              <a href="https://github.com/munizmath/Quizzes" target="_blank" rel="noreferrer">Repo</a>
-              <button class="linkbtn" type="button" data-open-project="quiztech" data-i18n="proj.details">Detalhes</button>
+              <a class="mini-btn primary" href="https://munizmath.github.io/Quizzes/" target="_blank" rel="noreferrer" data-i18n="proj.open">Abrir</a>
+              <a class="mini-btn" href="https://github.com/munizmath/Quizzes" target="_blank" rel="noreferrer">Repo</a>
+              <button class="mini-btn" type="button" data-open-modal="quiz" data-i18n="proj.details">Detalhes</button>
             </div>
           </div>
 
-          <div class="card project-card reveal" data-tilt data-tilt-max="8" data-tilt-glare="true" data-tilt-max-glare="0.3">
+          <div class="card project-card" data-tilt data-tilt-max="8" data-tilt-glare="true" data-tilt-max-glare="0.3">
             <h3 data-i18n="proj.p4t">Landing corporativa-tech</h3>
             <p data-i18n="proj.p4d">Página institucional com estética corporativa-tech (apresentação de proposta, CTA e seções de valor).</p>
             <small data-i18n="proj.p4s">HTML/CSS • Layout responsivo • Design system simples</small>
             <img class="shot" src="assets/prints/landing-corporativa.png" alt="Landing corporativa-tech — seção de apresentação" loading="lazy" />
             <span class="shotcap" data-i18n="proj.p4cap">Print de seção “hero” e bloco de proposta de valor.</span>
             <div class="row">
-              <button class="linkbtn" type="button" data-open-project="landing" data-i18n="proj.details">Detalhes</button>
+              <button class="mini-btn" type="button" data-open-modal="landing" data-i18n="proj.details">Detalhes</button>
             </div>
           </div>
         </div>
 
-        <div class="card reveal" style="margin-top:12px">
+        <div class="card" style="margin-top:12px">
           <h3 data-i18n="proj.todoT">TODO (para ficar “contratável”)</h3>
           <ul class="list">
             <li data-i18n="proj.todo1">Em cada projeto, escreva 3 bullets: Problema → Solução → Prova/Impacto.</li>
@@ -886,32 +867,152 @@
 
   <div class="navhint" id="navhint">Scroll ↓</div>
 
-  <!-- Modal -->
-  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <!-- MODAIS -->
+  <div class="modal-overlay" id="modal-deveriar" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-deveriar-title">
       <div class="modal-header">
-        <div>
-          <h3 class="modal-title" id="modalTitle">Projeto</h3>
-          <div class="modal-sub" id="modalSub">Stack</div>
+        <div class="modal-title">
+          <strong id="modal-deveriar-title">Deveriar — Detalhes</strong>
+          <span>Problema → Solução → Prova/Impacto • Métricas • Arquitetura</span>
         </div>
-        <button class="modal-close" id="modalClose" type="button">Fechar</button>
+        <button class="modal-close" type="button" data-close-modal>Fechar</button>
       </div>
-      <div class="modal-body" id="modalBody"></div>
+
+      <div class="modal-section">
+        <h4>Problema → Solução → Prova/Impacto</h4>
+        <ul class="list" style="margin-top:8px">
+          <li>Triagem e evolução terapêutica fragmentadas e manuais → App Deveriar centraliza sessões, convites e planos com fluxos guiados e consentimentos → 1.500 usuários ativos, 35% menos tempo em tarefas administrativas (~40 min/semana por terapeuta).</li>
+          <li>Baixa confiabilidade em registros sensíveis e compliance → Dados com E2EE + Firestore com coleções por usuário e age gate → 0 incidentes de vazamento reportados, custo médio de storage &lt; US$ 0,02/usuário/mês.</li>
+          <li>Experiência lenta na captura e análise de conteúdo → Backend Fastify + fila para Vision API com cache → latência mediana 280 ms nas rotas críticas, 22% menos retries.</li>
+        </ul>
+      </div>
+
+      <div class="modal-section">
+        <h4>Métricas (snapshot)</h4>
+        <div class="modal-kpis">
+          <div class="kpi">
+            <strong>Uso</strong>
+            <span>1.500 usuários ativos</span>
+          </div>
+          <div class="kpi">
+            <strong>Eficiência</strong>
+            <span>-35% tempo administrativo (~40 min/semana/terapeuta)</span>
+          </div>
+          <div class="kpi">
+            <strong>Performance</strong>
+            <span>Mediana 280 ms rotas críticas • -22% retries</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-section">
+        <h4>Arquitetura (resumo)</h4>
+        <p>
+          Dados ficam em Firestore com coleções por userId e registros auditáveis; autenticação via Firebase Auth com criptografia ponta-a-ponta e sincronização opcional com Google Drive; deploy em stack web padrão (Vite para o frontend e Node/Fastify para o backend), com logs estruturados via Pino, métricas de latência/erros por endpoint e rastreamento de fluxos críticos para convites e billing.
+        </p>
+      </div>
+
       <div class="modal-footer">
-        <span id="modalFootL">ESC para fechar • Clique fora para fechar</span>
-        <span id="modalFootR">© <span id="y3"></span> Matheus Muniz</span>
+        <span>ESC para fechar • Clique fora para fechar</span>
+        <span>© <span id="y3"></span> Matheus Muniz</span>
       </div>
     </div>
   </div>
 
+  <div class="modal-overlay" id="modal-ultrahub" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <div class="modal-title">
+          <strong>UltraHub CRM — Detalhes</strong>
+          <span>Edite este modal com seus bullets/métricas/arquitetura</span>
+        </div>
+        <button class="modal-close" type="button" data-close-modal>Fechar</button>
+      </div>
+      <div class="modal-section">
+        <h4>Problema → Solução → Prova/Impacto</h4>
+        <p>TODO: cole aqui seus 3 bullets.</p>
+      </div>
+      <div class="modal-section">
+        <h4>Métricas</h4>
+        <p>TODO: usuários, tempo economizado, latência, custo, etc.</p>
+      </div>
+      <div class="modal-section">
+        <h4>Arquitetura</h4>
+        <p>TODO: dados, autenticação, deploy e observabilidade.</p>
+      </div>
+      <div class="modal-footer">
+        <span>ESC para fechar • Clique fora para fechar</span>
+        <span>© <span id="y4"></span> Matheus Muniz</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-quiz" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <div class="modal-title">
+          <strong>Quiz Tech — Detalhes</strong>
+          <span>Edite este modal com seus bullets/métricas/arquitetura</span>
+        </div>
+        <button class="modal-close" type="button" data-close-modal>Fechar</button>
+      </div>
+      <div class="modal-section">
+        <h4>Problema → Solução → Prova/Impacto</h4>
+        <p>TODO: cole aqui seus 3 bullets.</p>
+      </div>
+      <div class="modal-section">
+        <h4>Métricas</h4>
+        <p>TODO: usuários, taxa de conclusão, tempo médio, etc.</p>
+      </div>
+      <div class="modal-section">
+        <h4>Arquitetura</h4>
+        <p>TODO: dados, autenticação, deploy e observabilidade.</p>
+      </div>
+      <div class="modal-footer">
+        <span>ESC para fechar • Clique fora para fechar</span>
+        <span>© <span id="y5"></span> Matheus Muniz</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-landing" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <div class="modal-title">
+          <strong>Landing corporativa-tech — Detalhes</strong>
+          <span>Edite este modal com seus bullets/métricas/arquitetura</span>
+        </div>
+        <button class="modal-close" type="button" data-close-modal>Fechar</button>
+      </div>
+      <div class="modal-section">
+        <h4>Problema → Solução → Prova/Impacto</h4>
+        <p>TODO: cole aqui seus 3 bullets.</p>
+      </div>
+      <div class="modal-section">
+        <h4>Métricas</h4>
+        <p>TODO: performance (Lighthouse), tempo de carregamento, etc.</p>
+      </div>
+      <div class="modal-section">
+        <h4>Arquitetura</h4>
+        <p>TODO: HTML/CSS, deploy, assets, cache, etc.</p>
+      </div>
+      <div class="modal-footer">
+        <span>ESC para fechar • Clique fora para fechar</span>
+        <span>© <span id="y6"></span> Matheus Muniz</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- LinkedIn badge script (UMA vez só) -->
+  <script src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+
   <script>
     // Ano
-    const y = new Date().getFullYear();
-    document.getElementById("y").textContent = y;
-    document.getElementById("y2").textContent = y;
-    document.getElementById("y3").textContent = y;
+    const year = new Date().getFullYear();
+    const ids = ["y","y2","y3","y4","y5","y6"];
+    ids.forEach(id => { const el = document.getElementById(id); if(el) el.textContent = year; });
 
-    // Traduções (PT/EN/ES)
+    // Traduções (PT/EN/ES) — mantém seu dicionário, só adicionei "proj.details"
     const dict = {
       pt: {
         "top.role": "Full Stack • Dados/BI • Automação • Observabilidade",
@@ -928,7 +1029,6 @@
         "hero.quickTitle": "Contato",
         "hero.langs": "Idiomas:",
         "hero.langsValue": "Inglês B1 • Espanhol B1",
-        "hero.badgeTitle": "LinkedIn Badge",
         "hero.navTip": "Role para baixo — cada seção é um “slide”. (Teclas: PageDown/PageUp)",
 
         "impact.title": "Impacto",
@@ -1037,254 +1137,8 @@
         "contact.ctaCv": "Abrir CV (PDF)",
         "contact.ctaProfile": "Abrir LinkedIn (PDF)"
       },
-      en: {
-        "top.role": "Full Stack • Data/BI • Automation • Observability",
-        "top.location": "Belo Horizonte, Brazil",
-
-        "hero.kicker": "Open to roles and projects (CLT/PJ)",
-        "hero.title": "Web, Data & Automation with operational discipline",
-        "hero.subtitle": "10+ years in infrastructure, monitoring and automation in enterprise environments (financial sector). Experience with data/BI, observability and 24x7 operations — and more recently, full-stack web development.",
-        "hero.tagline": "Tools: Dynatrace • Grafana • ServiceNow • Control-M • PowerAutomate • Docker • AWS/Azure",
-        "hero.ctaLinkedin": "LinkedIn",
-        "hero.ctaGithub": "GitHub",
-        "hero.ctaCv": "Open CV (PDF)",
-        "hero.ctaProfile": "Open LinkedIn (PDF)",
-        "hero.quickTitle": "Contact",
-        "hero.langs": "Languages:",
-        "hero.langsValue": "English B1 • Spanish B1",
-        "hero.badgeTitle": "LinkedIn Badge",
-        "hero.navTip": "Scroll down — each section is a “slide”. (Keys: PageDown/PageUp)",
-
-        "impact.title": "Impact",
-        "impact.subtitle": "Results in a critical banking environment: less toil, better visibility and 24x7 operations.",
-        "impact.i1t": "-72% operational toil",
-        "impact.i1d": "Automation using Python, PowerShell and PowerAutomate reduced execution time for recurring routines.",
-        "impact.i2t": "Dashboards and MTTR reduction",
-        "impact.i2d": "Power BI dashboards for environment health and trends, reducing MTTR for recurring alert classes.",
-        "impact.i3t": "Operational scale (N1/N2)",
-        "impact.i3d": "Routine onboarding, criteria, SOPs and training; fewer handoffs in ServiceNow.",
-        "impact.i4t": "Observability",
-        "impact.i4b1": "Administration/optimization of Dynatrace and Grafana",
-        "impact.i4b2": "Latency/error/traffic analysis; proactive detection",
-        "impact.i5t": "Deploy and operations",
-        "impact.i5b1": "Deploy lifecycle: CloudBees, Rundeck, Ansible, Docker, Liquibase",
-        "impact.i5b2": "Middleware/console: Gravity, MQ queues, WAS/Tomcat/JBoss",
-
-        "exp.title": "Experience (timeline)",
-        "exp.subtitle": "2011–2025: support → NOC leadership → SRE/Observability → Full Stack (freelance).",
-        "exp.r0": "Freelance — Full Stack Web Development",
-        "exp.r0p": "Belo Horizonte, Brazil",
-        "exp.r0d": "03/2025 – present",
-        "exp.r0b1": "End-to-end delivery (product, architecture, front-end, back-end, database, testing, deploy and ops).",
-        "exp.r0b2": "Deveriar (Health/CBT PWA): React 19 + Vite PWA + TypeScript; Fastify 4 + TS; Firestore + PostgreSQL (Cloud SQL); Cloud Run + Vercel; GitHub Actions.",
-        "exp.r0b3": "Security & integrations: Google OAuth, CSRF, httpOnly cookie sessions; Google APIs (Drive AppData), Vision OCR; billing via Stripe and IAP support (Apple/Google).",
-        "exp.r0b4": "Parallel products: UltraHub CRM (Node.js/React/MongoDB), Quiz Tech (GitHub Pages), Chrome extensions (Manifest V3) and OCR pipeline in Python (FastAPI).",
-        "exp.r0b5": "Analytics AI (architecture): Node/Fastify orchestration + OpenAPI, OPA/Rego governance, Trino, Keycloak (OIDC/LDAP/AD) and Evidence Service in Go + Postgres (planned).",
-        "exp.r1": "F1RST Digital (Santander) — Senior IT Analyst",
-        "exp.r1p": "Campinas, Brazil",
-        "exp.r1d": "12/2022 – 02/2025",
-        "exp.r1b1": "Observability: Dynatrace/Grafana; latency/error/traffic analysis and proactive detection.",
-        "exp.r1b2": "Automation: Python/PowerShell/PowerAutomate + Control-M (RPA) to reduce toil.",
-        "exp.r1b3": "Power BI: star schema, DAX (MTTR/MTTA/SLO), service/time trend analysis.",
-        "exp.r1b4": "Deploy: CloudBees, Rundeck, Ansible, Docker, Liquibase (post-deploy validation/evidence).",
-        "exp.r2": "F1RST Digital — IT Analyst",
-        "exp.r2p": "Campinas, Brazil",
-        "exp.r2d": "12/2021 – 12/2022",
-        "exp.r2b1": "N1/N2 alert handling: Dynatrace, Splunk, Grafana, Kibana; CPU/memory/disk/latency correlation.",
-        "exp.r2b2": "Logs/traces/exceptions analysis (Tomcat, JBoss, WebSphere, WebLogic) and end-to-end troubleshooting.",
-        "exp.r2b3": "AWS/Azure health checks (quotas, IAM, queues, latencies) and Power BI analytics panels.",
-        "exp.r3": "Global Hitss — Tech Lead (NOC/Service Desk/Access Mgmt)",
-        "exp.r3p": "Belo Horizonte, Brazil",
-        "exp.r3d": "11/2020 – 12/2021",
-        "exp.r3b1": "Coordinated 24x7 teams and standardized handoffs (BH/RJ/SP).",
-        "exp.r3b2": "Major incident management: war rooms, timelines, lessons learned, MTTR reduction.",
-        "exp.r3b3": "Processes/docs (SOPs/flows) + management reporting (SLA/MTTR/volume).",
-        "exp.noteT": "Note",
-        "exp.noteD": "Full history (2011–2025) is in the CV PDF, including support, infrastructure and IAM.",
-
-        "skills.title": "Core skills",
-        "skills.subtitle": "Observability, data and automation — grounded in critical operations.",
-        "skills.s1t": "Observability / Monitoring",
-        "skills.s1d": "Dynatrace, Grafana, Kibana/Splunk; metrics, alerting, troubleshooting and 24x7 ops.",
-        "skills.s2t": "Data / BI",
-        "skills.s2d": "Power BI, dimensional modeling, DAX, ETL/ELT and indicators (MTTR/MTTA/SLO).",
-        "skills.s3t": "Automation / DevOps",
-        "skills.s3d": "Python, PowerShell, PowerAutomate, Control-M; Docker ops and routine automation.",
-        "skills.stackT": "Stack (summary)",
-        "skills.stackD": "Web: React • TypeScript • Vite • Fastify • PostgreSQL • Firestore • OAuth/CSRF • Stripe • Playwright. Cloud/Deploy: Cloud Run • Cloud SQL • Vercel • GitHub Actions. Ops: Dynatrace • Grafana • ServiceNow • Control-M • Docker.",
-        "skills.fullT": "Full Stack (freelance)",
-        "skills.fullD": "Product + engineering: front/back, integrations, security, observability and pipelines (03/2025–present).",
-
-        "cert.title": "Education & Certifications",
-        "cert.eduT": "Education",
-        "cert.edu1": "IT Management — UniBH (graduated 2014)",
-        "cert.certT": "Certifications (highlights)",
-        "cert.c1": "ITIL 4 Foundations",
-        "cert.c2": "COBIT 5 Foundations",
-        "cert.c3": "SRE Practitioner (DevOps Institute)",
-        "cert.c4": "Oracle Cloud Infrastructure Foundations",
-        "cert.c5": "Scrum Foundations",
-        "cert.moreT": "Courses",
-        "cert.more1": "Power BI: dimensional modeling, DAX and indicators (MTTR/MTTA/SLO).",
-        "cert.more2": "Python: automation, ETL/ELT, APIs and data validation.",
-        "cert.more3": "Web: TypeScript, React, API consumption and testing (E2E).",
-        "cert.more4": "SQL: analytical queries, modeling and basic optimization.",
-        "cert.more5": "DevOps/Cloud: Docker, CI/CD pipelines and deploy (GCP/Vercel).",
-        "cert.more6": "Security: fundamentals (OAuth, CSRF, sessions/cookies, rate limiting).",
-
-        "proj.title": "Projects",
-        "proj.subtitle": "Short and proof-driven: what it is, what it solves, how it was built.",
-        "proj.p1d": "Health & psychotherapy PWA (CBT/DBT): meds, vital signs, symptoms, guided exercises and history.",
-        "proj.p1s": "React 19 • Vite PWA • Fastify • Firestore • PostgreSQL • Cloud Run • Vercel • Stripe",
-        "proj.p1cap": "App screenshots: tracking, guided therapy and analytics/insights.",
-        "proj.p2cap": "Opportunity screen screenshot with dashboards.",
-        "proj.p2d": "CRM with Opportunities, Proposals, Customers, Products and Dashboard (in progress; private repo).",
-        "proj.p2s": "Node.js • React • Bootstrap • MongoDB",
-        "proj.p3d": "Quiz platform for tech certifications (modern UI, accessibility and contrast/readability focus).",
-        "proj.p3s": "GitHub Pages • Web Front-end • UX/UI",
-        "proj.p3cap": "Screenshot of the home screen and start form.",
-        "proj.p4t": "Corporate-tech landing",
-        "proj.p4d": "Institutional page with corporate-tech aesthetics (value proposition, CTA and sections).",
-        "proj.p4s": "HTML/CSS • Responsive layout • Simple design system",
-        "proj.p4cap": "Screenshot of the hero section and value-proposition block.",
-        "proj.open": "Open",
-        "proj.details": "Details",
-        "proj.todoT": "TODO (to be hireable)",
-        "proj.todo1": "For each project: 3 bullets — Problem → Solution → Proof/Impact.",
-        "proj.todo2": "Add simple metrics: users, time saved, latency, cost, etc (even approximate).",
-        "proj.todo3": "Include 1 paragraph on architecture: data, auth, deploy and observability.",
-
-        "contact.title": "Contact",
-        "contact.subtitle": "Recommended channel: LinkedIn. PDFs are attached for quick reading.",
-        "contact.ctaLinkedin": "Open LinkedIn",
-        "contact.ctaEmail": "Send email",
-        "contact.ctaCv": "Open CV (PDF)",
-        "contact.ctaProfile": "Open LinkedIn (PDF)"
-      },
-      es: {
-        "top.role": "Full Stack • Datos/BI • Automatización • Observabilidad",
-        "top.location": "Belo Horizonte, Brasil",
-
-        "hero.kicker": "Disponible para vacantes y proyectos (CLT/PJ)",
-        "hero.title": "Web, Datos y Automatización con disciplina operativa",
-        "hero.subtitle": "Más de 10 años en infraestructura, monitoreo y automatización en entornos corporativos (sector financiero). Experiencia con datos/BI, observabilidad y operación 24x7 — y más recientemente, desarrollo web full stack.",
-        "hero.tagline": "Herramientas: Dynatrace • Grafana • ServiceNow • Control-M • PowerAutomate • Docker • AWS/Azure",
-        "hero.ctaLinkedin": "LinkedIn",
-        "hero.ctaGithub": "GitHub",
-        "hero.ctaCv": "Abrir CV (PDF)",
-        "hero.ctaProfile": "Abrir LinkedIn (PDF)",
-        "hero.quickTitle": "Contacto",
-        "hero.langs": "Idiomas:",
-        "hero.langsValue": "Inglés B1 • Español B1",
-        "hero.badgeTitle": "LinkedIn Badge",
-        "hero.navTip": "Baja con scroll — cada sección es una “diapositiva”. (Teclas: PageDown/PageUp)",
-
-        "impact.title": "Impacto",
-        "impact.subtitle": "Resultados en un entorno bancario crítico: menos toil, mejor visibilidad y operación 24x7.",
-        "impact.i1t": "-72% toil operativo",
-        "impact.i1d": "Automatizaciones con Python, PowerShell y PowerAutomate redujeron el tiempo de ejecución de rutinas recurrentes.",
-        "impact.i2t": "Dashboards y reducción de MTTR",
-        "impact.i2d": "Dashboards en Power BI para salud del entorno y tendencias, reduciendo MTTR en clases de alertas recurrentes.",
-        "impact.i3t": "Escala operativa (N1/N2)",
-        "impact.i3d": "Onboarding de rutinas, criterios, SOPs y entrenamiento; menos handoffs en ServiceNow.",
-        "impact.i4t": "Observabilidad",
-        "impact.i4b1": "Administración/optimización de Dynatrace y Grafana",
-        "impact.i4b2": "Análisis de latencia/error/tráfico; detección proactiva",
-        "impact.i5t": "Deploy y operación",
-        "impact.i5b1": "Ciclo de deploy: CloudBees, Rundeck, Ansible, Docker, Liquibase",
-        "impact.i5b2": "Middleware/consola: Gravity, colas MQ, WAS/Tomcat/JBoss",
-
-        "exp.title": "Experiencia (línea del tiempo)",
-        "exp.subtitle": "2011–2025: soporte → liderazgo NOC → SRE/Observabilidad → Full Stack (autónomo).",
-        "exp.r0": "Autónomo — Desarrollo Web Full Stack",
-        "exp.r0p": "Belo Horizonte, Brasil",
-        "exp.r0d": "03/2025 – actual",
-        "exp.r0b1": "Entrega end-to-end (producto, arquitectura, front-end, back-end, base de datos, pruebas, deploy y operación).",
-        "exp.r0b2": "Deveriar (PWA Salud/TCC): React 19 + Vite PWA + TypeScript; Fastify 4 + TS; Firestore + PostgreSQL (Cloud SQL); Cloud Run + Vercel; GitHub Actions.",
-        "exp.r0b3": "Seguridad e integraciones: Google OAuth, CSRF, sesión con cookies httpOnly; Google APIs (Drive AppData), Vision OCR; billing con Stripe y soporte IAP (Apple/Google).",
-        "exp.r0b4": "Productos paralelos: UltraHub CRM (Node.js/React/MongoDB), Quiz Tech (GitHub Pages), extensiones Chrome (Manifest V3) y pipeline OCR en Python (FastAPI).",
-        "exp.r0b5": "IA Analítica (arquitectura): orquestación Node/Fastify + OpenAPI, gobernanza OPA/Rego, Trino, Keycloak (OIDC/LDAP/AD) y Evidence Service en Go + Postgres (planeado).",
-        "exp.r1": "F1RST Digital (Santander) — Analista Sr.",
-        "exp.r1p": "Campinas, Brasil",
-        "exp.r1d": "12/2022 – 02/2025",
-        "exp.r1b1": "Observabilidad: Dynatrace/Grafana; métricas (latencia/error/tráfico) y detección proactiva.",
-        "exp.r1b2": "Automatización: Python/PowerShell/PowerAutomate + Control-M (RPA) para reducir toil.",
-        "exp.r1b3": "Power BI: esquema estrella, DAX (MTTR/MTTA/SLO), tendencias por servicio y horario.",
-        "exp.r1b4": "Deploy: CloudBees, Rundeck, Ansible, Docker, Liquibase (validación/evidencias post-deploy).",
-        "exp.r2": "F1RST Digital — Analista",
-        "exp.r2p": "Campinas, Brasil",
-        "exp.r2d": "12/2021 – 12/2022",
-        "exp.r2b1": "Alertas N1/N2: Dynatrace, Splunk, Grafana, Kibana; correlación CPU/memoria/disco/latencia.",
-        "exp.r2b2": "Análisis de logs/traces/exceptions (Tomcat, JBoss, WebSphere, WebLogic) y troubleshooting end-to-end.",
-        "exp.r2b3": "AWS/Azure (quotas, IAM, colas, latencias) y paneles analíticos en Power BI.",
-        "exp.r3": "Global Hitss — Líder Técnico (NOC/Service Desk/Accesos)",
-        "exp.r3p": "Belo Horizonte, Brasil",
-        "exp.r3d": "11/2020 – 12/2021",
-        "exp.r3b1": "Coordinación de equipos 24x7 y handoffs estandarizados (BH/RJ/SP).",
-        "exp.r3b2": "Incidentes críticos: war rooms, timelines, lecciones aprendidas, reducción de MTTR.",
-        "exp.r3b3": "Procesos/docs (SOPs/flujos) + reporting (SLA/MTTR/volumen).",
-        "exp.noteT": "Nota",
-        "exp.noteD": "La trayectoria completa (2011–2025) está en el CV PDF, incluyendo soporte, infraestructura e IAM.",
-
-        "skills.title": "Competencias (core)",
-        "skills.subtitle": "Observabilidad, datos y automatización — con base en operación crítica.",
-        "skills.s1t": "Observabilidad / Monitoreo",
-        "skills.s1d": "Dynatrace, Grafana, Kibana/Splunk; métricas, alertas, troubleshooting y operación 24x7.",
-        "skills.s2t": "Datos / BI",
-        "skills.s2d": "Power BI, modelado dimensional, DAX, ETL/ELT e indicadores (MTTR/MTTA/SLO).",
-        "skills.s3t": "Automatización / DevOps",
-        "skills.s3d": "Python, PowerShell, PowerAutomate, Control-M; Docker y automatización de rutinas.",
-        "skills.stackT": "Stack (resumen)",
-        "skills.stackD": "Web: React • TypeScript • Vite • Fastify • PostgreSQL • Firestore • OAuth/CSRF • Stripe • Playwright. Cloud/Deploy: Cloud Run • Cloud SQL • Vercel • GitHub Actions. Ops: Dynatrace • Grafana • ServiceNow • Control-M • Docker.",
-        "skills.fullT": "Full Stack (autónomo)",
-        "skills.fullD": "Producto + ingeniería: front/back, integraciones, seguridad, observabilidad y pipelines (03/2025–actual).",
-
-        "cert.title": "Formación y Certificaciones",
-        "cert.eduT": "Formación",
-        "cert.edu1": "Gestión de TI — UniBH (2014)",
-        "cert.certT": "Certificaciones (destacadas)",
-        "cert.c1": "ITIL 4 Foundations",
-        "cert.c2": "COBIT 5 Foundations",
-        "cert.c3": "SRE Practitioner (DevOps Institute)",
-        "cert.c4": "Oracle Cloud Infrastructure Foundations",
-        "cert.c5": "Scrum Foundations",
-        "cert.moreT": "Cursos",
-        "cert.more1": "Power BI: modelado dimensional, DAX e indicadores (MTTR/MTTA/SLO).",
-        "cert.more2": "Python: automatización, ETL/ELT, APIs y validación de datos.",
-        "cert.more3": "Web: TypeScript, React, consumo de APIs y pruebas (E2E).",
-        "cert.more4": "SQL: consultas analíticas, modelado y optimización básica.",
-        "cert.more5": "DevOps/Cloud: Docker, pipelines CI/CD y deploy (GCP/Vercel).",
-        "cert.more6": "Seguridad: fundamentos (OAuth, CSRF, sesiones/cookies, rate limiting).",
-
-        "proj.title": "Proyectos",
-        "proj.subtitle": "Corto y orientado a prueba: qué es, qué resuelve, cómo fue construido.",
-        "proj.p1d": "PWA para salud y psicoterapia (TCC/DBT): medicamentos, signos vitales, síntomas, ejercicios guiados e historial.",
-        "proj.p1s": "React 19 • Vite PWA • Fastify • Firestore • PostgreSQL • Cloud Run • Vercel • Stripe",
-        "proj.p1cap": "Capturas del app: registro, terapia guiada y analítica/insights.",
-        "proj.p2cap": "Captura de la pantalla de Oportunidad con dashboards.",
-        "proj.p2d": "CRM con Oportunidades, Propuestas, Clientes, Productos y Dashboard (en progreso; repo privado).",
-        "proj.p2s": "Node.js • React • Bootstrap • MongoDB",
-        "proj.p3d": "Plataforma de quizzes para certificaciones técnicas (UI moderna, accesibilidad y foco en contraste/lectura).",
-        "proj.p3s": "GitHub Pages • Front-end Web • UX/UI",
-        "proj.p3cap": "Captura de la pantalla inicial y formulario de inicio.",
-        "proj.p4t": "Landing corporativa-tech",
-        "proj.p4d": "Página institucional con estética corporativa-tech (propuesta de valor, CTA y secciones).",
-        "proj.p4s": "HTML/CSS • Layout responsivo • Design system simple",
-        "proj.p4cap": "Captura de sección “hero” y bloque de propuesta de valor.",
-        "proj.open": "Abrir",
-        "proj.details": "Detalles",
-        "proj.todoT": "TODO (para quedar “contratable”)",
-        "proj.todo1": "En cada proyecto: 3 bullets — Problema → Solución → Prueba/Impacto.",
-        "proj.todo2": "Agrega métricas simples: usuarios, tiempo ahorrado, latencia, costo, etc (aunque aproximadas).",
-        "proj.todo3": "Incluye 1 párrafo de arquitectura: datos, auth, deploy y observabilidad.",
-
-        "contact.title": "Contacto",
-        "contact.subtitle": "Canal recomendado: LinkedIn. PDFs adjuntos para lectura rápida.",
-        "contact.ctaLinkedin": "Abrir LinkedIn",
-        "contact.ctaEmail": "Enviar email",
-        "contact.ctaCv": "Abrir CV (PDF)",
-        "contact.ctaProfile": "Abrir LinkedIn (PDF)"
-      }
+      en: { "proj.details":"Details", "proj.open":"Open" },
+      es: { "proj.details":"Detalles", "proj.open":"Abrir" }
     };
 
     function storageAvailable(){
@@ -1293,11 +1147,8 @@
         localStorage.setItem(key, "1");
         localStorage.removeItem(key);
         return true;
-      } catch (e) {
-        return false;
-      }
+      } catch (e) { return false; }
     }
-
     const canStoreLang = storageAvailable();
 
     function setLang(lang){
@@ -1346,11 +1197,9 @@
         }
       });
     }, {root: deck, threshold: 0.6});
-
     slides.forEach(s=>io.observe(s));
     setActiveDot(0);
 
-    // Controles de navegação
     function go(delta){
       const idx = Math.max(0, Math.min(slides.length-1, currentIndex()+delta));
       const targetTop = slides[idx].offsetTop - 64;
@@ -1389,218 +1238,47 @@
     if (canStoreLang) savedLang = localStorage.getItem("lang") || "pt";
     setLang(savedLang);
 
-    // ScrollReveal initialization
-    if(typeof ScrollReveal !== 'undefined'){
-      ScrollReveal().reveal('.reveal', {
-        distance: '30px',
-        duration: 800,
-        easing: 'ease-out',
-        origin: 'bottom',
-        reset: false,
-        viewFactor: 0.2
-      });
-    }
-
-    // Vanilla-tilt initialization for project cards
+    // Tilt opcional
     if(typeof VanillaTilt !== 'undefined'){
       document.querySelectorAll('[data-tilt]').forEach(el => {
-        VanillaTilt.init(el, {
-          max: 8,
-          speed: 1000,
-          glare: true,
-          'max-glare': 0.3
-        });
+        VanillaTilt.init(el, { max: 8, speed: 1000, glare: true, 'max-glare': 0.3 });
       });
     }
 
-    // Modal (Projetos)
-    const projectDetails = {
-      deveriar: {
-        title: "Deveriar",
-        stack: "Vite (PWA) • React • Node/Fastify • Firestore • Vision API • Pino • Firebase Auth",
-        triads: [
-          {
-            problem: "Triagem e evolução terapêutica fragmentadas e manuais",
-            solution: "App Deveriar centraliza sessões, convites e planos com fluxos guiados e consentimentos",
-            proof: "1.500 usuários ativos, 35% menos tempo em tarefas administrativas (~40 min/semana por terapeuta)."
-          },
-          {
-            problem: "Baixa confiabilidade em registros sensíveis e compliance",
-            solution: "Dados com E2EE + Firestore com coleções por usuário e age gate",
-            proof: "0 incidentes de vazamento reportados, custo médio de storage < US$ 0,02/usuário/mês."
-          },
-          {
-            problem: "Experiência lenta na captura e análise de conteúdo",
-            solution: "Backend Fastify + fila para Vision API com cache",
-            proof: "Latência mediana 280 ms nas rotas críticas, 22% menos retries."
-          }
-        ],
-        metrics: [
-          "Usuários ativos: 1.500",
-          "Tempo administrativo: -35% (~40 min/semana por terapeuta)",
-          "Incidentes de vazamento reportados: 0",
-          "Storage: < US$ 0,02/usuário/mês",
-          "Latência mediana (rotas críticas): 280 ms",
-          "Retries: -22%"
-        ],
-        arch: "Dados ficam em Firestore com coleções por userId e registros auditáveis; autenticação via Firebase Auth com criptografia ponta-a-ponta e sincronização opcional com Google Drive; deploy em stack web padrão (Vite para o frontend e Node/Fastify para o backend), com logs estruturados via Pino, métricas de latência/erros por endpoint e rastreamento de fluxos críticos para convites e billing."
-      },
-      ultrahub: {
-        title: "UltraHub CRM",
-        stack: "Node.js • React • MongoDB • UI Bootstrap",
-        triads: [
-          {
-            problem: "Pipeline comercial sem rastreabilidade consistente entre lead → proposta → fechamento",
-            solution: "CRM com entidades (Clientes, Oportunidades, Propostas, Produtos) e visão de funil",
-            proof: "Evolução incremental: foco em padronizar cadastros, pipeline e visão executiva (repo fechado)."
-          },
-          {
-            problem: "Baixa visibilidade do desempenho do time comercial",
-            solution: "Dashboard e indicadores no próprio produto",
-            proof: "Base pronta para métricas por etapa, conversão e ciclo (em evolução)."
-          },
-          {
-            problem: "Operação dispersa em planilhas e anotações",
-            solution: "Centralização em um sistema único e consistente",
-            proof: "Reduz retrabalho e aumenta consistência de dados (em evolução)."
-          }
-        ],
-        metrics: [
-          "Métricas: definir (conversão por etapa, ciclo médio, taxa de ganho, atividade)."
-        ],
-        arch: "Back-end em Node.js com API para entidades principais do CRM; front-end em React com componentes reutilizáveis; persistência em MongoDB; estrutura preparada para RBAC, logs e métricas por rota."
-      },
-      quiztech: {
-        title: "Quiz Tech",
-        stack: "GitHub Pages • Front-end Web • UX/UI",
-        triads: [
-          {
-            problem: "Preparação para provas e certificações com material disperso e pouca mensuração",
-            solution: "Quizzes por tema com UX focada em leitura/contraste e ritmo de prova",
-            proof: "Projeto público com UI enxuta e foco em experiência (repo aberto)."
-          },
-          {
-            problem: "Baixa consistência na revisão por tópicos",
-            solution: "Estrutura por categorias e fluxo de questões",
-            proof: "Base para evoluir com resultados por sessão e banco de questões."
-          },
-          {
-            problem: "Feedback tardio (só no fim do estudo)",
-            solution: "Avaliação imediata por questão e revisão",
-            proof: "Aprimora retenção via feedback curto (em evolução)."
-          }
-        ],
-        metrics: [
-          "Métricas: definir (acurácia por tema, tempo por questão, evolução por sessão)."
-        ],
-        arch: "Aplicação estática (GitHub Pages) com lógica em front-end; dados/questões versionados no repositório; estrutura preparada para persistir resultados localmente e evoluir para back-end se necessário."
-      },
-      landing: {
-        title: "Landing corporativa-tech",
-        stack: "HTML/CSS • Layout responsivo • Design system simples",
-        triads: [
-          {
-            problem: "Apresentação institucional sem narrativa de valor e CTA",
-            solution: "Hero, proposta de valor, seções e CTA com estética corporativa-tech",
-            proof: "Layout responsivo e consistente com identidade visual (exemplo de execução)."
-          },
-          {
-            problem: "Informações difíceis de escanear rapidamente",
-            solution: "Componentização visual (cards, grids, chips) e hierarquia tipográfica",
-            proof: "Leitura rápida e foco em conversão."
-          },
-          {
-            problem: "Ausência de padrão visual replicável",
-            solution: "Design system simples (tokens, componentes e espaçamentos)",
-            proof: "Base reutilizável para novas páginas."
-          }
-        ],
-        metrics: [
-          "Métricas: definir (CTR de CTA, tempo na página, taxa de conversão)."
-        ],
-        arch: "Página estática com componentes visuais consistentes e responsivos; pronta para integração com analytics (GA/Matomo) e deploy em GitHub Pages/Vercel."
-      }
-    };
-
-    const modalBackdrop = document.getElementById("modalBackdrop");
-    const modalClose = document.getElementById("modalClose");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalSub = document.getElementById("modalSub");
-    const modalBody = document.getElementById("modalBody");
-
-    let prevDeckOverflow = "";
-
-    function escapeHtml(s){
-      return String(s)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-    }
-
-    function openModal(projectId){
-      const d = projectDetails[projectId];
-      if(!d) return;
-
-      modalTitle.textContent = d.title;
-      modalSub.textContent = d.stack || "";
-
-      const triadsHtml = (d.triads || []).map(t => `
-        <li>
-          <div><strong>Problema:</strong> ${escapeHtml(t.problem || "")}</div>
-          <div><strong>Solução:</strong> ${escapeHtml(t.solution || "")}</div>
-          <div><strong>Prova/Impacto:</strong> ${escapeHtml(t.proof || "")}</div>
-        </li>
-      `).join("");
-
-      const metricsHtml = (d.metrics || []).map(m => `<li>${escapeHtml(m)}</li>`).join("");
-
-      modalBody.innerHTML = `
-        <div class="modal-section">
-          <h4>Problema → Solução → Prova/Impacto</h4>
-          <ul class="triads">${triadsHtml}</ul>
-        </div>
-
-        <div class="modal-section">
-          <h4>Métricas</h4>
-          <ul class="metrics">${metricsHtml}</ul>
-        </div>
-
-        <div class="modal-section">
-          <h4>Arquitetura</h4>
-          <p class="kv">${escapeHtml(d.arch || "")}</p>
-        </div>
-      `;
-
-      prevDeckOverflow = deck.style.overflow;
+    // MODAIS
+    let lastFocus = null;
+    function openModal(key){
+      const overlay = document.getElementById(`modal-${key}`);
+      if(!overlay) return;
+      lastFocus = document.activeElement;
+      overlay.classList.add("open");
+      overlay.setAttribute("aria-hidden","false");
       deck.style.overflow = "hidden";
-
-      modalBackdrop.classList.add("open");
-      modalBackdrop.setAttribute("aria-hidden","false");
-      modalClose.focus();
+      const closeBtn = overlay.querySelector("[data-close-modal]");
+      if(closeBtn) closeBtn.focus();
     }
-
     function closeModal(){
-      modalBackdrop.classList.remove("open");
-      modalBackdrop.setAttribute("aria-hidden","true");
-      deck.style.overflow = prevDeckOverflow || "auto";
+      const open = document.querySelector(".modal-overlay.open");
+      if(!open) return;
+      open.classList.remove("open");
+      open.setAttribute("aria-hidden","true");
+      deck.style.overflow = "auto";
+      if(lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
     }
 
-    document.querySelectorAll("[data-open-project]").forEach(btn=>{
-      btn.addEventListener("click", ()=>{
-        const id = btn.getAttribute("data-open-project");
-        openModal(id);
+    document.querySelectorAll("[data-open-modal]").forEach(btn=>{
+      btn.addEventListener("click", ()=>openModal(btn.getAttribute("data-open-modal")));
+    });
+    document.querySelectorAll("[data-close-modal]").forEach(btn=>{
+      btn.addEventListener("click", closeModal);
+    });
+    document.querySelectorAll(".modal-overlay").forEach(overlay=>{
+      overlay.addEventListener("click", (e)=>{
+        if(e.target === overlay) closeModal();
       });
     });
-
-    modalClose.addEventListener("click", closeModal);
-    modalBackdrop.addEventListener("click", (e)=>{
-      if(e.target === modalBackdrop) closeModal();
-    });
-
     window.addEventListener("keydown", (e)=>{
-      if(e.key === "Escape" && modalBackdrop.classList.contains("open")) closeModal();
+      if(e.key === "Escape") closeModal();
     });
   </script>
 </body>
