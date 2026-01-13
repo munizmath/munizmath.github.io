@@ -212,32 +212,28 @@ p[data-i18n="hero.subtitle"]{text-align:justify}
   color: var(--text);
 }
 
-/* Skill field (nuvem de palavras animada) */
-.skill-field{
+/* Skills hero (nuvem de palavras animada com clusters) */
+.skills-hero { padding: 28px 16px; }
+
+.skills-field{
   position: relative;
   overflow: hidden;
   border-radius: 18px;
   border: 1px solid rgba(255,255,255,.12);
   background: rgba(255,255,255,.03);
-  height: 340px;
+  height: 360px;
   padding: 14px;
-  margin-top: 12px;
 }
 
-.skill-field__topbar{
-  position: relative;
-  z-index: 2;
+.skills-topbar{
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 8px;
 }
 
-.skill-field__topbar h2{
-  margin: 0;
-  font-size: 16px;
-}
+.skills-topbar h2{ margin: 0; font-size: 20px; }
+.skills-sub{ margin: 6px 0 0; opacity: .85; }
 
 .motion-btn{
   border-radius: 999px;
@@ -245,59 +241,87 @@ p[data-i18n="hero.subtitle"]{text-align:justify}
   background: rgba(255,255,255,.06);
   color: inherit;
   padding: 8px 12px;
-  font-size: 12px;
   cursor: pointer;
   font-family: inherit;
+  font-size: 12px;
+}
+.motion-btn:focus{ outline: 2px solid rgba(255,255,255,.45); outline-offset: 2px; }
+
+.skills-legend{
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.motion-btn:hover{
-  border-color: rgba(106,169,255,.35);
-  background: rgba(106,169,255,.12);
+.legend-pill{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.04);
+  font-size: 13px;
+  opacity: .95;
+}
+
+.legend-dot{
+  width: 10px; height: 10px;
+  border-radius: 999px;
+  background: var(--g);
+  box-shadow: 0 0 0 2px rgba(0,0,0,.25) inset;
+}
+
+.skills-layer{
+  position: absolute;
+  inset: 0;
+  pointer-events: none; /* os links são as próprias bubbles; pointer-event será ativado nelas */
 }
 
 .bubble{
   position: absolute;
-  left: 0;
-  top: 0;
+  left: 0; top: 0;
   padding: 8px 10px;
   border-radius: 999px;
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.14);
   font-size: 14px;
   white-space: nowrap;
   user-select: none;
   will-change: transform;
-  z-index: 1;
-  color: var(--text);
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+
+  /* grupo */
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--g) 55%, transparent) inset;
+  color: inherit;
+
+  pointer-events: auto; /* permite clicar */
+  text-decoration: none;
 }
 
+.bubble:hover{ background: rgba(255,255,255,.09); }
 .bubble:focus{
-  outline: 2px solid rgba(255,255,255,.45);
+  outline: 2px solid color-mix(in srgb, var(--g) 55%, rgba(255,255,255,.35));
   outline-offset: 2px;
 }
 
+/* lista estática visível só quando reduced-motion */
+.skills-static{ display: none; }
+
 .sr-only{
   position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  white-space: nowrap;
-  border: 0;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
 }
 
+/* WCAG: reduz movimento */
 @media (prefers-reduced-motion: reduce){
-  .bubble{
-    position: static;
-    display: inline-block;
-    margin: 6px 6px 0 0;
-  }
-  .skill-field{
-    height: auto;
-    overflow: visible;
-  }
+  .skills-field{ height: auto; }
+  .skills-layer{ display: none; }
+  .skills-static{ display: block; margin-top: 12px; }
+  .skills-static ul{ margin: 0; padding-left: 18px; opacity: .9; }
 }
 .actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px}
 .linkbtn{

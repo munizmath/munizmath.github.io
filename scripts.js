@@ -84,7 +84,8 @@ const dict = {
 
     "skills.title": "Competências (core)",
     "skills.subtitle": "Foco em observabilidade, dados e automação — com base sólida em operação crítica.",
-    "skills.fieldTitle": "O que eu faço",
+    "skills.fieldTitle": "Meu campo de atuação",
+    "skills.subtitleHero": "Clique em um item para ver projeto/caso relacionado.",
     "skills.pauseMotion": "Pausar animação",
     "skills.resumeMotion": "Retomar animação",
     "skills.s1t": "Observabilidade / Monitoramento",
@@ -280,7 +281,8 @@ const dict = {
 
     "skills.title": "Skills (core)",
     "skills.subtitle": "Focus on observability, data and automation — with solid foundation in critical operations.",
-    "skills.fieldTitle": "What I do",
+    "skills.fieldTitle": "My field of expertise",
+    "skills.subtitleHero": "Click on an item to see related project/case.",
     "skills.pauseMotion": "Pause animation",
     "skills.resumeMotion": "Resume animation",
     "skills.s1t": "Observability / Monitoring",
@@ -476,7 +478,8 @@ const dict = {
 
     "skills.title": "Competencias (core)",
     "skills.subtitle": "Enfoque en observabilidad, datos y automatización — con base sólida en operación crítica.",
-    "skills.fieldTitle": "Lo que hago",
+    "skills.fieldTitle": "Mi campo de actuación",
+    "skills.subtitleHero": "Haz clic en un elemento para ver proyecto/caso relacionado.",
     "skills.pauseMotion": "Pausar animación",
     "skills.resumeMotion": "Reanudar animación",
     "skills.s1t": "Observabilidad / Monitoreo",
@@ -1072,132 +1075,275 @@ if(document.readyState === "loading"){
   initModals();
 }
 
-// Animação de nuvem de palavras (skill field)
+// Animação de nuvem de palavras com clusters por grupo
 (() => {
-  const field = document.getElementById("skillField");
-  if (!field) return;
-  
-  const btn = document.getElementById("toggleMotion");
-  const bubbles = Array.from(field.querySelectorAll(".bubble"));
-  if (bubbles.length === 0) return;
-
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reducedMotion) return; // CSS já vira lista estática
 
+  const field = document.getElementById("skillsField");
+  const topbar = document.getElementById("skillsTopbar");
+  const layer = document.getElementById("skillsLayer");
+  const legend = document.getElementById("skillsLegend");
+  const btn = document.getElementById("toggleMotion");
+  const staticList = document.getElementById("skillsStaticList");
+
+  if (!field || !topbar || !layer || !legend || !btn || !staticList) return;
+
+  // Configuração: grupos com bounds e itens
+  const CONFIG = {
+    speedMin: 0.18,
+    speedMax: 0.42,
+    repel: true,         // empurra sobreposições leves
+    repelStrength: 0.06, // mais alto = separa mais
+    maxFps: 45,          // reduz CPU no 1º slide
+    groups: [
+      {
+        key: "sre",
+        label: "Observabilidade & SRE",
+        color: "#7aa2f7",
+        bounds: { x1: 0.05, y1: 0.33, x2: 0.52, y2: 0.92 },
+        items: [
+          { text: "Observabilidade", href: "#projetos" },
+          { text: "Dynatrace", href: "#projetos" },
+          { text: "Grafana", href: "#projetos" },
+          { text: "Kibana", href: "#projetos" },
+          { text: "SLO", href: "#projetos" },
+          { text: "MTTR", href: "#projetos" },
+        ]
+      },
+      {
+        key: "data",
+        label: "Dados & BI",
+        color: "#9ece6a",
+        bounds: { x1: 0.54, y1: 0.33, x2: 0.96, y2: 0.66 },
+        items: [
+          { text: "SQL", href: "#projetos" },
+          { text: "ETL", href: "#projetos" },
+          { text: "Power BI", href: "#projetos" },
+          { text: "DAX", href: "#projetos" },
+          { text: "Data Modeling", href: "#projetos" },
+        ]
+      },
+      {
+        key: "auto",
+        label: "Automação",
+        color: "#ff9e64",
+        bounds: { x1: 0.54, y1: 0.68, x2: 0.96, y2: 0.92 },
+        items: [
+          { text: "Power Automate", href: "#projetos" },
+          { text: "PowerShell", href: "#projetos" },
+          { text: "Python", href: "#projetos" },
+          { text: "Scripts RPA", href: "#projetos" },
+        ]
+      },
+      {
+        key: "cloud",
+        label: "Cloud & Infra",
+        color: "#bb9af7",
+        bounds: { x1: 0.05, y1: 0.12, x2: 0.96, y2: 0.30 },
+        items: [
+          { text: "AWS", href: "#projetos" },
+          { text: "Azure", href: "#projetos" },
+          { text: "Docker", href: "#projetos" },
+          { text: "Linux", href: "#projetos" },
+          { text: "Windows Server", href: "#projetos" },
+        ]
+      }
+    ]
+  };
+
+  // Legenda + fallback estático (sempre preenchidos)
+  function buildLegendAndStatic() {
+    legend.innerHTML = "";
+    staticList.innerHTML = "";
+
+    for (const g of CONFIG.groups) {
+      const pill = document.createElement("div");
+      pill.className = "legend-pill";
+      pill.innerHTML = `<span class="legend-dot" style="--g:${g.color}"></span><span>${g.label}</span>`;
+      legend.appendChild(pill);
+
+      for (const it of g.items) {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = it.href;
+        a.textContent = `${it.text} — ${g.label}`;
+        li.appendChild(a);
+        staticList.appendChild(li);
+      }
+    }
+  }
+
+  buildLegendAndStatic();
+  if (reducedMotion) return;
+
+  // Cria bubbles clicáveis (links)
+  const bubbles = [];
+  for (const g of CONFIG.groups) {
+    for (const it of g.items) {
+      const a = document.createElement("a");
+      a.className = "bubble";
+      a.href = it.href;
+      a.textContent = it.text;
+      a.style.setProperty("--g", g.color);
+      a.dataset.group = g.key;
+      layer.appendChild(a);
+      bubbles.push(a);
+    }
+  }
+
+  // Interceptar cliques para navegar ao slide de projetos
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a.bubble");
+    if (!a) return;
+    e.preventDefault();
+    // Navegar para o slide de projetos (data-slide="5")
+    const projectsSlide = document.querySelector('section[data-slide="5"]');
+    if (projectsSlide) {
+      const topbarH = getTopbarHeight();
+      const targetTop = projectsSlide.offsetTop - topbarH;
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      deck.scrollTo({top: targetTop, behavior: prefersReducedMotion ? "auto" : "smooth"});
+    }
+  });
+
+  // Estado
   let running = true;
+  let lastFrame = 0;
 
-  // Ajustes: velocidade e "calma"
-  const SPEED_MIN = 0.18;
-  const SPEED_MAX = 0.45;
-
-  // Estado por bolha
   const items = bubbles.map((el) => ({
     el,
-    x: 0,
-    y: 0,
-    vx: (Math.random() * (SPEED_MAX - SPEED_MIN) + SPEED_MIN) * (Math.random() < 0.5 ? -1 : 1),
-    vy: (Math.random() * (SPEED_MAX - SPEED_MIN) + SPEED_MIN) * (Math.random() < 0.5 ? -1 : 1),
-    w: 0,
-    h: 0
+    groupKey: el.dataset.group,
+    x: 0, y: 0,
+    vx: (Math.random() * (CONFIG.speedMax - CONFIG.speedMin) + CONFIG.speedMin) * (Math.random() < 0.5 ? -1 : 1),
+    vy: (Math.random() * (CONFIG.speedMax - CONFIG.speedMin) + CONFIG.speedMin) * (Math.random() < 0.5 ? -1 : 1),
+    w: 0, h: 0,
+    boundsPx: null
   }));
 
-  function measure() {
+  function getGroup(key) {
+    return CONFIG.groups.find(g => g.key === key);
+  }
+
+  function measureAndInit() {
     const rect = field.getBoundingClientRect();
-    const padding = 14; // deve bater com o padding do CSS
-    const topbarHeight = field.querySelector(".skill-field__topbar")?.offsetHeight || 42;
-    const bounds = {
+    const topbarRect = topbar.getBoundingClientRect();
+
+    const padding = 14;
+    const reservedTop = (topbarRect.height + 10 + 28); // topbar + legend + respiro
+    const usable = {
       left: padding,
-      top: padding + topbarHeight,
+      top: padding + reservedTop,
       right: rect.width - padding,
       bottom: rect.height - padding
     };
 
-    items.forEach(it => {
+    // mede tamanhos
+    for (const it of items) {
       const r = it.el.getBoundingClientRect();
       it.w = r.width;
       it.h = r.height;
-    });
-
-    // posição inicial aleatória (sem tentar "perfeito" em colisão)
-    items.forEach(it => {
-      it.x = bounds.left + Math.random() * Math.max(1, (bounds.right - bounds.left - it.w));
-      it.y = bounds.top + Math.random() * Math.max(1, (bounds.bottom - bounds.top - it.h));
-      it.el.style.transform = `translate3d(${it.x}px, ${it.y}px, 0)`;
-    });
-
-    return bounds;
-  }
-
-  let bounds = measure();
-  window.addEventListener("resize", () => {
-    bounds = measure();
-  });
-
-  function tick() {
-    if (running) {
-      for (const it of items) {
-        it.x += it.vx;
-        it.y += it.vy;
-
-        // bounce nas bordas
-        if (it.x <= bounds.left) {
-          it.x = bounds.left;
-          it.vx *= -1;
-        }
-        if (it.x + it.w >= bounds.right) {
-          it.x = bounds.right - it.w;
-          it.vx *= -1;
-        }
-        if (it.y <= bounds.top) {
-          it.y = bounds.top;
-          it.vy *= -1;
-        }
-        if (it.y + it.h >= bounds.bottom) {
-          it.y = bounds.bottom - it.h;
-          it.vy *= -1;
-        }
-
-        it.el.style.transform = `translate3d(${it.x}px, ${it.y}px, 0)`;
-      }
     }
-    requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
 
-  // Pausar em hover/focus (melhora legibilidade)
-  field.addEventListener("pointerenter", () => {
-    running = false;
-  });
-  field.addEventListener("pointerleave", () => {
-    running = true;
-  });
-  bubbles.forEach(b => {
-    b.addEventListener("focus", () => {
-      running = false;
-    });
-    b.addEventListener("blur", () => {
-      running = true;
-    });
-  });
+    // bounds por grupo (em px)
+    for (const it of items) {
+      const g = getGroup(it.groupKey);
+      const bx1 = usable.left + (usable.right - usable.left) * g.bounds.x1;
+      const by1 = usable.top + (usable.bottom - usable.top) * g.bounds.y1;
+      const bx2 = usable.left + (usable.right - usable.left) * g.bounds.x2;
+      const by2 = usable.top + (usable.bottom - usable.top) * g.bounds.y2;
+
+      it.boundsPx = { x1: bx1, y1: by1, x2: bx2, y2: by2 };
+
+      // init aleatório dentro do grupo
+      it.x = bx1 + Math.random() * Math.max(1, (bx2 - bx1 - it.w));
+      it.y = by1 + Math.random() * Math.max(1, (by2 - by1 - it.h));
+      it.el.style.transform = `translate3d(${it.x}px, ${it.y}px, 0)`;
+    }
+  }
+
+  measureAndInit();
+  window.addEventListener("resize", measureAndInit);
+
+  // Pausa em hover/focus
+  field.addEventListener("pointerenter", () => running = false);
+  field.addEventListener("pointerleave", () => running = true);
+
+  for (const el of bubbles) {
+    el.addEventListener("focus", () => running = false);
+    el.addEventListener("blur", () => running = true);
+  }
 
   // Botão pause
-  if (btn) {
-    const updateButtonText = () => {
-      const lang = document.documentElement.lang === "pt-BR" ? "pt" : (document.documentElement.lang === "en" ? "en" : "es");
-      const langDict = dict[lang] || dict.pt;
-      const pauseText = langDict["skills.pauseMotion"] || "Pausar animação";
-      const resumeText = langDict["skills.resumeMotion"] || "Retomar animação";
-      btn.textContent = running ? pauseText : resumeText;
-      btn.setAttribute("data-i18n", running ? "skills.pauseMotion" : "skills.resumeMotion");
-    };
-    
-    btn.addEventListener("click", () => {
-      running = !running;
-      btn.setAttribute("aria-pressed", String(!running));
-      updateButtonText();
-    });
-    
-    // Inicializar texto do botão
-    updateButtonText();
+  btn.addEventListener("click", () => {
+    running = !running;
+    btn.setAttribute("aria-pressed", String(!running));
+    const lang = document.documentElement.lang === "pt-BR" ? "pt" : (document.documentElement.lang === "en" ? "en" : "es");
+    const langDict = dict[lang] || dict.pt;
+    btn.textContent = running ? (langDict["skills.pauseMotion"] || "Pausar animação") : (langDict["skills.resumeMotion"] || "Retomar animação");
+    btn.setAttribute("data-i18n", running ? "skills.pauseMotion" : "skills.resumeMotion");
+  });
+
+  function overlaps(a, b) {
+    return (
+      a.x < b.x + b.w &&
+      a.x + a.w > b.x &&
+      a.y < b.y + b.h &&
+      a.y + a.h > b.y
+    );
   }
+
+  function repel() {
+    // O(n^2) pequeno (mantém n baixo). Se você botar 60 tags aqui, vai pesar.
+    for (let i = 0; i < items.length; i++) {
+      for (let j = i + 1; j < items.length; j++) {
+        const A = items[i], B = items[j];
+        if (!overlaps(A, B)) continue;
+
+        const dx = (A.x + A.w / 2) - (B.x + B.w / 2);
+        const dy = (A.y + A.h / 2) - (B.y + B.h / 2);
+        const dist = Math.max(1, Math.hypot(dx, dy));
+
+        const push = CONFIG.repelStrength;
+        const ux = dx / dist, uy = dy / dist;
+
+        A.x += ux * push; A.y += uy * push;
+        B.x -= ux * push; B.y -= uy * push;
+      }
+    }
+  }
+
+  function tick(ts) {
+    const minDelta = 1000 / CONFIG.maxFps;
+    if (!lastFrame) lastFrame = ts;
+    const delta = ts - lastFrame;
+
+    if (delta >= minDelta) {
+      lastFrame = ts;
+
+      if (running) {
+        for (const it of items) {
+          const b = it.boundsPx;
+
+          it.x += it.vx;
+          it.y += it.vy;
+
+          // bounce dentro do grupo
+          if (it.x <= b.x1) { it.x = b.x1; it.vx *= -1; }
+          if (it.x + it.w >= b.x2) { it.x = b.x2 - it.w; it.vx *= -1; }
+          if (it.y <= b.y1) { it.y = b.y1; it.vy *= -1; }
+          if (it.y + it.h >= b.y2) { it.y = b.y2 - it.h; it.vy *= -1; }
+        }
+
+        if (CONFIG.repel) repel();
+
+        for (const it of items) {
+          it.el.style.transform = `translate3d(${it.x}px, ${it.y}px, 0)`;
+        }
+      }
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  requestAnimationFrame(tick);
 })();
