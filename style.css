@@ -54,13 +54,16 @@ a{color:inherit}
 }
 
 /* Links inline (telefone, e-mail) */
-.inline-link{
+.inline-link,
+.link-cv-modal{
   color: var(--text);
   text-decoration: underline;
   text-decoration-color: rgba(106,169,255,.55);
   text-underline-offset: 2px;
+  cursor: pointer;
 }
-.inline-link:hover{
+.inline-link:hover,
+.link-cv-modal:hover{
   text-decoration-color: rgba(106,169,255,.95);
 }
 
@@ -489,14 +492,14 @@ p[data-i18n="hero.subtitle"]{text-align:justify}
 .exp-note{
   flex-shrink:0;
   width:420px;
-  padding:14px 16px;
+  padding:14px 24px;
   border:1px solid var(--line);
   border-radius:12px;
   background: rgba(11,15,23,.18);
 }
 .exp-note small{
   color:var(--muted);
-  font-size:18px;
+  font-size:13px;
   line-height:1.5;
   display:block;
 }
@@ -764,4 +767,303 @@ p[data-i18n="hero.subtitle"]{text-align:justify}
 }
 .contact-card .row:last-of-type{
   margin-top: 8px !important;
+}
+
+/* Redesign Contato - Layout 2 colunas */
+.contact-grid{
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 18px;
+  align-items: stretch;
+}
+@media (max-width: 900px){
+  .contact-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact-sub{
+  opacity: .85;
+  margin: 6px 0 12px;
+}
+
+/* Tabs/Segmented */
+.segmented{
+  display: inline-flex;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.seg-btn{
+  padding: 8px 12px;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  opacity: .9;
+  font-family: inherit;
+  font-size: 13px;
+}
+.seg-btn:hover{
+  opacity: 1;
+}
+.seg-btn.is-active{
+  background: rgba(255,255,255,.08);
+  opacity: 1;
+}
+
+/* CTAs */
+.cta-row{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 12px 0;
+}
+.btn-primary,
+.btn-secondary{
+  border-radius: 999px;
+  padding: 10px 14px;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.12);
+  color: inherit;
+  font-family: inherit;
+  font-size: 13px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+.btn-primary:hover,
+.btn-secondary:hover{
+  border-color: rgba(106,169,255,.35);
+  background: rgba(255,255,255,.16);
+}
+.btn-secondary{
+  background: rgba(255,255,255,.04);
+}
+
+/* Disponibilidade */
+.availability{
+  margin-top: 16px;
+}
+.availability-label{
+  margin: 0 0 8px;
+  font-size: 12px;
+  opacity: .85;
+}
+.contact-actions .chips{
+  margin-top: 0;
+}
+.contact-actions .chip{
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.04);
+  font-size: 13px;
+  opacity: .95;
+}
+
+/* Links terciários */
+.links-row{
+  display: flex;
+  gap: 14px;
+  margin-top: 10px;
+}
+.links-row .link{
+  background: none;
+  border: 0;
+  color: inherit;
+  opacity: .85;
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  padding: 0;
+}
+.links-row .link:hover{
+  opacity: 1;
+}
+
+/* Cartão de contato (direita) */
+.contact-card{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.contact-card .card{
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 16px;
+  padding: 14px;
+  background: rgba(255,255,255,.03);
+}
+.contact-card .card h3{
+  margin: 0 0 10px;
+  font-size: 13px;
+}
+.contact-card .meta{
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.contact-card .meta li{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+.contact-card .meta a{
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(106,169,255,.55);
+  text-underline-offset: 2px;
+}
+.contact-card .meta a:hover{
+  text-decoration-color: rgba(106,169,255,.95);
+}
+.mini{
+  margin-left: auto;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.04);
+  color: inherit;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: inherit;
+}
+.mini:hover{
+  border-color: rgba(106,169,255,.35);
+  background: rgba(255,255,255,.08);
+}
+
+/* Foto */
+.contact-card .photo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contact-card .photo .contact-profile-img{
+  width: 100px;
+  height: 100px;
+  border-width: 2px;
+  box-shadow: 0 4px 16px rgba(106,169,255,.2);
+  position: relative;
+  margin: 0;
+}
+
+/* Modais CV e Formulário - estilos adicionais */
+.pdf{
+  width: 100%;
+  border: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.2);
+  margin: 0;
+  display: block;
+  color: #000;
+}
+
+/* Container do PDF com padding para melhor visualização */
+.modal-section .pdf{
+  margin: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.3);
+}
+
+/* Formulário */
+.form{
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+  flex: 1;
+  overflow-y: auto;
+}
+.form label{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.form label span{
+  font-size: 12px;
+  opacity: .9;
+  color: var(--text);
+}
+.form input,
+.form textarea,
+.form select{
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.04);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+}
+.form input::placeholder,
+.form textarea::placeholder{
+  color: var(--muted);
+  opacity: 0.7;
+}
+.form input:focus,
+.form textarea:focus,
+.form select:focus{
+  outline: 2px solid rgba(106,169,255,.55);
+  outline-offset: 2px;
+  border-color: rgba(106,169,255,.35);
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+}
+/* Melhorar contraste do select quando aberto */
+.form select{
+  color-scheme: dark;
+}
+.form select option{
+  background: #0b0f1a;
+  color: #e8eefc;
+  padding: 8px;
+}
+.form select option:checked,
+.form select option[selected]{
+  background: rgba(106,169,255,.2);
+  color: #e8eefc;
+}
+/* Forçar contraste: se opção tiver fundo claro, texto deve ser preto */
+.form select option:hover,
+.form select option:active,
+.form select option:focus{
+  background: #ffffff;
+  color: #000000;
+}
+.hp{
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
+}
+.consent{
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  opacity: .9;
+  flex-direction: row;
+}
+.consent input[type="checkbox"]{
+  width: auto;
+  margin-top: 2px;
+}
+.consent span{
+  font-size: 12px;
+  line-height: 1.4;
+}
+.hint{
+  opacity: .75;
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+.form .btn-primary{
+  margin-top: 4px;
 }

@@ -90,100 +90,32 @@
 
 </div>
 <div class="hero-side">
-<div class="skill-field" id="skillField" aria-label="Campo de competências em movimento">
-<div class="skill-field__topbar">
-<h2 data-i18n="skills.fieldTitle">O que eu faço</h2>
-<button type="button" id="toggleMotion" class="motion-btn" aria-pressed="false" data-i18n="skills.pauseMotion">Pausar animação</button>
-</div>
-<div class="bubble" tabindex="0">Observabilidade</div>
-<div class="bubble" tabindex="0">Monitoramento de Sistemas</div>
-<div class="bubble" tabindex="0">Análise de Dados</div>
-<div class="bubble" tabindex="0">Business Intelligence</div>
-<div class="bubble" tabindex="0">Full Stack Web</div>
-<div class="bubble" tabindex="0">SQL</div>
-<div class="bubble" tabindex="0">Automatização de Processos</div>
-<div class="bubble" tabindex="0">Python</div>
-<div class="bubble" tabindex="0">Power BI</div>
-<div class="bubble" tabindex="0">DevOps/SRE</div>
-<div class="bubble" tabindex="0">ETL</div>
-<div class="bubble" tabindex="0">Data Visualization</div>
-<div class="bubble" tabindex="0">R</div>
-<div class="bubble" tabindex="0">PowerShell</div>
-<div class="bubble" tabindex="0">Control-M</div>
-<div class="bubble" tabindex="0">Dynatrace</div>
-<div class="bubble" tabindex="0">Grafana</div>
-<div class="bubble" tabindex="0">Kibana</div>
-<div class="bubble" tabindex="0">ServiceNow</div>
-<div class="bubble" tabindex="0">ITIL</div>
-<div class="bubble" tabindex="0">COBIT</div>
-<div class="bubble" tabindex="0">Cloud Computing</div>
-<div class="bubble" tabindex="0">AWS</div>
-<div class="bubble" tabindex="0">Azure</div>
-<div class="bubble" tabindex="0">Gestão de Incidentes</div>
-<div class="bubble" tabindex="0">MTTR</div>
-<div class="bubble" tabindex="0">MTTA</div>
-<div class="bubble" tabindex="0">SLO</div>
-<div class="bubble" tabindex="0">Dashboard Development</div>
-<div class="bubble" tabindex="0">Data Modeling</div>
-<div class="bubble" tabindex="0">DAX</div>
-<div class="bubble" tabindex="0">Power Query</div>
-<div class="bubble" tabindex="0">Reporting Services</div>
-<div class="bubble" tabindex="0">Integration Services</div>
-<div class="bubble" tabindex="0">NoSQL</div>
-<div class="bubble" tabindex="0">Active Directory</div>
-<div class="bubble" tabindex="0">Middleware</div>
-<div class="bubble" tabindex="0">Scripts RPA</div>
-<div class="bubble" tabindex="0">PowerAutomate</div>
-<div class="bubble" tabindex="0">Git</div>
-<div class="bubble" tabindex="0">Docker</div>
-<div class="bubble" tabindex="0">Linux</div>
-<div class="bubble" tabindex="0">Windows Server</div>
-<ul class="sr-only">
-<li>Observabilidade</li>
-<li>Monitoramento de Sistemas</li>
-<li>Análise de Dados</li>
-<li>Business Intelligence</li>
-<li>Full Stack Web</li>
-<li>SQL</li>
-<li>Automatização de Processos</li>
-<li>Python</li>
-<li>Power BI</li>
-<li>DevOps/SRE</li>
-<li>ETL</li>
-<li>Data Visualization</li>
-<li>R</li>
-<li>PowerShell</li>
-<li>Control-M</li>
-<li>Dynatrace</li>
-<li>Grafana</li>
-<li>Kibana</li>
-<li>ServiceNow</li>
-<li>ITIL</li>
-<li>COBIT</li>
-<li>Cloud Computing</li>
-<li>AWS</li>
-<li>Azure</li>
-<li>Gestão de Incidentes</li>
-<li>MTTR</li>
-<li>MTTA</li>
-<li>SLO</li>
-<li>Dashboard Development</li>
-<li>Data Modeling</li>
-<li>DAX</li>
-<li>Power Query</li>
-<li>Reporting Services</li>
-<li>Integration Services</li>
-<li>NoSQL</li>
-<li>Active Directory</li>
-<li>Middleware</li>
-<li>Scripts RPA</li>
-<li>PowerAutomate</li>
-<li>Git</li>
-<li>Docker</li>
-<li>Linux</li>
-<li>Windows Server</li>
-</ul>
-</div>
+<section class="skills-hero" aria-labelledby="skills-hero-title">
+  <div class="skills-field" id="skillsField">
+    <div class="skills-topbar" id="skillsTopbar">
+      <div>
+        <h2 id="skills-hero-title" data-i18n="skills.fieldTitle">Meu campo de atuação</h2>
+        <p class="skills-sub" data-i18n="skills.subtitleHero">Clique em um item para ver projeto/caso relacionado.</p>
+      </div>
+
+      <button type="button" class="motion-btn" id="toggleMotion" aria-pressed="false" data-i18n="skills.pauseMotion">
+        Pausar animação
+      </button>
+    </div>
+
+    <!-- Legenda criada via JS -->
+    <div class="skills-legend" id="skillsLegend" aria-label="Grupos de competências"></div>
+
+    <!-- "Bubbles" criadas via JS -->
+    <div class="skills-layer" id="skillsLayer" aria-hidden="true"></div>
+
+    <!-- Fallback acessível / ATS (sempre presente) -->
+    <div class="skills-static" id="skillsStatic">
+      <h3 class="sr-only">Competências (lista)</h3>
+      <ul id="skillsStaticList"></ul>
+    </div>
+  </div>
+</section>
 <div class="linkedin-badge-wrap">
 <div class="badge-base LI-profile-badge" data-locale="pt_BR" data-size="large" data-theme="dark" data-type="HORIZONTAL" data-vanity="matheus-muniz-oliveira" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://br.linkedin.com/in/matheus-muniz-oliveira?trk=profile-badge">Matheus M.</a></div>
 </div>
@@ -451,6 +383,7 @@
 <img alt="Landing corporativa-tech — seção de apresentação" class="shot" loading="lazy" src="assets/prints/landing-corporativa.png"/>
 <span class="shotcap" data-i18n="proj.p4cap">Print de seção “hero” e bloco de proposta de valor.</span>
 <div class="row">
+<a class="mini-btn primary" data-i18n="proj.open" href="https://ultrahub.com.br" rel="noopener noreferrer" target="_blank">Abrir</a>
 <button class="mini-btn" data-i18n="proj.details" data-open-modal="landing" type="button">Detalhes</button>
 </div>
 </div>
@@ -469,34 +402,59 @@
 </div>
 </section>
 <!-- Slide 7: Contato -->
-<section class="slide" data-slide="6">
+<section aria-labelledby="contactTitle" class="slide contact" data-slide="6">
 <div class="frame">
-<h2 data-i18n="contact.title">Contato</h2>
-<p data-i18n="contact.subtitle">Canal recomendado: LinkedIn. PDFs anexos no site para leitura rápida.</p>
-<div class="actions">
-<a class="linkbtn primary" data-i18n="contact.ctaLinkedin" data-i18n-aria-label="contact.linkedinAria" href="https://www.linkedin.com/in/matheus-muniz-oliveira/" rel="noopener noreferrer" target="_blank">Abrir LinkedIn</a>
-<a class="linkbtn" data-i18n="hero.ctaGithub" href="https://github.com/munizmath" rel="noopener noreferrer" target="_blank">GitHub</a>
-<a class="linkbtn" data-i18n="contact.ctaEmail" data-i18n-aria-label="contact.emailAria" href="mailto:matheusmuniz@outlook.com">Enviar e-mail</a>
-<a class="linkbtn" data-i18n="contact.ctaCv" data-i18n-aria-label="contact.cvAria" href="assets/docs/Curriculo-Matheus-Muniz.pdf" rel="noopener noreferrer" target="_blank">Abrir CV (PDF)</a>
-<a class="linkbtn" data-i18n="contact.ctaProfile" data-i18n-aria-label="contact.profileAria" href="assets/docs/Profile.pdf" rel="noopener noreferrer" target="_blank">Abrir LinkedIn (PDF)</a>
-<a class="linkbtn" href="https://deveriar.com.br" rel="noopener noreferrer" target="_blank">Deveriar</a>
-<a class="linkbtn" href="https://ultrahub.com.br" rel="noopener noreferrer" target="_blank">UltraHub</a>
+<div class="contact-grid">
+<!-- ESQUERDA -->
+<div class="contact-actions">
+<h2 data-i18n="contact.title" id="contactTitle">Contato</h2>
+<p class="contact-sub" data-i18n="contact.subtitle">Resposta típica: <strong>24–48h</strong>.</p>
+
+<div class="cta-row" id="ctaRow"></div>
+
+<div class="availability">
+<p class="availability-label" data-i18n="contact.availableFor">Disponível para:</p>
+<div class="chips">
+<span class="chip" data-i18n="contact.chip1">Observabilidade/SRE</span>
+<span class="chip" data-i18n="contact.chip2">Dados/BI</span>
+<span class="chip" data-i18n="contact.chip3">Automação/ITSM</span>
+<span class="chip" data-i18n="contact.chip4">Desenvolvimento Full Stack</span>
 </div>
-<div class="card contact-card" style="position: relative;">
-<img alt="Matheus Muniz" class="profile-img contact-profile-img" src="https://github.com/munizmath.png" style="position: absolute; right: 12px; top: 12px; width: 100px; height: 100px; margin: 0;"/>
-<h3 data-i18n="hero.quickTitle" style="margin: 0 0 6px; font-size: 13px;">Contato</h3>
-<div class="row" style="margin-top: 6px;">
-<small>📍</small><small data-i18n="top.location">Belo Horizonte, MG</small>
 </div>
-<div class="row" style="margin-top: 6px;">
-<small>📞</small><small><a aria-label="Telefone: +55 (31) 97352-6254" class="inline-link" data-i18n-aria-label="contact.phoneAria" href="tel:+5531973526254">+55 (31) 97352-6254</a></small>
+
+<div class="links-row">
+<button class="link" id="openCv" data-i18n="contact.openCv">Ver currículo PDF</button>
 </div>
-<div class="row" style="margin-top: 6px;">
-<small>✉️</small><small><a aria-label="E-mail: matheusmuniz@outlook.com" class="inline-link" data-i18n-aria-label="contact.emailAria" href="mailto:matheusmuniz@outlook.com">matheusmuniz@outlook.com</a></small>
 </div>
-<div class="row" style="margin-top: 8px;">
-<small data-i18n="hero.langs">Idiomas:</small>
-<small data-i18n="hero.langsValue">Inglês B1 • Espanhol B1</small>
+
+<!-- DIREITA -->
+<div class="contact-card">
+<div class="card">
+<h3 data-i18n="hero.quickTitle">Contato</h3>
+<ul class="meta">
+<li><span>📍</span> <span data-i18n="top.location">Belo Horizonte, MG</span></li>
+<li>
+<span>📱</span>
+<a href="https://wa.me/5531973526254" id="waLink" rel="noopener noreferrer" target="_blank">+55 (31) 97352-6254</a>
+<button class="mini" data-copy="+5531973526254" data-i18n="contact.copy" aria-label="Copiar telefone">Copiar</button>
+</li>
+<li>
+<span>✉️</span>
+<a href="mailto:matheusmuniz@outlook.com?subject=Contato%20-%20Site" id="mailLink">matheusmuniz@outlook.com</a>
+<button class="mini" data-copy="matheusmuniz@outlook.com" data-i18n="contact.copy" aria-label="Copiar e-mail">Copiar</button>
+</li>
+<li>
+<span>💻</span>
+<a href="https://github.com/munizmath" id="githubLink" rel="noopener noreferrer" target="_blank">github.com/munizmath</a>
+<button class="mini" data-copy="https://github.com/munizmath" data-i18n="contact.copy" aria-label="Copiar link do GitHub">Copiar</button>
+</li>
+<li><span>🌐</span> <span data-i18n="hero.langs">Idiomas:</span> <span data-i18n="hero.langsValue">Inglês B1 • Espanhol B1</span></li>
+</ul>
+</div>
+
+<div class="photo">
+<img alt="Matheus Muniz" class="profile-img contact-profile-img" src="https://github.com/munizmath.png"/>
+</div>
 </div>
 </div>
 <div class="footer" style="justify-content: center;">
@@ -672,6 +630,79 @@
 </div>
 </div>
 </div>
+<!-- MODAL CV -->
+<div aria-hidden="true" class="modal-overlay" id="modal-cv">
+<div aria-labelledby="modal-cv-title" aria-modal="true" class="modal" role="dialog">
+<div class="modal-header">
+<div class="modal-title">
+<strong data-i18n="contact.cvModalTitle" id="modal-cv-title">CV (PDF)</strong>
+</div>
+<button aria-label="Fechar" class="modal-close" data-close-modal="" data-i18n="modal.close" type="button">Fechar</button>
+</div>
+<div class="modal-section pdf-container" style="padding: 12px; border: 0; background: rgba(255,255,255,.05); border-radius: 8px;">
+<iframe class="pdf" src="assets/docs/Curriculo-Matheus-Muniz.pdf" title="Currículo PDF" style="height: calc(80vh - 144px); min-height: 400px;"></iframe>
+</div>
+<div class="modal-footer">
+<a class="link" href="assets/docs/Curriculo-Matheus-Muniz.pdf" target="_blank" rel="noopener" data-i18n="contact.openCvNewTab">Abrir em nova aba</a>
+<span>© <span id="y7"></span> Matheus Muniz</span>
+</div>
+</div>
+</div>
+
+<!-- MODAL FORM -->
+<div aria-hidden="true" class="modal-overlay" id="modal-form">
+<div aria-labelledby="modal-form-title" aria-modal="true" class="modal" role="dialog">
+<div class="modal-header">
+<div class="modal-title">
+<strong data-i18n="contact.formModalTitle" id="modal-form-title">Contato formal</strong>
+</div>
+<button aria-label="Fechar" class="modal-close" data-close-modal="" data-i18n="modal.close" type="button">Fechar</button>
+</div>
+<div class="modal-section" style="padding: 0; border: 0; background: transparent; overflow-y: auto; max-height: calc(80vh - 120px);">
+<form id="contactForm" class="form">
+<label>
+<span data-i18n="contact.formName">Nome</span>
+<input name="name" autocomplete="name" required />
+</label>
+
+<label>
+<span data-i18n="contact.formEmail">E-mail</span>
+<input name="email" type="email" autocomplete="email" required />
+</label>
+
+<label>
+<span data-i18n="contact.formType">Tipo</span>
+<select name="type" required>
+<option value="recrutamento" data-i18n="contact.formType1">Recrutamento</option>
+<option value="projeto" data-i18n="contact.formType2">Projeto/Contrato</option>
+<option value="outro" data-i18n="contact.formType3">Outro</option>
+</select>
+</label>
+
+<label>
+<span data-i18n="contact.formMessage">Mensagem</span>
+<textarea name="message" rows="5" required></textarea>
+</label>
+
+<!-- honeypot -->
+<input name="company" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true" />
+
+<label class="consent">
+<input type="checkbox" required />
+<span data-i18n="contact.formConsent">Usarei seus dados apenas para responder este contato (LGPD).</span>
+</label>
+
+<button class="btn-primary" type="submit" data-i18n="contact.formSubmit">Enviar</button>
+<p class="hint" data-i18n="contact.formHint">Tempo de resposta típico: 24–48h.</p>
+</form>
+</div>
+<div class="modal-footer">
+<span data-i18n="modal.footerHint">ESC para fechar • Clique fora para fechar</span>
+<span>© <span id="y8"></span> Matheus Muniz</span>
+</div>
+</div>
+</div>
+
 <script src="scripts.js"></script>
 </body>
 </html>

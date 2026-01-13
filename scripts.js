@@ -1,6 +1,6 @@
 // Ano
 const year = new Date().getFullYear();
-const ids = ["y","y2","y3","y4","y5","y6"];
+const ids = ["y","y2","y3","y4","y5","y6","y7","y8"];
 ids.forEach(id => { const el = document.getElementById(id); if(el) el.textContent = year; });
 
 // Traduções (PT/EN/ES) — mantém seu dicionário, só adicionei "proj.details"
@@ -80,7 +80,7 @@ const dict = {
     "exp.r3b1": "Coordenação de times 24x7 e handoffs padronizados (BH/RJ/SP).",
     "exp.r3b2": "Gestão de incidentes críticos: war rooms, timelines, lições aprendidas e redução de MTTR.",
     "exp.r3b3": "Processos e documentação (POPs/fluxos) + relatórios gerenciais (SLA/MTTR/volumetria).",
-    "exp.noteD": "A trajetória completa (2011–2025) está no CV em PDF, incluindo suporte, infraestrutura e IAM.",
+    "exp.noteD": "A trajetória completa (2011–2025) está no <a href=\"#\" class=\"link-cv-modal\" data-open-modal=\"cv\">currículo em PDF</a>, incluindo suporte, infraestrutura e IAM.",
 
     "skills.title": "Competências (core)",
     "skills.subtitle": "Foco em observabilidade, dados e automação — com base sólida em operação crítica.",
@@ -139,11 +139,36 @@ const dict = {
     "proj.todo3": "Inclua 1 parágrafo de arquitetura: dados, autenticação, deploy e observabilidade.",
 
     "contact.title": "Contato",
-    "contact.subtitle": "Canal recomendado: LinkedIn. PDFs anexos no site para leitura rápida.",
+    "contact.subtitle": "Resposta típica: 24–48h.",
+    "contact.tabFast": "Rápido",
+    "contact.tabFormal": "Formal",
     "contact.ctaLinkedin": "Abrir LinkedIn",
+    "contact.ctaWhatsApp": "WhatsApp",
+    "contact.ctaForm": "Abrir formulário",
     "contact.ctaEmail": "Enviar e-mail",
     "contact.ctaCv": "Abrir CV (PDF)",
     "contact.ctaProfile": "Abrir LinkedIn (PDF)",
+    "contact.availableFor": "Disponível para:",
+    "contact.chip1": "Observabilidade/SRE",
+    "contact.chip2": "Dados/BI",
+    "contact.chip3": "Automação/ITSM",
+    "contact.copy": "Copiar",
+    "contact.copied": "Copiado",
+    "contact.cvModalTitle": "CV (PDF)",
+    "contact.formModalTitle": "Contato formal",
+    "contact.formName": "Nome",
+    "contact.formEmail": "E-mail",
+    "contact.formType": "Tipo",
+    "contact.formType1": "Recrutamento",
+    "contact.formType2": "Projeto/Contrato",
+    "contact.formType3": "Outro",
+    "contact.formMessage": "Mensagem",
+    "contact.formConsent": "Usarei seus dados apenas para responder este contato (LGPD).",
+    "contact.formSubmit": "Enviar",
+    "contact.formSent": "Enviado",
+    "contact.formHint": "Tempo de resposta típico: 24–48h.",
+    "contact.openCv": "Ver currículo PDF",
+    "contact.openCvNewTab": "Abrir em nova aba",
 
     "nav.skip": "Pular para o conteúdo",
     "nav.hint": "Scroll ↓",
@@ -277,7 +302,7 @@ const dict = {
     "exp.r3b1": "24x7 team coordination and standardized handoffs (BH/RJ/SP).",
     "exp.r3b2": "Critical incident management: war rooms, timelines, lessons learned and MTTR reduction.",
     "exp.r3b3": "Processes and documentation (SOPs/flows) + management reports (SLA/MTTR/volumetrics).",
-    "exp.noteD": "The complete journey (2011–2025) is in the PDF CV, including support, infrastructure and IAM.",
+    "exp.noteD": "The complete journey (2011–2025) is in the <a href=\"#\" class=\"link-cv-modal\" data-open-modal=\"cv\">PDF resume</a>, including support, infrastructure and IAM.",
 
     "skills.title": "Skills (core)",
     "skills.subtitle": "Focus on observability, data and automation — with solid foundation in critical operations.",
@@ -336,11 +361,37 @@ const dict = {
     "proj.todo3": "Include 1 architecture paragraph: data, authentication, deploy and observability.",
 
     "contact.title": "Contact",
-    "contact.subtitle": "Recommended channel: LinkedIn. PDFs attached on the site for quick reading.",
+    "contact.subtitle": "Typical response: 24–48h.",
+    "contact.tabFast": "Quick",
+    "contact.tabFormal": "Formal",
     "contact.ctaLinkedin": "Open LinkedIn",
+    "contact.ctaWhatsApp": "WhatsApp",
+    "contact.ctaForm": "Open form",
     "contact.ctaEmail": "Send email",
     "contact.ctaCv": "Open CV (PDF)",
     "contact.ctaProfile": "Open LinkedIn (PDF)",
+    "contact.availableFor": "Available for:",
+    "contact.chip1": "Observability/SRE",
+    "contact.chip2": "Data/BI",
+    "contact.chip3": "Automation/ITSM",
+    "contact.chip4": "Full Stack Development",
+    "contact.copy": "Copy",
+    "contact.copied": "Copied",
+    "contact.cvModalTitle": "CV (PDF)",
+    "contact.formModalTitle": "Formal contact",
+    "contact.formName": "Name",
+    "contact.formEmail": "Email",
+    "contact.formType": "Type",
+    "contact.formType1": "Recruitment",
+    "contact.formType2": "Project/Contract",
+    "contact.formType3": "Other",
+    "contact.formMessage": "Message",
+    "contact.formConsent": "I will use your data only to respond to this contact (GDPR).",
+    "contact.formSubmit": "Send",
+    "contact.formSent": "Sent",
+    "contact.formHint": "Typical response time: 24–48h.",
+    "contact.openCv": "View resume PDF",
+    "contact.openCvNewTab": "Open in new tab",
 
     "nav.skip": "Skip to content",
     "nav.hint": "Scroll ↓",
@@ -474,7 +525,7 @@ const dict = {
     "exp.r3b1": "Coordinación de equipos 24x7 y transferencias estandarizadas (BH/RJ/SP).",
     "exp.r3b2": "Gestión de incidentes críticos: salas de guerra, líneas de tiempo, lecciones aprendidas y reducción de MTTR.",
     "exp.r3b3": "Procesos y documentación (POPs/flujos) + informes gerenciales (SLA/MTTR/volumetría).",
-    "exp.noteD": "La trayectoria completa (2011–2025) está en el CV en PDF, incluyendo soporte, infraestructura e IAM.",
+    "exp.noteD": "La trayectoria completa (2011–2025) está en el <a href=\"#\" class=\"link-cv-modal\" data-open-modal=\"cv\">currículum en PDF</a>, incluyendo soporte, infraestructura e IAM.",
 
     "skills.title": "Competencias (core)",
     "skills.subtitle": "Enfoque en observabilidad, datos y automatización — con base sólida en operación crítica.",
@@ -533,11 +584,37 @@ const dict = {
     "proj.todo3": "Incluye 1 párrafo de arquitectura: datos, autenticación, despliegue y observabilidad.",
 
     "contact.title": "Contacto",
-    "contact.subtitle": "Canal recomendado: LinkedIn. PDFs adjuntos en el sitio para lectura rápida.",
+    "contact.subtitle": "Respuesta típica: 24–48h.",
+    "contact.tabFast": "Rápido",
+    "contact.tabFormal": "Formal",
     "contact.ctaLinkedin": "Abrir LinkedIn",
+    "contact.ctaWhatsApp": "WhatsApp",
+    "contact.ctaForm": "Abrir formulario",
     "contact.ctaEmail": "Enviar correo",
     "contact.ctaCv": "Abrir CV (PDF)",
     "contact.ctaProfile": "Abrir LinkedIn (PDF)",
+    "contact.availableFor": "Disponible para:",
+    "contact.chip1": "Observabilidad/SRE",
+    "contact.chip2": "Datos/BI",
+    "contact.chip3": "Automatización/ITSM",
+    "contact.chip4": "Desarrollo Full Stack",
+    "contact.copy": "Copiar",
+    "contact.copied": "Copiado",
+    "contact.cvModalTitle": "CV (PDF)",
+    "contact.formModalTitle": "Contacto formal",
+    "contact.formName": "Nombre",
+    "contact.formEmail": "Correo",
+    "contact.formType": "Tipo",
+    "contact.formType1": "Reclutamiento",
+    "contact.formType2": "Proyecto/Contrato",
+    "contact.formType3": "Otro",
+    "contact.formMessage": "Mensaje",
+    "contact.formConsent": "Usaré tus datos solo para responder este contacto (LGPD).",
+    "contact.formSubmit": "Enviar",
+    "contact.formSent": "Enviado",
+    "contact.formHint": "Tiempo de respuesta típico: 24–48h.",
+    "contact.openCv": "Ver currículo PDF",
+    "contact.openCvNewTab": "Abrir en nueva pestaña",
 
     "nav.skip": "Saltar al contenido",
     "nav.hint": "Desplázate ↓",
@@ -618,10 +695,15 @@ function setLang(lang){
     if(map[key]) {
       // Preservar quebras de linha: converter \n em <br>
       const text = map[key];
-      // Para elementos que suportam HTML (P, SPAN, DIV, LI, etc), converter \n em <br>
-      if(el.tagName === 'P' || el.tagName === 'SPAN' || el.tagName === 'DIV' || el.tagName === 'LI' || el.tagName === 'TD' || el.tagName === 'TH') {
-        // Substituir \n\n por <br><br> e \n por <br>
-        el.innerHTML = text.replace(/\n\n+/g, '<br><br>').replace(/\n/g, '<br>');
+      // Para elementos que suportam HTML (P, SPAN, DIV, LI, SMALL, etc), converter \n em <br>
+      if(el.tagName === 'P' || el.tagName === 'SPAN' || el.tagName === 'DIV' || el.tagName === 'LI' || el.tagName === 'TD' || el.tagName === 'TH' || el.tagName === 'SMALL') {
+        // Se o texto contém HTML (tags), usar innerHTML diretamente, senão converter \n em <br>
+        if(text.includes('<') && text.includes('>')) {
+          el.innerHTML = text;
+        } else {
+          // Substituir \n\n por <br><br> e \n por <br>
+          el.innerHTML = text.replace(/\n\n+/g, '<br><br>').replace(/\n/g, '<br>');
+        }
       } else {
         el.textContent = text;
       }
@@ -701,6 +783,9 @@ function setLang(lang){
   }
   
   if (canStoreLang) localStorage.setItem("lang", lang);
+  
+  // Disparar evento customizado para atualizar componentes dinâmicos
+  document.dispatchEvent(new CustomEvent("langchange", { detail: { lang } }));
 }
 
 document.getElementById("btn-pt").onclick = ()=>setLang("pt");
@@ -929,6 +1014,20 @@ function closeModal(){
 
 // Garantir que os event listeners sejam anexados após o DOM estar pronto
 function initModals(){
+  // Event delegation para capturar cliques em elementos com data-open-modal (incluindo inseridos dinamicamente)
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-open-modal]");
+    if (btn) {
+      e.preventDefault();
+      e.stopPropagation();
+      const key = btn.getAttribute("data-open-modal");
+      if(key && typeof openModal === "function") {
+        openModal(key);
+      }
+    }
+  });
+  
+  // Manter listeners diretos para compatibilidade
   document.querySelectorAll("[data-open-modal]").forEach(btn=>{
     btn.addEventListener("click", (e)=>{
       e.preventDefault();
@@ -1090,10 +1189,10 @@ if(document.readyState === "loading"){
 
   // Configuração: grupos com bounds e itens
   const CONFIG = {
-    speedMin: 0.18,
-    speedMax: 0.42,
+    speedMin: 0.25,
+    speedMax: 0.55,
     repel: true,         // empurra sobreposições leves
-    repelStrength: 0.06, // mais alto = separa mais
+    repelStrength: 0.15, // mais alto = separa mais
     maxFps: 45,          // reduz CPU no 1º slide
     groups: [
       {
@@ -1253,11 +1352,47 @@ if(document.readyState === "loading"){
       const by2 = usable.top + (usable.bottom - usable.top) * g.bounds.y2;
 
       it.boundsPx = { x1: bx1, y1: by1, x2: bx2, y2: by2 };
+    }
 
-      // init aleatório dentro do grupo
-      it.x = bx1 + Math.random() * Math.max(1, (bx2 - bx1 - it.w));
-      it.y = by1 + Math.random() * Math.max(1, (by2 - by1 - it.h));
-      it.el.style.transform = `translate3d(${it.x}px, ${it.y}px, 0)`;
+    // Inicializar posições com espaçamento mínimo entre bubbles do mesmo grupo
+    const groupItems = {};
+    items.forEach(it => {
+      if (!groupItems[it.groupKey]) groupItems[it.groupKey] = [];
+      groupItems[it.groupKey].push(it);
+    });
+
+    for (const groupKey in groupItems) {
+      const groupBubbles = groupItems[groupKey];
+      const g = getGroup(groupKey);
+      const b = groupBubbles[0].boundsPx;
+      
+      // Tentar posicionar cada bubble sem sobreposição inicial
+      for (let i = 0; i < groupBubbles.length; i++) {
+        const it = groupBubbles[i];
+        let attempts = 0;
+        let placed = false;
+        
+        while (!placed && attempts < 50) {
+          it.x = b.x1 + Math.random() * Math.max(it.w, (b.x2 - b.x1 - it.w));
+          it.y = b.y1 + Math.random() * Math.max(it.h, (b.y2 - b.y1 - it.h));
+          
+          // Verificar se não sobrepõe outras bubbles do mesmo grupo
+          let hasOverlap = false;
+          for (let j = 0; j < i; j++) {
+            if (overlaps(it, groupBubbles[j])) {
+              hasOverlap = true;
+              break;
+            }
+          }
+          
+          if (!hasOverlap) {
+            placed = true;
+          }
+          attempts++;
+        }
+        
+        it.el.style.transform = `translate3d(${it.x}px, ${it.y}px, 0)`;
+      }
     }
   }
 
@@ -1283,15 +1418,6 @@ if(document.readyState === "loading"){
     btn.setAttribute("data-i18n", running ? "skills.pauseMotion" : "skills.resumeMotion");
   });
 
-  function overlaps(a, b) {
-    return (
-      a.x < b.x + b.w &&
-      a.x + a.w > b.x &&
-      a.y < b.y + b.h &&
-      a.y + a.h > b.y
-    );
-  }
-
   function repel() {
     // O(n^2) pequeno (mantém n baixo). Se você botar 60 tags aqui, vai pesar.
     for (let i = 0; i < items.length; i++) {
@@ -1303,7 +1429,12 @@ if(document.readyState === "loading"){
         const dy = (A.y + A.h / 2) - (B.y + B.h / 2);
         const dist = Math.max(1, Math.hypot(dx, dy));
 
-        const push = CONFIG.repelStrength;
+        // Aumentar força de repulsão baseada na sobreposição
+        const overlapArea = Math.min(A.w, B.w) * Math.min(A.h, B.h);
+        const maxArea = Math.max(A.w * A.h, B.w * B.h);
+        const overlapRatio = overlapArea / maxArea;
+        const push = CONFIG.repelStrength * (1 + overlapRatio * 2); // mais força se sobrepor muito
+        
         const ux = dx / dist, uy = dy / dist;
 
         A.x += ux * push; A.y += uy * push;
@@ -1321,6 +1452,14 @@ if(document.readyState === "loading"){
       lastFrame = ts;
 
       if (running) {
+        // Aplicar repel primeiro para separar sobreposições
+        if (CONFIG.repel) {
+          // Aplicar repel múltiplas vezes para melhor separação
+          for (let r = 0; r < 2; r++) {
+            repel();
+          }
+        }
+
         for (const it of items) {
           const b = it.boundsPx;
 
@@ -1334,8 +1473,6 @@ if(document.readyState === "loading"){
           if (it.y + it.h >= b.y2) { it.y = b.y2 - it.h; it.vy *= -1; }
         }
 
-        if (CONFIG.repel) repel();
-
         for (const it of items) {
           it.el.style.transform = `translate3d(${it.x}px, ${it.y}px, 0)`;
         }
@@ -1346,4 +1483,110 @@ if(document.readyState === "loading"){
   }
 
   requestAnimationFrame(tick);
+})();
+
+// Sistema de Contato - CTAs, Modais e Formulário
+(() => {
+  const ctaRow = document.getElementById("ctaRow");
+  const openCv = document.getElementById("openCv");
+
+  if (!ctaRow || !openCv) return;
+
+  // Todos os botões disponíveis
+  const ALL_BUTTONS = [
+    { kind: "a", cls: "btn-primary", text: "contact.ctaWhatsApp", href: "https://wa.me/5531973526254" },
+    { kind: "a", cls: "btn-secondary", text: "contact.ctaLinkedin", href: "https://www.linkedin.com/in/matheus-muniz-oliveira/" },
+    { kind: "a", cls: "btn-secondary", text: "contact.ctaEmail", href: "mailto:matheusmuniz@outlook.com?subject=Contato%20-%20Site" },
+    { kind: "button", cls: "btn-secondary", text: "contact.ctaForm", onClick: () => { if (typeof openModal === "function") openModal("form"); } },
+  ];
+
+  function getTranslatedText(key) {
+    const lang = document.documentElement.lang === "pt-BR" ? "pt" : (document.documentElement.lang === "en" ? "en" : "es");
+    const map = dict[lang] || dict.pt || {};
+    return map[key] || key;
+  }
+
+  function render() {
+    if (!ctaRow) return;
+    ctaRow.innerHTML = "";
+    
+    for (const item of ALL_BUTTONS) {
+      const el = document.createElement(item.kind === "a" ? "a" : "button");
+      el.className = item.cls;
+      const textKey = typeof item.text === "string" && item.text.startsWith("contact.") ? item.text : item.text;
+      el.textContent = getTranslatedText(textKey);
+
+      if (item.kind === "a") {
+        el.href = item.href;
+        el.target = "_blank";
+        el.rel = "noopener noreferrer";
+      } else {
+        el.type = "button";
+        el.addEventListener("click", item.onClick);
+      }
+      ctaRow.appendChild(el);
+    }
+  }
+
+  // Abrir CV
+  openCv.addEventListener("click", () => {
+    if (typeof openModal === "function") {
+      openModal("cv");
+    }
+  });
+
+  // Copiar
+  document.addEventListener("click", async (e) => {
+    const b = e.target.closest("[data-copy]");
+    if (!b) return;
+    const val = b.getAttribute("data-copy");
+    if (!val) return;
+    
+    try {
+      await navigator.clipboard.writeText(val);
+      const originalText = b.textContent;
+      b.textContent = getTranslatedText("contact.copied");
+      setTimeout(() => {
+        b.textContent = originalText;
+      }, 900);
+    } catch (err) {
+      console.warn("Failed to copy:", err);
+    }
+  });
+
+  // Formulário
+  const contactForm = document.getElementById("contactForm");
+  if (contactForm) {
+    contactForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const form = e.currentTarget;
+      const data = Object.fromEntries(new FormData(form).entries());
+
+      // Honeypot
+      if (data.company) {
+        return; // Bot detectado
+      }
+
+      // TODO: POST /api/contact
+      // await fetch("/api/contact", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(data)
+      // });
+
+      const submitBtn = form.querySelector("button[type=submit]");
+      if (submitBtn) {
+        submitBtn.textContent = getTranslatedText("contact.formSent");
+        submitBtn.disabled = true;
+      }
+    });
+  }
+
+  // Renderizar botões iniciais
+  render();
+  
+  // Atualizar CTAs quando idioma mudar
+  document.addEventListener("langchange", () => {
+    render();
+  });
 })();

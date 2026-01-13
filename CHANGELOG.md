@@ -5,6 +5,89 @@ Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.2.0] - 12-01-2026 22:00:00
+
+### Adicionado
+
+#### ARQUIVOS ATUALIZADOS
+- `index.html`:
+  - Redesign completo da seção "Contato" com layout em 2 colunas
+    - Coluna esquerda: título, subtexto, tabs (Rápido/Formal), CTAs dinâmicos, chips de disponibilidade, links terciários
+    - Coluna direita: cartão de contato com informações (local, WhatsApp, e-mail, idiomas) + foto de perfil
+    - Removidos links "Deveriar" e "UltraHub" da seção de contato (movidos para seção Projetos)
+    - Removido link duplicado "Abrir LinkedIn (PDF)" (mantido apenas "Ver CV (PDF)" em modal)
+  - Adicionados modais CV e Formulário
+    - Modal CV (`#cvModal`): iframe com PDF + link fallback "Abrir em nova aba"
+    - Modal Formulário (`#formModal`): formulário completo com campos (Nome, E-mail, Tipo, Mensagem), checkbox LGPD, honeypot anti-spam
+
+- `style.css`:
+  - Adicionados estilos para layout 2 colunas (`.contact-grid`: grid 1.2fr .8fr)
+  - Adicionados estilos para tabs/segmented (`.segmented`, `.seg-btn`, `.seg-btn.is-active`)
+  - Adicionados estilos para CTAs (`.cta-row`, `.btn-primary`, `.btn-secondary`)
+  - Adicionados estilos para chips de disponibilidade (`.availability`, `.chips`, `.chip`)
+  - Adicionados estilos para cartão de contato (`.contact-card`, `.meta`, `.mini` botão copiar)
+  - Adicionados estilos para modais CV e Formulário (`.modal`, `.modal-panel`, `.modal-backdrop`, `.pdf`, `.form`)
+  - Adicionado estilo para honeypot invisível (`.hp`)
+  - Responsivo: grid vira 1 coluna em mobile (<900px)
+
+- `scripts.js`:
+  - Adicionadas traduções i18n completas (PT/EN/ES) para todas as novas strings:
+    - `contact.subtitle`, `contact.tabFast`, `contact.tabFormal`, `contact.ctaWhatsApp`, `contact.ctaForm`
+    - `contact.availableFor`, `contact.chip1`, `contact.chip2`, `contact.chip3`
+    - `contact.copy`, `contact.copied`, `contact.cvModalTitle`, `contact.formModalTitle`
+    - `contact.formName`, `contact.formEmail`, `contact.formType`, `contact.formType1/2/3`
+    - `contact.formMessage`, `contact.formConsent`, `contact.formSubmit`, `contact.formSent`
+    - `contact.formHint`, `contact.openCv`, `contact.openCvNewTab`
+  - Implementado sistema de tabs e CTAs dinâmicos (IIFE isolado)
+    - Objeto `MODES` com configuração de CTAs por modo (fast/formal)
+    - Função `render(mode)`: renderiza CTAs baseado no modo selecionado
+    - Event listeners nos tabs: alterna modo e re-renderiza CTAs
+    - Integração com sistema i18n: CTAs atualizados quando idioma mudar (evento `langchange`)
+  - Implementada lógica de modais CV e Formulário
+    - Funções `openContactModal(m)`, `closeContactModal(m)`, `wireContactModal(m)`
+    - Fecha com ESC e clique fora (backdrop)
+    - Focus trap e acessibilidade (role="dialog", aria-modal="true")
+  - Implementada funcionalidade de copiar (clipboard)
+    - Event delegation no `data-copy`
+    - Usa `navigator.clipboard.writeText()` com fallback
+    - Feedback visual: "Copiado" por 900ms
+  - Implementada lógica de formulário de contato
+    - Listener no submit do formulário
+    - Validação de honeypot (campo `company` invisível)
+    - Coleta dados via FormData
+    - TODO: POST para `/api/contact` (comentado, aguardando backend)
+    - Feedback: botão muda para "Enviado" após submit
+  - Adicionado evento customizado `langchange` na função `setLang()` para atualizar componentes dinâmicos
+
+### Notas de Segurança
+
+- **Honeypot anti-spam**: Campo invisível `company` para detectar bots (não preenchido por humanos)
+- **Validação de entrada**: Campos obrigatórios com `required`, tipo email validado pelo browser
+- **LGPD compliance**: Checkbox de consentimento obrigatório com texto claro sobre uso dos dados
+- **Rate limiting**: TODO - implementar no endpoint `/api/contact` (não no frontend)
+- **CAPTCHA progressivo**: TODO - adicionar apenas se detectar abuso (não implementado inicialmente)
+- **Sem exposição de segredos**: Nenhuma chave/token exposta no código
+- **Acessibilidade**: Modais com `role="dialog"`, `aria-modal="true"`, focus trap, fecha com ESC e clique fora
+- **Validação de entrada**: Campos obrigatórios validados pelo browser, honeypot para prevenir spam
+
+### Melhorias de UX/Acessibilidade
+
+- **Layout em 2 colunas**: Melhor organização visual, decisão em 2 segundos (objetivo atendido)
+- **Sistema de trilhas**: Rápido (WhatsApp/LinkedIn) vs Formal (Formulário/E-mail) atende recrutadores e clientes
+- **CTAs hierárquicos**: Primário/Secundário/Terciário claramente definidos por trilha
+- **Chips de disponibilidade**: Prova visual de áreas de atuação (Observabilidade/SRE, Dados/BI, Automação/ITSM)
+- **Botões copiar**: Reduz fricção para copiar telefone e e-mail
+- **Modais acessíveis**: Focus trap, fecha com ESC, aria-labels completos
+- **Formulário com validação**: Campos obrigatórios, feedback visual, nota de tempo de resposta
+- **Responsivo**: Layout adapta-se a mobile (1 coluna)
+
+### Melhorias Técnicas
+
+- **Sistema modular**: Lógica isolada em IIFE, não polui escopo global
+- **Integração com i18n**: CTAs e textos atualizados automaticamente quando idioma mudar
+- **Reutilização de código**: Sistema de modais reutiliza padrões existentes
+- **Performance**: Renderização dinâmica eficiente, event delegation para copiar
+
 ## [1.1.7] - 12-01-2026 21:15:00
 
 ### Adicionado
